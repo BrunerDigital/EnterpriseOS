@@ -1,4 +1,4 @@
-# EnterpriseOS GTM Lanes
+# BrunerDigital GTM Lanes
 
 ## Lane 1: Agencies
 

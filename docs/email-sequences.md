@@ -2,7 +2,7 @@
 
 ## Trial Signup
 
-1. Welcome to EnterpriseOS: your workspace is ready.
+1. Welcome to BrunerDigital: your workspace is ready.
 2. Activate your first revenue workflow.
 3. Import contacts and connect your calendar.
 4. Build your first funnel and follow-up path.
@@ -18,7 +18,7 @@
 
 ## Agency Partner Nurture
 
-1. Package EnterpriseOS as a recurring offer.
+1. Package BrunerDigital as a recurring offer.
 2. Use the white-label sales assets.
 3. Standardize client onboarding.
 4. Show ROI with dashboards and reports.

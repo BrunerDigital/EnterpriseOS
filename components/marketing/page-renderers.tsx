@@ -177,7 +177,7 @@ function ComparisonTable() {
         <div className="grid grid-cols-3 bg-white/[0.06] text-sm font-semibold text-white">
           <div className="p-4">Alternative</div>
           <div className="p-4">Typical role</div>
-          <div className="p-4">EnterpriseOS advantage</div>
+          <div className="p-4">BrunerDigital advantage</div>
         </div>
         {rows.map((row) => (
           <div key={row[0]} className="grid grid-cols-3 border-t border-white/10 text-sm text-slate-300">
@@ -280,7 +280,7 @@ export function LibraryIndexPage() {
       <main>
         <section className="px-4 py-16 sm:px-6 md:py-24 lg:px-8">
           <div className="mx-auto max-w-7xl">
-            <SectionHeader title="EnterpriseOS launch asset library" body="A screenshot-ready command center for copy, funnels, email, paid ads, sales enablement, visual direction, and launch checklists." />
+            <SectionHeader title="BrunerDigital launch asset library" body="A screenshot-ready command center for copy, funnels, email, paid ads, sales enablement, visual direction, and launch checklists." />
             <div className="mt-10 grid gap-5 lg:grid-cols-3">
               <AssetPanel title="Copy hooks" icon={<Sparkles />} items={[...copyLibrary.headlines, ...copyLibrary.ctas]} />
               <AssetPanel title="Email sequences" icon={<Mail />} items={emailSequences.map((sequence) => `${sequence.name}: ${sequence.emails.length} emails`)} />

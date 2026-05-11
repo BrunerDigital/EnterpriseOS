@@ -25,6 +25,6 @@ Multi Location Marketing Platform: Unify leads, reviews, campaigns, and reportin
 
 ## Video Scripts
 
-Founder-led: "Your CRM is only one piece of the revenue system. The real leaks happen between lead capture, follow-up, scheduling, and reporting. EnterpriseOS puts those workflows in one white-label operating system."
+Founder-led: "Your CRM is only one piece of the revenue system. The real leaks happen between lead capture, follow-up, scheduling, and reporting. BrunerDigital puts those workflows in one white-label operating system."
 
 UGC-style: "I used to manage leads, reviews, appointments, and reports in five tools. Now it is one workspace, one pipeline, and one follow-up system."

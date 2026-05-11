@@ -10,5 +10,5 @@ export type TrackingEvent =
 export function trackEvent(event: TrackingEvent, properties: Record<string, string | number | boolean> = {}) {
   if (typeof window === "undefined") return;
 
-  window.dispatchEvent(new CustomEvent("enterpriseos:track", { detail: { event, properties } }));
+  window.dispatchEvent(new CustomEvent("brunerdigital:track", { detail: { event, properties } }));
 }

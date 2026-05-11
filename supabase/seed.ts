@@ -14,7 +14,7 @@ const supabase = createClient(supabaseUrl, serviceRoleKey, {
 async function main() {
   const { data: tenant, error: tenantError } = await supabase
     .from("tenants")
-    .upsert({ name: "Apex Growth Agency", slug: "apex-growth", plan: "scale" }, { onConflict: "slug" })
+    .upsert({ name: "BrunerDigital", slug: "brunerdigital", plan: "scale" }, { onConflict: "slug" })
     .select()
     .single();
 

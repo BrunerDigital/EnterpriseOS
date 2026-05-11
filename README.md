@@ -1,6 +1,6 @@
-# EnterpriseOS Marketing Launch System
+# BrunerDigital Marketing Launch System
 
-EnterpriseOS is a premium white-label AI business operating system for agencies, service businesses, franchises, multi-location brands, consultants, and growth teams.
+BrunerDigital is a premium white-label AI business operating system for agencies, service businesses, franchises, multi-location brands, consultants, and growth teams.
 
 This project now includes a complete launch-ready marketing website, funnel library, conversion flows, copy system, brand strategy, content calendar, ad assets, email sequences, sales enablement assets, visual direction, launch checklists, SEO plumbing, sitemap, robots, legal placeholders, and an existing internal product demo at `/dashboard`.
 
@@ -53,7 +53,7 @@ npm run db:types
 
 1. Create a production project on Vercel or another Next.js host.
 2. Set production environment variables from `.env.example`.
-3. Replace `https://enterpriseos.example` in `app/layout.tsx`, `app/sitemap.ts`, and `app/robots.ts`.
+3. Replace `https://brunerdigital.example` in `app/layout.tsx`, `app/sitemap.ts`, and `app/robots.ts`.
 4. Connect analytics, pixels, CRM webhooks, email sending, payment provider, and calendar credentials.
 5. Replace legal placeholders with attorney-reviewed policies.
 6. Deploy from the main branch.
@@ -64,7 +64,7 @@ npm run db:types
 - Marketing content source: `lib/marketing.ts`
 - Marketing UI components: `components/marketing/`
 - Product demo UI: `app/dashboard`, `components/app/`, `lib/demo-data.ts`
-- Supabase schema: `supabase/migrations/202605110001_enterpriseos_schema.sql`
+- Supabase schema: `supabase/migrations/`
 - Supabase seed: `supabase/seed.ts`
 - Supabase clients and types: `lib/supabase/`
 - Tracking placeholder: `lib/tracking.ts`

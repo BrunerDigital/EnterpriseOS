@@ -2,21 +2,19 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import { ArrowRight, BarChart3, Building2, CalendarClock, Check, ChevronRight, Lock, Menu, MessageSquare, Sparkles, X, Zap } from "lucide-react";
+import { ArrowRight, BarChart3, Building2, CalendarClock, Check, ChevronRight, Lock, Menu, MessageSquare, X, Zap } from "lucide-react";
 import { brand, navItems } from "@/lib/marketing";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { BrunerLogo } from "@/components/app/bruner-logo";
 
 export function BrandMark() {
   return (
-    <Link href="/" className="flex items-center gap-3" aria-label="EnterpriseOS home">
-      <div className="flex size-10 items-center justify-center rounded-lg bg-sky-400 text-slate-950 shadow-glow">
-        <Sparkles className="size-5" />
-      </div>
-      <div className="leading-tight">
-        <div className="text-base font-semibold tracking-normal text-white">{brand.name}</div>
-        <div className="text-[11px] font-medium uppercase tracking-[0.2em] text-slate-500">White-label suite</div>
-      </div>
+    <Link href="/" aria-label="BrunerDigital home">
+      <BrunerLogo
+        subtitle="White-label suite"
+        markClassName="size-10 bg-sky-400 text-slate-950"
+      />
     </Link>
   );
 }
@@ -113,7 +111,7 @@ export function Footer() {
         </div>
       </div>
       <div className="mx-auto flex max-w-7xl flex-col gap-2 border-t border-white/10 px-4 py-6 text-xs text-slate-500 sm:px-6 md:flex-row md:items-center md:justify-between lg:px-8">
-        <span>© 2026 EnterpriseOS. Launch-ready marketing system placeholder.</span>
+        <span>© 2026 BrunerDigital. Launch-ready marketing system placeholder.</span>
         <span>Built for white-label SaaS launch, demand generation, and investor-ready demos.</span>
       </div>
     </footer>
@@ -140,14 +138,14 @@ export function ProductMockup({ compact = false }: { compact?: boolean }) {
           <div className="size-3 rounded-full bg-amber-300" />
           <div className="size-3 rounded-full bg-emerald-400" />
         </div>
-        <div className="text-xs font-medium text-slate-500">enterpriseos.app / command-center</div>
+        <div className="text-xs font-medium text-slate-500">brunerdigital.app / command-center</div>
       </div>
       <div className="grid gap-3 p-3 lg:grid-cols-[0.82fr_1.18fr]">
         <div className="rounded-lg border border-white/10 bg-slate-950/70 p-4">
           <div className="flex items-center justify-between">
             <div>
               <div className="text-sm font-semibold">Revenue cockpit</div>
-              <div className="text-xs text-slate-500">Apex Growth Agency</div>
+              <div className="text-xs text-slate-500">BrunerDigital</div>
             </div>
             <div className="rounded-md bg-emerald-400/10 px-2 py-1 text-xs font-semibold text-emerald-300">Live</div>
           </div>
@@ -219,7 +217,7 @@ export function CtaBand() {
         <div className="grid gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
           <div>
             <h2 className="text-3xl font-semibold tracking-normal text-white md:text-5xl">Build the launch system once. Scale it across every client, team, and location.</h2>
-            <p className="mt-4 max-w-2xl text-base leading-7 text-slate-300">Use EnterpriseOS to move faster from positioning to pipeline, from campaigns to conversion, and from service delivery to measurable proof.</p>
+            <p className="mt-4 max-w-2xl text-base leading-7 text-slate-300">Use BrunerDigital to move faster from positioning to pipeline, from campaigns to conversion, and from service delivery to measurable proof.</p>
           </div>
           <div className="flex flex-col gap-3 sm:flex-row lg:justify-end">
             <Button asChild size="lg" className="bg-sky-400 text-slate-950 hover:bg-sky-300">

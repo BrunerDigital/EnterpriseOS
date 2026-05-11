@@ -37,9 +37,9 @@ export type FlowStep = {
 };
 
 export const brand = {
-  name: "EnterpriseOS",
+  name: "BrunerDigital",
   oneLiner:
-    "EnterpriseOS is the white-label AI business operating system for agencies, service companies, franchises, and growth teams.",
+    "BrunerDigital is the white-label AI business operating system for agencies, service companies, franchises, and growth teams.",
   taglineOptions: [
     "Your growth engine, fully white-labeled.",
     "One operating system for leads, clients, and revenue.",
@@ -48,7 +48,7 @@ export const brand = {
     "Replace disconnected tools with one branded growth platform."
   ],
   valueProposition:
-    "EnterpriseOS helps teams capture leads, automate follow-up, manage sales pipelines, schedule appointments, collect reviews, report performance, bill clients, and deliver client portals from one premium white-label workspace.",
+    "BrunerDigital helps teams capture leads, automate follow-up, manage sales pipelines, schedule appointments, collect reviews, report performance, bill clients, and deliver client portals from one premium white-label workspace.",
   voice:
     "Confident, precise, executive, useful, and conversion-oriented. Avoid hype, jargon, and fear. Lead with business outcomes, then support with concrete operating details.",
   pillars: [
@@ -77,7 +77,7 @@ export const navItems = [
 
 const defaultFaqs = [
   {
-    q: "Is EnterpriseOS white-label?",
+    q: "Is BrunerDigital white-label?",
     a: "Yes. Agencies and operators can customize brand, domain, portal experience, outbound identity, client workspaces, and sales collateral."
   },
   {
@@ -92,10 +92,10 @@ const defaultFaqs = [
 
 export const homepage: MarketingPage = {
   slug: "/",
-  title: "EnterpriseOS | White-label AI business operating system",
+  title: "BrunerDigital | White-label AI business operating system",
   headline: "Run your entire growth engine from one white-label AI business suite.",
   subheadline:
-    "EnterpriseOS gives agencies, franchises, service companies, and marketing teams one premium platform for CRM, pipelines, conversations, automation, scheduling, funnels, reputation, reporting, billing, portals, and brand control.",
+    "BrunerDigital gives agencies, franchises, service companies, and marketing teams one premium platform for CRM, pipelines, conversations, automation, scheduling, funnels, reputation, reporting, billing, portals, and brand control.",
   primaryCta: "Start free trial",
   secondaryCta: "Book a demo",
   bullets: [
@@ -107,12 +107,12 @@ export const homepage: MarketingPage = {
   sections: [
     {
       title: "Everything revenue teams need in one operating layer",
-      body: "EnterpriseOS connects the tools that usually live in separate tabs, spreadsheets, inboxes, and dashboards.",
+      body: "BrunerDigital connects the tools that usually live in separate tabs, spreadsheets, inboxes, and dashboards.",
       points: ["Unified CRM and pipeline", "AI messaging and automations", "Funnels, calendars, forms, billing, portals", "Executive-grade reporting"]
     },
     {
       title: "Built to sell, onboard, and scale",
-      body: "Use EnterpriseOS for your own operations or resell it as a premium branded platform for clients and locations.",
+      body: "Use BrunerDigital for your own operations or resell it as a premium branded platform for clients and locations.",
       points: ["Agency reseller workflows", "Franchise and multi-location controls", "Onboarding and migration playbooks", "Reusable funnel and campaign templates"]
     },
     {
@@ -127,7 +127,7 @@ export const homepage: MarketingPage = {
 export const marketingPages: Record<string, MarketingPage> = {
   "/pricing": {
     slug: "/pricing",
-    title: "Pricing | EnterpriseOS",
+    title: "Pricing | BrunerDigital",
     headline: "Pricing built for operators, agencies, and scale.",
     subheadline:
       "Start lean, launch your workspace, then expand into white-label, multi-location, automation, and enterprise controls as your growth system matures.",
@@ -143,10 +143,10 @@ export const marketingPages: Record<string, MarketingPage> = {
   },
   "/features": {
     slug: "/features",
-    title: "Features | EnterpriseOS",
+    title: "Features | BrunerDigital",
     headline: "One suite for every step of the customer journey.",
     subheadline:
-      "EnterpriseOS brings acquisition, conversion, service, retention, and reporting into a single premium workspace.",
+      "BrunerDigital brings acquisition, conversion, service, retention, and reporting into a single premium workspace.",
     primaryCta: "Explore demo",
     secondaryCta: "View pricing",
     bullets: ["CRM and opportunities", "AI conversations and automations", "Funnels and campaigns", "Reputation, reporting, billing, and portals"],
@@ -159,7 +159,7 @@ export const marketingPages: Record<string, MarketingPage> = {
   },
   "/features/crm": {
     slug: "/features/crm",
-    title: "CRM | EnterpriseOS",
+    title: "CRM | BrunerDigital",
     headline: "A CRM built for action, not administration.",
     subheadline:
       "Manage contacts, companies, opportunities, notes, tasks, owners, and client context from one revenue command center.",
@@ -175,7 +175,7 @@ export const marketingPages: Record<string, MarketingPage> = {
   },
   "/features/ai-automation": {
     slug: "/features/ai-automation",
-    title: "AI Automation | EnterpriseOS",
+    title: "AI Automation | BrunerDigital",
     headline: "Turn every lead response into a guided growth workflow.",
     subheadline:
       "Use AI-assisted messaging and automation templates to respond faster, qualify leads, book appointments, recover lost opportunities, and trigger internal tasks.",
@@ -191,7 +191,7 @@ export const marketingPages: Record<string, MarketingPage> = {
   },
   "/features/conversations": {
     slug: "/features/conversations",
-    title: "Conversations Inbox | EnterpriseOS",
+    title: "Conversations Inbox | BrunerDigital",
     headline: "One inbox for every customer conversation.",
     subheadline:
       "Centralize SMS, email, web forms, chat, missed call follow-up, internal notes, and AI-assisted replies in one team inbox.",
@@ -207,7 +207,7 @@ export const marketingPages: Record<string, MarketingPage> = {
   },
   "/features/funnel-builder": {
     slug: "/features/funnel-builder",
-    title: "Funnel Builder | EnterpriseOS",
+    title: "Funnel Builder | BrunerDigital",
     headline: "Launch conversion funnels connected to CRM, calendar, and automation.",
     subheadline:
       "Create lead capture pages, demo funnels, audits, webinars, migration offers, and paid ad landing pages without disconnecting the follow-up workflow.",
@@ -223,7 +223,7 @@ export const marketingPages: Record<string, MarketingPage> = {
   },
   "/features/calendar-scheduling": {
     slug: "/features/calendar-scheduling",
-    title: "Calendar Scheduling | EnterpriseOS",
+    title: "Calendar Scheduling | BrunerDigital",
     headline: "Book more qualified appointments with intelligent scheduling.",
     subheadline:
       "Route leads to the right team, location, service, or client calendar while keeping CRM and automations in sync.",
@@ -239,7 +239,7 @@ export const marketingPages: Record<string, MarketingPage> = {
   },
   "/features/reputation": {
     slug: "/features/reputation",
-    title: "Reputation Management | EnterpriseOS",
+    title: "Reputation Management | BrunerDigital",
     headline: "Turn satisfied customers into visible proof.",
     subheadline:
       "Request, monitor, respond to, and report on reviews across locations, clients, and teams.",
@@ -255,7 +255,7 @@ export const marketingPages: Record<string, MarketingPage> = {
   },
   "/features/reporting": {
     slug: "/features/reporting",
-    title: "Reporting & Analytics | EnterpriseOS",
+    title: "Reporting & Analytics | BrunerDigital",
     headline: "Give every stakeholder a clear view of growth.",
     subheadline:
       "Measure lead sources, speed-to-lead, pipeline value, booked appointments, campaign outcomes, reviews, revenue, and team performance.",
@@ -271,10 +271,10 @@ export const marketingPages: Record<string, MarketingPage> = {
   },
   "/white-label": {
     slug: "/white-label",
-    title: "White-label Agency Platform | EnterpriseOS",
+    title: "White-label Agency Platform | BrunerDigital",
     headline: "Sell a premium business suite under your agency brand.",
     subheadline:
-      "EnterpriseOS helps agencies package CRM, automations, AI messaging, funnels, reputation, reporting, billing, and portals into a sticky recurring offer.",
+      "BrunerDigital helps agencies package CRM, automations, AI messaging, funnels, reputation, reporting, billing, and portals into a sticky recurring offer.",
     primaryCta: "Apply for agency access",
     secondaryCta: "View partner funnel",
     bullets: ["Custom domain and branding", "Client workspaces", "Reseller-ready sales assets", "Retention and upsell workflows"],
@@ -287,10 +287,10 @@ export const marketingPages: Record<string, MarketingPage> = {
   },
   "/solutions/franchises": {
     slug: "/solutions/franchises",
-    title: "Multi-location & Franchise Growth | EnterpriseOS",
+    title: "Multi-location & Franchise Growth | BrunerDigital",
     headline: "Control brand-wide growth while empowering every location.",
     subheadline:
-      "EnterpriseOS gives franchise and multi-location teams centralized visibility, local execution, review growth, routing, reporting, and campaign governance.",
+      "BrunerDigital gives franchise and multi-location teams centralized visibility, local execution, review growth, routing, reporting, and campaign governance.",
     primaryCta: "Book franchise demo",
     secondaryCta: "Take assessment",
     bullets: ["Location dashboards", "Brand governance", "Lead routing", "Review and reputation reporting"],
@@ -303,10 +303,10 @@ export const marketingPages: Record<string, MarketingPage> = {
   },
   "/integrations": {
     slug: "/integrations",
-    title: "Integrations | EnterpriseOS",
+    title: "Integrations | BrunerDigital",
     headline: "Connect the systems your growth team already uses.",
     subheadline:
-      "EnterpriseOS is designed to connect with calendars, email, payments, ad platforms, analytics, webhooks, data imports, and custom implementation layers.",
+      "BrunerDigital is designed to connect with calendars, email, payments, ad platforms, analytics, webhooks, data imports, and custom implementation layers.",
     primaryCta: "Plan integration map",
     secondaryCta: "Talk to implementation",
     bullets: ["Calendar and email", "Payments and billing", "Analytics and ads", "Webhooks and imports"],
@@ -319,10 +319,10 @@ export const marketingPages: Record<string, MarketingPage> = {
   },
   "/security": {
     slug: "/security",
-    title: "Security & Trust | EnterpriseOS",
+    title: "Security & Trust | BrunerDigital",
     headline: "Trust foundations for enterprise-grade growth operations.",
     subheadline:
-      "EnterpriseOS uses a security-first operating model with role-based access, tenant separation, audit trails, data governance, and implementation checklists for production hardening.",
+      "BrunerDigital uses a security-first operating model with role-based access, tenant separation, audit trails, data governance, and implementation checklists for production hardening.",
     primaryCta: "Request security review",
     secondaryCta: "View docs",
     bullets: ["Role-based access", "Tenant separation", "Audit-ready workflows", "Production credential checklist"],
@@ -335,24 +335,24 @@ export const marketingPages: Record<string, MarketingPage> = {
   },
   "/about": {
     slug: "/about",
-    title: "About | EnterpriseOS",
+    title: "About | BrunerDigital",
     headline: "Built for teams who want growth systems, not more software sprawl.",
     subheadline:
-      "EnterpriseOS exists to help agencies and operators package, automate, measure, and scale the work that turns attention into revenue.",
+      "BrunerDigital exists to help agencies and operators package, automate, measure, and scale the work that turns attention into revenue.",
     primaryCta: "Meet the platform",
     secondaryCta: "Contact team",
     bullets: ["Operator-first design", "Premium white-label positioning", "Implementation-ready assets", "AI-assisted workflows"],
     sections: [
       { title: "Our belief", body: "The best growth teams win by connecting operations, messaging, data, and customer experience into one system.", points: ["Clarity over complexity", "Automation with judgment", "Proof over promises", "Brand ownership"] },
       { title: "Who we serve", body: "Agencies, service businesses, franchises, consultants, and marketing teams that need a scalable operating layer.", points: ["Agencies", "Local service teams", "Multi-location brands", "Growth teams"] },
-      { title: "How we help", body: "EnterpriseOS gives teams the platform, copy, funnels, onboarding, and launch assets needed to go to market quickly.", points: ["Product suite", "Funnel templates", "Sales assets", "Launch checklists"] }
+      { title: "How we help", body: "BrunerDigital gives teams the platform, copy, funnels, onboarding, and launch assets needed to go to market quickly.", points: ["Product suite", "Funnel templates", "Sales assets", "Launch checklists"] }
     ],
     faqs: defaultFaqs
   },
   "/contact": {
     slug: "/contact",
-    title: "Contact | EnterpriseOS",
-    headline: "Let’s map your EnterpriseOS launch.",
+    title: "Contact | BrunerDigital",
+    headline: "Let’s map your BrunerDigital launch.",
     subheadline:
       "Tell us about your team, offer, locations, client base, and launch goals. We’ll recommend the fastest path to a branded workspace and revenue-ready funnel.",
     primaryCta: "Request demo",
@@ -367,7 +367,7 @@ export const marketingPages: Record<string, MarketingPage> = {
   },
   "/resources": {
     slug: "/resources",
-    title: "Resources | EnterpriseOS",
+    title: "Resources | BrunerDigital",
     headline: "Playbooks for building a modern growth operating system.",
     subheadline:
       "Use the resource library for strategy, funnels, automation, CRM migration, reputation growth, white-label packaging, and multi-location execution.",
@@ -383,7 +383,7 @@ export const marketingPages: Record<string, MarketingPage> = {
   },
   "/help": {
     slug: "/help",
-    title: "Help Center | EnterpriseOS",
+    title: "Help Center | BrunerDigital",
     headline: "Help center foundation for admins, teams, clients, and partners.",
     subheadline:
       "A launch-ready support library structure for setup, CRM, automations, conversations, funnels, calendars, reputation, reporting, billing, security, and white-label controls.",
@@ -399,15 +399,15 @@ export const marketingPages: Record<string, MarketingPage> = {
   },
   "/comparison": {
     slug: "/comparison",
-    title: "Comparison | EnterpriseOS",
+    title: "Comparison | BrunerDigital",
     headline: "Choose an operating system, not another disconnected point tool.",
     subheadline:
-      "EnterpriseOS positions against fragmented stacks by combining CRM, AI follow-up, funnels, calendars, reputation, reporting, billing, portals, and white-label delivery.",
+      "BrunerDigital positions against fragmented stacks by combining CRM, AI follow-up, funnels, calendars, reputation, reporting, billing, portals, and white-label delivery.",
     primaryCta: "Compare options",
     secondaryCta: "See platform tour",
     bullets: ["One integrated suite", "White-label controls", "AI-assisted workflows", "Reporting across clients and locations"],
     sections: [
-      { title: "Against single-purpose CRMs", body: "EnterpriseOS goes beyond contact management by connecting follow-up, scheduling, funnels, reputation, billing, and reporting.", points: ["More workflows", "Less tool switching", "Better attribution", "Client portals"] },
+      { title: "Against single-purpose CRMs", body: "BrunerDigital goes beyond contact management by connecting follow-up, scheduling, funnels, reputation, billing, and reporting.", points: ["More workflows", "Less tool switching", "Better attribution", "Client portals"] },
       { title: "Against marketing-only tools", body: "Campaigns are tied to pipeline, conversations, appointments, and revenue context.", points: ["Pipeline visibility", "Appointment outcomes", "CRM sync", "Reporting"] },
       { title: "Against custom stacks", body: "Teams get speed and consistency without stitching together a fragile system of separate subscriptions.", points: ["Lower operational drag", "Faster launch", "Unified data", "Reusable templates"] }
     ],
@@ -415,7 +415,7 @@ export const marketingPages: Record<string, MarketingPage> = {
   },
   "/use-cases": {
     slug: "/use-cases",
-    title: "Use Cases | EnterpriseOS",
+    title: "Use Cases | BrunerDigital",
     headline: "Built for agencies, service businesses, franchises, consultants, and growth teams.",
     subheadline:
       "Each team gets a focused launch path with relevant funnels, automations, reporting, onboarding, and sales assets.",
@@ -423,7 +423,7 @@ export const marketingPages: Record<string, MarketingPage> = {
     secondaryCta: "Book strategy demo",
     bullets: ["Agencies", "Local services", "Franchises", "Consultants and marketing teams"],
     sections: [
-      { title: "Agencies", body: "Package EnterpriseOS as a branded client platform, recurring offer, or operational backbone.", points: ["White-label resale", "Client reporting", "Template fulfillment", "Retention workflows"] },
+      { title: "Agencies", body: "Package BrunerDigital as a branded client platform, recurring offer, or operational backbone.", points: ["White-label resale", "Client reporting", "Template fulfillment", "Retention workflows"] },
       { title: "Local service businesses", body: "Capture more leads, follow up faster, book more jobs, request reviews, and track revenue.", points: ["Speed-to-lead", "Scheduling", "Review growth", "Pipeline reporting"] },
       { title: "Growth teams", body: "Centralize campaigns, source attribution, handoff workflows, and executive reporting.", points: ["Campaign dashboards", "Lead routing", "Sales handoff", "Attribution"] }
     ],
@@ -433,9 +433,9 @@ export const marketingPages: Record<string, MarketingPage> = {
 
 const solution = (slug: string, title: string, headline: string, audience: string): MarketingPage => ({
   slug,
-  title: `${title} | EnterpriseOS`,
+  title: `${title} | BrunerDigital`,
   headline,
-  subheadline: `A focused EnterpriseOS launch path for ${audience}: CRM, follow-up, funnels, calendars, reputation, reporting, and onboarding assets in one premium workspace.`,
+  subheadline: `A focused BrunerDigital launch path for ${audience}: CRM, follow-up, funnels, calendars, reputation, reporting, and onboarding assets in one premium workspace.`,
   primaryCta: "Launch this playbook",
   secondaryCta: "Book demo",
   bullets: ["Audience-specific funnel", "Prebuilt automation path", "Sales and onboarding copy", "Reporting model"],
@@ -485,7 +485,7 @@ export const funnelTemplates: FunnelTemplate[] = [
   {
     slug: "/funnels/saas-demo",
     title: "SaaS Demo Funnel",
-    offer: "See how EnterpriseOS replaces disconnected CRM, automation, calendar, inbox, and reporting tools.",
+    offer: "See how BrunerDigital replaces disconnected CRM, automation, calendar, inbox, and reporting tools.",
     audience: "SaaS buyers, operators, agency owners, and growth leaders",
     hook: "Book a strategic demo and leave with a recommended launch map.",
     sections: ["Problem", "Platform proof", "Product walkthrough", "Fit criteria", "Demo form", "Thank-you page", "Post-demo follow-up"],
@@ -495,7 +495,7 @@ export const funnelTemplates: FunnelTemplate[] = [
   {
     slug: "/funnels/agency-white-label",
     title: "Agency White-label Funnel",
-    offer: "Package EnterpriseOS as a premium branded client platform.",
+    offer: "Package BrunerDigital as a premium branded client platform.",
     audience: "Marketing agencies, consultants, SaaS resellers",
     hook: "Apply to unlock the white-label agency launch kit.",
     sections: ["Agency pain", "Recurring revenue model", "Platform preview", "Partner fit", "Application form", "Calendar routing"],
@@ -545,7 +545,7 @@ export const funnelTemplates: FunnelTemplate[] = [
   {
     slug: "/funnels/crm-migration",
     title: "CRM Migration Funnel",
-    offer: "Move from scattered tools to EnterpriseOS with a guided migration plan.",
+    offer: "Move from scattered tools to BrunerDigital with a guided migration plan.",
     audience: "Teams outgrowing their CRM",
     hook: "Get a migration plan before switching tools.",
     sections: ["Migration risk", "Data map", "Workflow rebuild", "Checklist", "Consultation form"],
@@ -605,7 +605,7 @@ export const funnelTemplates: FunnelTemplate[] = [
   {
     slug: "/waitlist",
     title: "Waitlist Page",
-    offer: "Join the waitlist for early EnterpriseOS access.",
+    offer: "Join the waitlist for early BrunerDigital access.",
     audience: "Early adopters and partners",
     hook: "Get priority onboarding and launch templates.",
     sections: ["Promise", "Who should join", "What early access includes", "Form"],
@@ -615,7 +615,7 @@ export const funnelTemplates: FunnelTemplate[] = [
   {
     slug: "/early-access",
     title: "Early Access Page",
-    offer: "Apply for early access to EnterpriseOS.",
+    offer: "Apply for early access to BrunerDigital.",
     audience: "Qualified launch partners",
     hook: "Build your first branded workspace with guided setup.",
     sections: ["Early access offer", "Qualification", "What you get", "Application"],
@@ -625,7 +625,7 @@ export const funnelTemplates: FunnelTemplate[] = [
   {
     slug: "/partner-program",
     title: "Partner Program Page",
-    offer: "Become an EnterpriseOS implementation, reseller, or referral partner.",
+    offer: "Become an BrunerDigital implementation, reseller, or referral partner.",
     audience: "Agencies, consultants, platform partners",
     hook: "Add a premium operating system to your client offer.",
     sections: ["Partner models", "Benefits", "Enablement", "Application"],
@@ -635,14 +635,14 @@ export const funnelTemplates: FunnelTemplate[] = [
 ];
 
 export const flowSteps: FlowStep[] = [
-  { slug: "/signup", title: "Free Trial Signup", headline: "Create your EnterpriseOS trial.", body: "Start with a workspace, pick your primary use case, and unlock the launch checklist.", fields: ["Work email", "Name", "Company", "Password"], checklist: ["Create account", "Verify email", "Choose use case"], cta: "Create trial" },
+  { slug: "/signup", title: "Free Trial Signup", headline: "Create your BrunerDigital trial.", body: "Start with a workspace, pick your primary use case, and unlock the launch checklist.", fields: ["Work email", "Name", "Company", "Password"], checklist: ["Create account", "Verify email", "Choose use case"], cta: "Create trial" },
   { slug: "/demo", title: "Book-a-demo Flow", headline: "Book a strategic platform demo.", body: "Tell us about your team so the demo can focus on the workflow that matters.", fields: ["Name", "Work email", "Company", "Team type", "Current stack", "Preferred date"], checklist: ["Confirm fit", "Route to strategist", "Send prep email"], cta: "Book demo" },
   { slug: "/application", title: "Agency Application Flow", headline: "Apply for white-label agency access.", body: "Share your client model, services, and launch goals so we can recommend the right partner path.", fields: ["Agency name", "Website", "Client count", "Services", "Revenue goal"], checklist: ["Review application", "Score fit", "Invite to partner demo"], cta: "Submit application" },
   { slug: "/onboarding", title: "Onboarding Questionnaire", headline: "Map your launch plan.", body: "Capture business model, audience, tools, data, workflows, and first campaign goals.", fields: ["Business model", "Ideal customer", "Current tools", "Launch goal", "Timeline"], checklist: ["Define ICP", "Map workflow", "Assign launch owner"], cta: "Save launch plan" },
   { slug: "/setup/account", title: "Account Creation", headline: "Secure your account.", body: "Create identity, verify email, set password rules, and prepare admin access.", fields: ["Name", "Email", "Password", "Role"], checklist: ["Password saved", "Email verified", "Admin role assigned"], cta: "Continue" },
   { slug: "/setup/workspace", title: "Workspace Setup", headline: "Set up your first workspace.", body: "Name the workspace, choose industry, select primary revenue workflow, and set timezone.", fields: ["Workspace name", "Industry", "Timezone", "Primary workflow"], checklist: ["Workspace created", "Default pipeline added", "Sample dashboard ready"], cta: "Create workspace" },
   { slug: "/setup/brand", title: "Brand Setup", headline: "Make the platform yours.", body: "Add logo, colors, domain, email identity, portal copy, and white-label defaults.", fields: ["Brand name", "Logo URL", "Primary color", "Custom domain", "Support email"], checklist: ["Logo uploaded", "Colors saved", "Domain pending"], cta: "Save brand" },
-  { slug: "/setup/import-contacts", title: "Import Contacts", headline: "Bring your relationships into EnterpriseOS.", body: "Upload contacts, map fields, dedupe records, and tag sources.", fields: ["CSV upload", "Source", "Lifecycle stage", "Owner"], checklist: ["Map fields", "Preview rows", "Confirm import"], cta: "Import contacts" },
+  { slug: "/setup/import-contacts", title: "Import Contacts", headline: "Bring your relationships into BrunerDigital.", body: "Upload contacts, map fields, dedupe records, and tag sources.", fields: ["CSV upload", "Source", "Lifecycle stage", "Owner"], checklist: ["Map fields", "Preview rows", "Confirm import"], cta: "Import contacts" },
   { slug: "/setup/integrations", title: "Connect Integrations", headline: "Connect the systems that power launch.", body: "Prepare calendar, email, payments, analytics, ads, webhooks, and domain credentials.", fields: ["Calendar", "Email", "Payment provider", "Analytics ID", "Webhook URL"], checklist: ["Calendar connected", "Email configured", "Tracking planned"], cta: "Connect tools" },
   { slug: "/setup/plan", title: "Choose Plan", headline: "Choose the plan for your rollout.", body: "Select launch, scale, or enterprise based on workspaces, locations, and support needs.", fields: ["Plan", "Billing cycle", "Seats", "Workspaces"], checklist: ["Plan selected", "Billing contact saved", "Invoice previewed"], cta: "Choose plan" },
   { slug: "/setup/team", title: "Invite Team Members", headline: "Invite the people who will run growth.", body: "Add admins, sales reps, marketers, support users, client users, and location managers.", fields: ["Email", "Role", "Workspace", "Location"], checklist: ["Roles selected", "Invites sent", "Permissions reviewed"], cta: "Send invites" },
@@ -650,7 +650,7 @@ export const flowSteps: FlowStep[] = [
   { slug: "/setup/campaign", title: "First Campaign Setup", headline: "Create your first connected campaign.", body: "Pick an offer, build the landing path, connect follow-up, and track results.", fields: ["Campaign name", "Audience", "Offer", "Landing page", "Source"], checklist: ["Offer selected", "Landing page connected", "Tracking enabled"], cta: "Launch campaign" },
   { slug: "/demo/thank-you", title: "Demo Thank-you", headline: "Your demo is booked.", body: "We’ll send the calendar invite, prep questions, and a short platform preview before the call.", fields: ["Calendar details"], checklist: ["Invite sent", "Prep email queued", "Reminder SMS scheduled"], cta: "View prep guide" },
   { slug: "/signup/thank-you", title: "Trial Thank-you", headline: "Your trial workspace is ready.", body: "Start setup now or use the checklist to launch your first CRM, automation, and funnel workflow.", fields: ["Workspace"], checklist: ["Account created", "Checklist unlocked", "Demo data available"], cta: "Enter workspace" },
-  { slug: "/recovery/abandoned-signup", title: "Abandoned Signup Recovery", headline: "Your EnterpriseOS setup is still waiting.", body: "Pick up where you left off and complete your workspace in a few minutes.", fields: ["Email"], checklist: ["Restore session", "Resume setup", "Send help link"], cta: "Resume setup" },
+  { slug: "/recovery/abandoned-signup", title: "Abandoned Signup Recovery", headline: "Your BrunerDigital setup is still waiting.", body: "Pick up where you left off and complete your workspace in a few minutes.", fields: ["Email"], checklist: ["Restore session", "Resume setup", "Send help link"], cta: "Resume setup" },
   { slug: "/upgrade", title: "Upgrade Paywall", headline: "Unlock the operating layer your team is ready for.", body: "Upgrade to white-label, advanced automation, client portals, reputation, billing, and multi-location reporting.", fields: ["Plan", "Seats", "Billing email"], checklist: ["Compare limits", "Select plan", "Activate features"], cta: "Upgrade now" },
   { slug: "/cancel", title: "Cancellation Feedback", headline: "Before you go, help us understand what changed.", body: "Collect structured feedback, save opportunities, pause options, and handoff to customer success.", fields: ["Reason", "Missing feature", "Budget", "Can we contact you?"], checklist: ["Capture reason", "Offer pause", "Notify success"], cta: "Submit feedback" }
 ];
@@ -664,13 +664,13 @@ export const copyLibrary = {
     "Give every location one system for leads, reviews, campaigns, and reporting."
   ],
   subheadlines: [
-    "EnterpriseOS centralizes the revenue workflows agencies and operators need to capture demand, convert faster, and prove ROI.",
+    "BrunerDigital centralizes the revenue workflows agencies and operators need to capture demand, convert faster, and prove ROI.",
     "A premium operating system for CRM, AI follow-up, funnels, scheduling, reputation, analytics, billing, portals, and white-label delivery.",
     "Build the system once, package it under your brand, and roll it out across clients, teams, or locations."
   ],
   ctas: ["Start free trial", "Book a demo", "Apply for agency access", "Get launch checklist", "See platform tour", "Upgrade workspace"],
   objections: [
-    ["We already have a CRM", "EnterpriseOS connects CRM to follow-up, scheduling, funnels, reviews, billing, and reporting so the team operates from one workflow."],
+    ["We already have a CRM", "BrunerDigital connects CRM to follow-up, scheduling, funnels, reviews, billing, and reporting so the team operates from one workflow."],
     ["Migration sounds risky", "Start with a guided migration plan, import checklist, field map, and phased rollout before switching critical workflows."],
     ["Our team will not use another tool", "The platform reduces tool switching and gives each role a focused workspace, not a generic dashboard."],
     ["We need white-label control", "Brand, domain, client portals, workspaces, outbound identity, and sales assets are designed for white-label delivery."]
@@ -683,16 +683,16 @@ export const copyLibrary = {
     "Stop duct-taping your growth stack together."
   ],
   emailSubjects: [
-    "Your EnterpriseOS launch checklist",
+    "Your BrunerDigital launch checklist",
     "A faster way to follow up with every lead",
     "What to prepare before your demo",
     "Your trial workspace is almost live",
-    "How agencies package EnterpriseOS as a recurring offer",
+    "How agencies package BrunerDigital as a recurring offer",
     "3 workflows to activate before your trial ends"
   ],
   sms: [
-    "EnterpriseOS here: your launch checklist is ready. Want the setup link?",
-    "Reminder: your EnterpriseOS demo is coming up. Bring your current CRM and follow-up questions.",
+    "BrunerDigital here: your launch checklist is ready. Want the setup link?",
+    "Reminder: your BrunerDigital demo is coming up. Bring your current CRM and follow-up questions.",
     "Your trial workspace is ready. Finish setup here: [link]"
   ]
 };
@@ -752,7 +752,7 @@ export const emailSequences = [
   {
     name: "New Trial Signup",
     emails: [
-      ["Welcome to EnterpriseOS", "Your workspace is ready. Start with brand setup, contact import, and first automation."],
+      ["Welcome to BrunerDigital", "Your workspace is ready. Start with brand setup, contact import, and first automation."],
       ["Activate your first revenue workflow", "Pick speed-to-lead, demo reminders, review requests, or reactivation."],
       ["Your launch checklist", "Use this checklist to connect CRM, calendar, funnel, reporting, and team invites."]
     ]
@@ -760,7 +760,7 @@ export const emailSequences = [
   {
     name: "Demo Booked",
     emails: [
-      ["Your EnterpriseOS demo is confirmed", "Bring your current tools, growth bottleneck, and launch goals."],
+      ["Your BrunerDigital demo is confirmed", "Bring your current tools, growth bottleneck, and launch goals."],
       ["Before we meet", "Here are the workflows we can map: CRM, AI follow-up, white-label, franchise reporting, or migration."],
       ["Demo reminder", "We’ll focus on a launch plan, not a generic software tour."]
     ]
@@ -776,7 +776,7 @@ export const emailSequences = [
   {
     name: "Post-demo Follow-up",
     emails: [
-      ["Your EnterpriseOS rollout summary", "Here is the recommended plan based on your team, tools, and goals."],
+      ["Your BrunerDigital rollout summary", "Here is the recommended plan based on your team, tools, and goals."],
       ["Pricing and implementation options", "Choose launch, scale, or enterprise support based on rollout complexity."],
       ["Next step: workspace mapping", "We can set up the first pipeline, automation, funnel, and reporting view."]
     ]
@@ -784,7 +784,7 @@ export const emailSequences = [
   {
     name: "Agency Partner Nurture",
     emails: [
-      ["Package EnterpriseOS as a recurring offer", "Position the platform as the operating layer behind your services."],
+      ["Package BrunerDigital as a recurring offer", "Position the platform as the operating layer behind your services."],
       ["White-label sales assets", "Use the demo deck, proposal, one-pager, and funnel templates."],
       ["Client onboarding playbook", "Standardize setup across CRM, automation, reviews, reporting, and portals."]
     ]
@@ -793,7 +793,7 @@ export const emailSequences = [
 
 export const adSystem = {
   metaConcepts: [
-    "Split-screen tool sprawl versus EnterpriseOS command center.",
+    "Split-screen tool sprawl versus BrunerDigital command center.",
     "Agency owner showing branded client portal and recurring revenue offer.",
     "Local business lead response timer before and after AI follow-up.",
     "Franchise executive viewing location performance rollup."
@@ -809,7 +809,7 @@ export const adSystem = {
     "For franchise teams that need location-level execution and executive visibility."
   ],
   videoScripts: [
-    "Hook: Your CRM is only one piece of the revenue system. Show disconnected tabs, then EnterpriseOS dashboard. CTA: book a demo.",
+    "Hook: Your CRM is only one piece of the revenue system. Show disconnected tabs, then BrunerDigital dashboard. CTA: book a demo.",
     "Hook: Agencies do not need another service to fulfill. They need a platform clients can log into. CTA: apply for white-label access.",
     "Hook: Every minute after a lead submits a form lowers conversion. Show AI follow-up and booking. CTA: start trial."
   ],
@@ -822,7 +822,7 @@ export const adSystem = {
 };
 
 export const salesEnablement = {
-  deckOutline: ["Market problem", "Cost of tool sprawl", "EnterpriseOS platform", "Use cases", "Product tour", "ROI model", "Pricing", "Implementation plan", "Next steps"],
+  deckOutline: ["Market problem", "Cost of tool sprawl", "BrunerDigital platform", "Use cases", "Product tour", "ROI model", "Pricing", "Implementation plan", "Next steps"],
   discoveryQuestions: [
     "What tools currently manage leads, follow-up, scheduling, reviews, and reporting?",
     "Where do leads most often leak or stall?",

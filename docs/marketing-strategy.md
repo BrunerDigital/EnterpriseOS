@@ -2,7 +2,7 @@
 
 ## Positioning
 
-EnterpriseOS is the white-label AI business operating system for teams that need to capture, convert, manage, and report on growth from one platform.
+BrunerDigital is the white-label AI business operating system for teams that need to capture, convert, manage, and report on growth from one platform.
 
 ## Primary ICPs
 

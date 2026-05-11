@@ -2,12 +2,13 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Bell, ChevronDown, Command, Menu, Search, Sparkles } from "lucide-react";
+import { Bell, ChevronDown, Command, Menu, Search } from "lucide-react";
 import { navItems } from "@/lib/demo-data";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
+import { BrunerLogo } from "@/components/app/bruner-logo";
 
 export function AppShell({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
@@ -17,13 +18,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
       <div className="flex min-h-screen">
         <aside className="fixed inset-y-0 left-0 hidden w-72 flex-col border-r border-white/10 bg-slate-950/78 backdrop-blur-xl lg:flex">
           <div className="flex h-20 items-center gap-3 px-5">
-            <div className="flex size-11 items-center justify-center rounded-lg bg-primary text-primary-foreground shadow-glow">
-              <Sparkles />
-            </div>
-            <div>
-              <div className="text-lg font-semibold">EnterpriseOS</div>
-              <div className="text-xs text-muted-foreground">Apex Growth Agency</div>
-            </div>
+            <BrunerLogo subtitle="Business growth suite" />
           </div>
           <div className="mx-4 mb-4 rounded-lg border border-white/10 bg-white/[0.03] p-3">
             <div className="flex items-center justify-between gap-3">

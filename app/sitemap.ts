@@ -3,7 +3,7 @@ import { allPages, flowSteps, funnelTemplates } from "@/lib/marketing";
 import { gtmLanes } from "@/lib/gtm-lanes";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const base = "https://enterpriseos.example";
+  const base = "https://brunerdigital.example";
   const routes = [
     "/",
     ...Object.keys(allPages),

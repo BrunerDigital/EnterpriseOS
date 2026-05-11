@@ -29,7 +29,7 @@ export const gtmLanes: GTMLane[] = [
     audience: "Marketing agencies, consultants, and SaaS resellers",
     headline: "Turn your agency into a premium white-label SaaS platform.",
     subheadline:
-      "Package EnterpriseOS under your brand so clients see a modern operating system for leads, follow-up, reviews, reporting, billing, portals, and campaign proof.",
+      "Package BrunerDigital under your brand so clients see a modern operating system for leads, follow-up, reviews, reporting, billing, portals, and campaign proof.",
     primaryCta: "Apply for agency access",
     secondaryCta: "View partner kit",
     metrics: [
@@ -65,7 +65,7 @@ export const gtmLanes: GTMLane[] = [
     ads: [
       { channel: "LinkedIn", hook: "Agencies do not need another service to fulfill.", copy: "Sell a branded operating system clients can log into, value, and expand." },
       { channel: "Meta", hook: "Turn campaigns into a client platform.", copy: "White-label CRM, automations, funnels, reviews, and reporting under your agency brand." },
-      { channel: "Search", hook: "White label CRM for agencies", copy: "Launch a premium client portal and recurring SaaS-enabled offer with EnterpriseOS." }
+      { channel: "Search", hook: "White label CRM for agencies", copy: "Launch a premium client portal and recurring SaaS-enabled offer with BrunerDigital." }
     ],
     salesScript: [
       "Open with the cost of service-only delivery and invisible value.",
@@ -80,7 +80,7 @@ export const gtmLanes: GTMLane[] = [
     audience: "Home services, clinics, appointment businesses, and local operators",
     headline: "Convert more local leads before they go cold.",
     subheadline:
-      "EnterpriseOS gives local service teams one system for lead capture, speed-to-lead follow-up, booking, pipeline tracking, reviews, and revenue reporting.",
+      "BrunerDigital gives local service teams one system for lead capture, speed-to-lead follow-up, booking, pipeline tracking, reviews, and revenue reporting.",
     primaryCta: "Get free lead leak audit",
     secondaryCta: "See local workflow",
     metrics: [
@@ -131,7 +131,7 @@ export const gtmLanes: GTMLane[] = [
     audience: "Franchise operators, multi-location brands, and regional growth teams",
     headline: "Give every location one growth system with executive visibility.",
     subheadline:
-      "EnterpriseOS centralizes local lead handling, campaign governance, reviews, routing, reporting, and location scorecards without taking execution away from the field.",
+      "BrunerDigital centralizes local lead handling, campaign governance, reviews, routing, reporting, and location scorecards without taking execution away from the field.",
     primaryCta: "Take growth assessment",
     secondaryCta: "Book franchise demo",
     metrics: [
@@ -166,7 +166,7 @@ export const gtmLanes: GTMLane[] = [
     ],
     ads: [
       { channel: "LinkedIn", hook: "Corporate strategy breaks when local execution is invisible.", copy: "Unify lead handling, reviews, campaigns, and reporting across every location." },
-      { channel: "Search", hook: "Multi location marketing platform", copy: "Centralize local execution and executive reporting with EnterpriseOS." },
+      { channel: "Search", hook: "Multi location marketing platform", copy: "Centralize local execution and executive reporting with BrunerDigital." },
       { channel: "Display", hook: "One scorecard for every location.", copy: "Compare leads, bookings, reviews, and pipeline across markets." }
     ],
     salesScript: [
