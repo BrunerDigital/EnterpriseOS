@@ -13,7 +13,7 @@ export function BrandMark() {
     <Link href="/" aria-label="BrunerDigital home">
       <BrunerLogo
         subtitle="White-label suite"
-        markClassName="size-10 bg-sky-400 text-slate-950"
+        markClassName="size-10"
       />
     </Link>
   );
