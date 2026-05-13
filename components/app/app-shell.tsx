@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Bell, ChevronDown, Command, Menu, Search } from "lucide-react";
+import { Bell, ChevronDown, Command, LogOut, Menu, Search } from "lucide-react";
 import { navItems } from "@/lib/demo-data";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
@@ -68,6 +68,11 @@ export function AppShell({ children }: { children: React.ReactNode }) {
               <Button variant="outline" size="icon" aria-label="Notifications">
                 <Bell />
               </Button>
+              <form action="/auth/sign-out" method="post">
+                <Button variant="outline" size="icon" aria-label="Sign out" title="Sign out" type="submit">
+                  <LogOut />
+                </Button>
+              </form>
               <Badge variant="success" className="hidden md:inline-flex">
                 Demo mode
               </Badge>
