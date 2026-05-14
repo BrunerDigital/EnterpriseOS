@@ -10,6 +10,7 @@ type CookieToSet = {
 
 const protectedRoutes = [
   "/ai",
+  "/agency",
   "/automations",
   "/billing",
   "/calendar",
@@ -20,11 +21,14 @@ const protectedRoutes = [
   "/dashboard",
   "/deals",
   "/forms",
+  "/help",
+  "/integrations",
   "/payments",
   "/portal",
   "/reporting",
   "/reputation",
-  "/team"
+  "/team",
+  "/white-label"
 ];
 
 function isProtectedPath(pathname: string) {

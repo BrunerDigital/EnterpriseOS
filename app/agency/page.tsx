@@ -1,6 +1,11 @@
-import { MarketingPageView } from "@/components/marketing/page-renderers";
-import { allPages } from "@/lib/marketing";
+import { AppShell } from "@/components/app/app-shell";
+import { ModulePage } from "@/components/app/module-page";
+import { modules } from "@/lib/demo-data";
 
 export default function Page() {
-  return <MarketingPageView page={allPages["/agency"]} />;
+  return (
+    <AppShell>
+      <ModulePage module={modules.agency} />
+    </AppShell>
+  );
 }

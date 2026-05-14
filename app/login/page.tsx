@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { signIn } from "@/app/login/actions";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -29,6 +30,9 @@ export default async function LoginPage({ searchParams }: LoginPageProps) {
             <Input name="email" placeholder="info@brunerdigital.com" type="email" autoComplete="email" required />
             <Input name="password" placeholder="Password" type="password" autoComplete="current-password" required />
             <Button type="submit">Sign in</Button>
+            <Button asChild variant="outline">
+              <Link href="/forgot-password">Forgot password?</Link>
+            </Button>
             <p className="text-xs leading-relaxed text-muted-foreground">
               Access is invite-only while BrunerDigital is in private launch. Demo onboarding remains available after
               signing in.
