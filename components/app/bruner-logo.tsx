@@ -32,8 +32,8 @@ export function BrunerLogo({
       </div>
       {showText ? (
         <div className="min-w-0 leading-tight">
-          <div className="truncate text-lg font-semibold tracking-normal text-foreground">BrunerDigital</div>
-          {subtitle ? <div className="truncate text-xs text-muted-foreground">{subtitle}</div> : null}
+          <div className="truncate text-lg font-semibold tracking-normal text-foreground">Digital360</div>
+          <div className="truncate text-xs text-muted-foreground">{subtitle ?? "by BrunerDigital"}</div>
         </div>
       ) : null}
     </div>

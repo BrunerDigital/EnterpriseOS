@@ -47,9 +47,9 @@ export default function ResetPasswordPage() {
     <main className="grid min-h-screen place-items-center px-4 py-10 grid-fade">
       <Card className="w-full max-w-md">
         <CardHeader>
-          <BrunerLogo className="mb-2" subtitle="Secure account recovery" />
+          <BrunerLogo className="mb-2" />
           <CardTitle className="text-3xl">Choose a new password</CardTitle>
-          <CardDescription>Set a fresh password for your BrunerDigital account.</CardDescription>
+          <CardDescription>Set a fresh password for your Digital360 account.</CardDescription>
         </CardHeader>
         <CardContent>
           <form action={handleSubmit} className="flex flex-col gap-4">

@@ -9,7 +9,7 @@ These items require external credentials or DNS/provider access. The app is depl
 - SMTP username
 - SMTP password
 - Sender email, such as `support@brunerdigital.com`
-- Sender name, such as `BrunerDigital`
+- Sender name, such as `Digital360 by BrunerDigital`
 
 Use this to send invites and password resets from the BrunerDigital domain.
 
@@ -27,7 +27,7 @@ Use this to send invites and password resets from the BrunerDigital domain.
 - Stripe secret key
 - Stripe publishable key
 - Stripe webhook signing secret
-- Product and pricing decisions for BrunerDigital plans
+- Product and pricing decisions for Digital360 plans
 
 ## Messaging And Email Integrations
 
@@ -50,3 +50,4 @@ Use this to send invites and password resets from the BrunerDigital domain.
 - Rotate the Supabase personal access token that was pasted into the chat.
 - Rotate any temporary launch passwords after handoff.
 - Enable production error monitoring before paid users are onboarded.
+

@@ -66,7 +66,7 @@ export async function getAppSession(): Promise<AppSession> {
   const profile = profileResult as unknown as ProfileWithTenant | null;
 
   if (profileError || !profile) {
-    redirect("/login?error=Your account is not assigned to a BrunerDigital workspace yet.");
+    redirect("/login?error=Your account is not assigned to a Digital360 workspace yet.");
   }
 
   const { data: workspaceResult } = await supabase
@@ -91,7 +91,7 @@ export async function getAppSession(): Promise<AppSession> {
       tenantId: profile.tenant_id
     },
     tenant: {
-      name: tenant?.name ?? "BrunerDigital",
+      name: tenant?.name ?? "Digital360 by BrunerDigital",
       slug: tenant?.slug ?? "brunerdigital",
       plan: tenant?.plan ?? "scale"
     },

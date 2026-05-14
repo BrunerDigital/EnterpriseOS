@@ -10,7 +10,7 @@ import { BrunerLogo } from "@/components/app/bruner-logo";
 
 export function BrandMark() {
   return (
-    <Link href="/" aria-label="BrunerDigital home">
+    <Link href="/" aria-label="Digital360 by BrunerDigital home">
       <BrunerLogo
         subtitle="White-label suite"
         markClassName="size-10"
@@ -111,7 +111,7 @@ export function Footer() {
         </div>
       </div>
       <div className="mx-auto flex max-w-7xl flex-col gap-2 border-t border-white/10 px-4 py-6 text-xs text-slate-500 sm:px-6 md:flex-row md:items-center md:justify-between lg:px-8">
-        <span>© 2026 BrunerDigital. Launch-ready marketing system placeholder.</span>
+        <span>© 2026 Digital360 by BrunerDigital. Launch-ready marketing system placeholder.</span>
         <span>Built for white-label SaaS launch, demand generation, and investor-ready demos.</span>
       </div>
     </footer>
@@ -145,7 +145,7 @@ export function ProductMockup({ compact = false }: { compact?: boolean }) {
           <div className="flex items-center justify-between">
             <div>
               <div className="text-sm font-semibold">Revenue cockpit</div>
-              <div className="text-xs text-slate-500">BrunerDigital</div>
+              <div className="text-xs text-slate-500">Digital360</div>
             </div>
             <div className="rounded-md bg-emerald-400/10 px-2 py-1 text-xs font-semibold text-emerald-300">Live</div>
           </div>
@@ -217,7 +217,7 @@ export function CtaBand() {
         <div className="grid gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
           <div>
             <h2 className="text-3xl font-semibold tracking-normal text-white md:text-5xl">Build the launch system once. Scale it across every client, team, and location.</h2>
-            <p className="mt-4 max-w-2xl text-base leading-7 text-slate-300">Use BrunerDigital to move faster from positioning to pipeline, from campaigns to conversion, and from service delivery to measurable proof.</p>
+            <p className="mt-4 max-w-2xl text-base leading-7 text-slate-300">Use Digital360 to move faster from positioning to pipeline, from campaigns to conversion, and from service delivery to measurable proof.</p>
           </div>
           <div className="flex flex-col gap-3 sm:flex-row lg:justify-end">
             <Button asChild size="lg" className="bg-sky-400 text-slate-950 hover:bg-sky-300">
@@ -258,3 +258,4 @@ export function LinkArrow({ href, children }: { href: string; children: React.Re
 }
 
 export const featureIcons = [Building2, Zap, MessageSquare, CalendarClock, BarChart3, Lock];
+

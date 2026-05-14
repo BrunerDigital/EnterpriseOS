@@ -2,7 +2,7 @@
 
 ## Sales Deck Outline
 
-Market problem, cost of tool sprawl, BrunerDigital platform overview, use cases, product tour, ROI model, pricing, implementation plan, next steps.
+Market problem, cost of tool sprawl, Digital360 platform overview, use cases, product tour, ROI model, pricing, implementation plan, next steps.
 
 ## Discovery Questions
 
@@ -14,8 +14,9 @@ Market problem, cost of tool sprawl, BrunerDigital platform overview, use cases,
 
 ## Proposal Template
 
-Executive summary, current state, recommended BrunerDigital rollout, implementation timeline, pricing, success metrics, responsibilities, terms, acceptance.
+Executive summary, current state, recommended Digital360 rollout, implementation timeline, pricing, success metrics, responsibilities, terms, acceptance.
 
 ## ROI Calculator Inputs
 
 Monthly lead volume, current response time, current close rate, average sale, expected speed-to-lead lift, review conversion lift, retained client value, platform consolidation savings.
+

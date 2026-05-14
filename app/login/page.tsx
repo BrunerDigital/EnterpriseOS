@@ -16,9 +16,9 @@ export default async function LoginPage({ searchParams }: LoginPageProps) {
     <main className="grid min-h-screen place-items-center px-4 py-10 grid-fade">
       <Card className="w-full max-w-md">
         <CardHeader>
-          <BrunerLogo className="mb-2" subtitle="Client command center" />
+          <BrunerLogo className="mb-2" />
           <CardTitle className="text-3xl">Welcome back</CardTitle>
-          <CardDescription>Sign in to your white-label agency operating system.</CardDescription>
+          <CardDescription>Sign in to Digital360 by BrunerDigital.</CardDescription>
         </CardHeader>
         <CardContent>
           <form action={signIn} className="flex flex-col gap-4">
@@ -35,7 +35,7 @@ export default async function LoginPage({ searchParams }: LoginPageProps) {
               <Link href="/forgot-password">Forgot password?</Link>
             </Button>
             <p className="text-xs leading-relaxed text-muted-foreground">
-              Access is invite-only while BrunerDigital is in private launch. Demo onboarding remains available after
+              Access is invite-only while Digital360 is in private launch. Demo onboarding remains available after
               signing in.
             </p>
           </form>

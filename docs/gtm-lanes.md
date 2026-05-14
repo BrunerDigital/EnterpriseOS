@@ -1,4 +1,4 @@
-# BrunerDigital GTM Lanes
+# Digital360 GTM Lanes
 
 ## Lane 1: Agencies
 
@@ -44,3 +44,4 @@ Core message: give every location one growth system with executive visibility an
 - Build retargeting audiences by page path.
 - QA thank-you paths and calendar routing.
 - Give sales the lane-specific call path from `lib/gtm-lanes.ts`.
+

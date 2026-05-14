@@ -2,7 +2,7 @@
 
 ## Positioning
 
-BrunerDigital is the white-label AI business operating system for teams that need to capture, convert, manage, and report on growth from one platform.
+Digital360 by BrunerDigital is the white-label AI business operating system for teams that need to capture, convert, manage, and report on growth from one platform.
 
 ## Primary ICPs
 
@@ -27,3 +27,4 @@ Run CRM, pipelines, conversations, AI automation, calendars, funnels, reputation
 ## Conversion Architecture
 
 Traffic routes to audience-specific landing pages, funnel offers, demo booking, agency applications, free trial signup, and lead magnet capture. Every form should create a CRM contact, capture UTM source, assign owner, trigger the correct nurture sequence, and send analytics events.
+

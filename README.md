@@ -1,6 +1,6 @@
-# BrunerDigital Marketing Launch System
+# Digital360 by BrunerDigital
 
-BrunerDigital is a premium white-label AI business operating system for agencies, service businesses, franchises, multi-location brands, consultants, and growth teams.
+Digital360 by BrunerDigital is a premium white-label AI business operating system for agencies, service businesses, franchises, multi-location brands, consultants, and growth teams.
 
 This project now includes a complete launch-ready marketing website, funnel library, conversion flows, copy system, brand strategy, content calendar, ad assets, email sequences, sales enablement assets, visual direction, launch checklists, SEO plumbing, sitemap, robots, legal placeholders, and an existing internal product demo at `/dashboard`.
 
@@ -95,3 +95,4 @@ Analytics, ad pixels, CRM/webhook endpoints, transactional email, SMS, calendar 
 3. Load the email/ad/sales copy into your real tools.
 4. Review pricing with finance and legal.
 5. QA the full mobile funnel before paid traffic.
+

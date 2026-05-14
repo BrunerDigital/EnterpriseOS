@@ -16,9 +16,9 @@ export default async function ForgotPasswordPage({ searchParams }: ForgotPasswor
     <main className="grid min-h-screen place-items-center px-4 py-10 grid-fade">
       <Card className="w-full max-w-md">
         <CardHeader>
-          <BrunerLogo className="mb-2" subtitle="Secure account recovery" />
+          <BrunerLogo className="mb-2" />
           <CardTitle className="text-3xl">Reset password</CardTitle>
-          <CardDescription>Send a secure password reset link to an invited BrunerDigital user.</CardDescription>
+          <CardDescription>Send a secure password reset link to an invited Digital360 user.</CardDescription>
         </CardHeader>
         <CardContent>
           <form action={sendPasswordReset} className="flex flex-col gap-4">

@@ -43,7 +43,7 @@ export function AppShellClient({ children, session }: { children: React.ReactNod
       <div className="flex min-h-screen">
         <aside className="fixed inset-y-0 left-0 hidden w-72 flex-col border-r border-white/10 bg-slate-950/78 backdrop-blur-xl lg:flex">
           <div className="flex h-20 items-center gap-3 px-5">
-            <BrunerLogo subtitle="Business growth suite" />
+            <BrunerLogo subtitle="by BrunerDigital" />
           </div>
           <div className="mx-4 mb-4 rounded-lg border border-white/10 bg-white/[0.03] p-3">
             <div className="flex items-center justify-between gap-3">
