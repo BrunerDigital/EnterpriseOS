@@ -7,9 +7,18 @@ function loginRedirect(message: string) {
   redirect(`/login?error=${encodeURIComponent(message)}`);
 }
 
+function safeNextPath(next: string) {
+  if (!next || !next.startsWith("/") || next.startsWith("//")) {
+    return "/dashboard";
+  }
+
+  return next;
+}
+
 export async function signIn(formData: FormData) {
   const email = String(formData.get("email") ?? "").trim().toLowerCase();
   const password = String(formData.get("password") ?? "");
+  const next = safeNextPath(String(formData.get("next") ?? "/dashboard"));
 
   if (!email || !password) {
     loginRedirect("Enter your email and password.");
@@ -22,5 +31,5 @@ export async function signIn(formData: FormData) {
     loginRedirect("Those credentials did not match an active account.");
   }
 
-  redirect("/dashboard");
+  redirect(next);
 }

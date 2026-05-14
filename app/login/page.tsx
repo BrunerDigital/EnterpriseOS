@@ -6,7 +6,7 @@ import { Input } from "@/components/ui/input";
 import { BrunerLogo } from "@/components/app/bruner-logo";
 
 type LoginPageProps = {
-  searchParams?: Promise<{ error?: string }>;
+  searchParams?: Promise<{ error?: string; next?: string }>;
 };
 
 export default async function LoginPage({ searchParams }: LoginPageProps) {
@@ -27,6 +27,7 @@ export default async function LoginPage({ searchParams }: LoginPageProps) {
                 {params.error}
               </div>
             ) : null}
+            <input type="hidden" name="next" value={params?.next ?? "/dashboard"} />
             <Input name="email" placeholder="info@brunerdigital.com" type="email" autoComplete="email" required />
             <Input name="password" placeholder="Password" type="password" autoComplete="current-password" required />
             <Button type="submit">Sign in</Button>

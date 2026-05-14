@@ -39,7 +39,7 @@ export async function inviteUser(formData: FormData) {
   const origin = headerStore.get("origin") ?? process.env.NEXT_PUBLIC_APP_URL ?? "http://localhost:3000";
   const admin = createAdminClient();
   const { data, error } = await admin.auth.admin.inviteUserByEmail(email, {
-    redirectTo: `${origin}/reset-password`,
+    redirectTo: `${origin}/auth/callback?next=/reset-password`,
     data: {
       full_name: fullName,
       tenant_slug: session.tenant.slug,

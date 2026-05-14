@@ -21,6 +21,7 @@ const protectedRoutes = [
   "/dashboard",
   "/deals",
   "/forms",
+  "/funnels",
   "/help",
   "/integrations",
   "/payments",
