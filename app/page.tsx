@@ -1,6 +1,5 @@
-import { MarketingPageView } from "@/components/marketing/page-renderers";
-import { homepage } from "@/lib/marketing";
+import { PreLoginLanding } from "@/components/marketing/pre-login-landing";
 
 export default function Home() {
-  return <MarketingPageView page={homepage} />;
+  return <PreLoginLanding />;
 }

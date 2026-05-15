@@ -1,6 +1,7 @@
 .next
 node_modules
 dist
+out
 coverage
 .env
 .env.local
@@ -8,5 +9,7 @@ coverage
 tsconfig.tsbuildinfo
 supabase/.temp
 supabase/.branches
+storage
+tools/php
 
 .vercel

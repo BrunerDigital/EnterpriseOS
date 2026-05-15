@@ -191,7 +191,10 @@ function FunnelPanel({ title, icon, items }: { title: string; icon: React.ReactN
 
 function ConversionForm({ lane }: { lane: GTMLane }) {
   return (
-    <form id="gtm-form" className="glass-panel sticky top-24 rounded-lg p-6">
+    <form id="gtm-form" data-lead-form action="/api/leads" data-source={lane.name} data-thank-you={lane.funnel.thankYouPath} className="glass-panel sticky top-24 rounded-lg p-6">
+      <input className="hidden" name="website" tabIndex={-1} autoComplete="off" />
+      <input type="hidden" name="source" value={lane.name} />
+      <input type="hidden" name="thank_you_path" value={lane.funnel.thankYouPath} />
       <div className="flex items-center gap-3 text-sky-300">
         <Sparkles className="size-5" />
         <h2 className="text-2xl font-semibold text-white">{lane.primaryCta}</h2>
@@ -203,13 +206,18 @@ function ConversionForm({ lane }: { lane: GTMLane }) {
         {lane.funnel.fields.map((field) => (
           <label key={field} className="grid gap-2 text-sm font-medium text-slate-300">
             {field}
-            <input className="h-11 rounded-md border border-white/10 bg-slate-950/70 px-3 text-sm text-white outline-none transition placeholder:text-slate-600 focus:border-sky-400" placeholder={field} />
+            <input name={field.toLowerCase().replaceAll(" ", "_")} className="h-11 rounded-md border border-white/10 bg-slate-950/70 px-3 text-sm text-white outline-none transition placeholder:text-slate-600 focus:border-sky-400" placeholder={field} />
           </label>
         ))}
+        <label className="grid gap-2 text-sm font-medium text-slate-300">
+          Work email
+          <input name="email" type="email" required className="h-11 rounded-md border border-white/10 bg-slate-950/70 px-3 text-sm text-white outline-none transition placeholder:text-slate-600 focus:border-sky-400" placeholder="you@company.com" />
+        </label>
       </div>
-      <Button type="button" className="mt-6 w-full bg-sky-400 text-slate-950 hover:bg-sky-300">
+      <Button type="submit" className="mt-6 w-full bg-sky-400 text-slate-950 hover:bg-sky-300">
         {lane.primaryCta}
       </Button>
+      <div data-lead-status className="mt-4 min-h-5 text-sm font-semibold text-emerald-300" />
     </form>
   );
 }

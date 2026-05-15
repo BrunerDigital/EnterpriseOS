@@ -15,6 +15,8 @@ npm run dev
 
 Open `http://localhost:3000`.
 
+The root page `/` is the pre-login marketing, signup, and onboarding landing page.
+
 ## Build And Verify
 
 ```bash
@@ -70,6 +72,8 @@ npm run db:types
 - Tracking placeholder: `lib/tracking.ts`
 - Strategy docs: `docs/`
 - Sitemap and robots: `app/sitemap.ts`, `app/robots.ts`
+- Public lead API route: `app/api/leads/route.ts`
+- Browser lead capture: `public/lead-capture.js`
 
 ## Customize Brand, Pricing, And Copy
 

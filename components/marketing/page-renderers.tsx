@@ -258,18 +258,26 @@ export function FlowPageView({ flow }: { flow: FlowStep }) {
 
 function LeadForm({ title, fields, cta }: { title: string; fields: string[]; cta: string }) {
   return (
-    <form className="glass-panel rounded-lg p-6">
+    <form data-lead-form action="/api/leads" data-source={title} data-thank-you="/demo/thank-you/" className="glass-panel rounded-lg p-6">
+      <input className="hidden" name="website" tabIndex={-1} autoComplete="off" />
+      <input type="hidden" name="source" value={title} />
+      <input type="hidden" name="thank_you_path" value="/demo/thank-you/" />
       <h2 className="text-2xl font-semibold text-white">{title}</h2>
-      <p className="mt-2 text-sm leading-6 text-slate-400">Demo UI only. Connect this form to your CRM, email platform, analytics, and webhook handler before launch.</p>
+      <p className="mt-2 text-sm leading-6 text-slate-400">Submit this form to create a lead record, capture source attribution, and forward into the configured CRM/webhook path.</p>
       <div className="mt-6 grid gap-4">
         {fields.map((field) => (
           <label key={field} className="grid gap-2 text-sm font-medium text-slate-300">
             {field}
-            <input className="h-11 rounded-md border border-white/10 bg-slate-950/70 px-3 text-sm text-white outline-none transition placeholder:text-slate-600 focus:border-sky-400" placeholder={field} />
+            <input name={field.toLowerCase().replaceAll(" ", "_")} className="h-11 rounded-md border border-white/10 bg-slate-950/70 px-3 text-sm text-white outline-none transition placeholder:text-slate-600 focus:border-sky-400" placeholder={field} />
           </label>
         ))}
+        <label className="grid gap-2 text-sm font-medium text-slate-300">
+          Work email
+          <input name="email" type="email" required className="h-11 rounded-md border border-white/10 bg-slate-950/70 px-3 text-sm text-white outline-none transition placeholder:text-slate-600 focus:border-sky-400" placeholder="you@company.com" />
+        </label>
       </div>
-      <Button type="button" className="mt-6 w-full bg-sky-400 text-slate-950 hover:bg-sky-300">{cta}</Button>
+      <Button type="submit" className="mt-6 w-full bg-sky-400 text-slate-950 hover:bg-sky-300">{cta}</Button>
+      <div data-lead-status className="mt-4 min-h-5 text-sm font-semibold text-emerald-300" />
     </form>
   );
 }
