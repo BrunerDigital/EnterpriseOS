@@ -3,7 +3,7 @@ import { ArrowRight, BarChart3, Check, Globe2, ShieldCheck, Workflow, Zap } from
 import { Button } from "@/components/ui/button";
 import { pricingPlans } from "@/lib/marketing";
 import { CheckList, CtaBand, MarketingShell, ProductMockup, SectionHeader } from "@/components/marketing/marketing-shell";
-import { GrowthConstellation, ProofVisualization } from "@/components/marketing/growth-visuals";
+import { GrowthConstellation, HeroInsightCards, ProofVisualization } from "@/components/marketing/growth-visuals";
 
 const onboardingSteps = [
   "Set the Digital360 brand, domain, and sender identity.",
@@ -11,13 +11,6 @@ const onboardingSteps = [
   "Invite the team with agency, workspace, billing, and client roles.",
   "Import CRM data and map the pipeline, inbox, and calendar.",
   "Launch the first funnel, automation, dashboard, and client portal."
-];
-
-const trustItems = [
-  "CRM, conversations, automations, calendars, funnels, reputation, billing, portals, and reporting.",
-  "White-label agency controls with tenant, workspace, user, role, and permission architecture.",
-  "Supabase-backed auth, protected app routes, seeded demo data, and production deployment flow.",
-  "Mock-ready integrations for Stripe, Twilio, SendGrid/Mailgun, Google, Meta, GBP, and OpenAI."
 ];
 
 const workflowRows = [
@@ -39,30 +32,34 @@ export function PreLoginLanding() {
   return (
     <MarketingShell>
       <main>
-        <section className="relative px-4 pb-16 pt-16 sm:px-6 md:pt-24 lg:px-8">
-          <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">
+        <section className="relative px-4 pb-16 pt-12 sm:px-6 md:pt-16 lg:px-8">
+          <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[0.82fr_1.18fr] lg:items-center">
             <div>
-              <h1 className="max-w-5xl text-4xl font-semibold tracking-normal text-white sm:text-5xl md:text-6xl lg:text-7xl">
-                Your growth operating system, fully connected.
+              <div className="mb-7 inline-flex items-center gap-2 rounded-lg border border-sky-400/20 bg-sky-400/10 px-3 py-2 text-xs font-medium text-sky-100">
+                <span className="size-2 rounded-full bg-emerald-300" />
+                All-in-One Business Operating System
+              </div>
+              <h1 className="max-w-5xl text-5xl font-semibold leading-none tracking-normal text-white sm:text-6xl md:text-7xl">
+                Digital<span className="text-blue-500">360</span>
+                <span className="mt-2 block text-3xl font-medium text-slate-400 sm:text-4xl md:text-5xl">By BrunerDigital</span>
               </h1>
-              <p className="mt-6 max-w-2xl text-base leading-8 text-slate-300 md:text-xl">
-                Digital360 by BrunerDigital brings CRM, conversations, automations, calendars, funnels, reputation,
-                reporting, billing, portals, and AI assistance into one premium white-label workspace.
+              <p className="mt-6 max-w-xl text-base leading-8 text-slate-300 md:text-lg">
+                The all-in-one platform to attract, convert, nurture, and grow your entire business.
               </p>
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-                <Button asChild size="lg" className="bg-sky-400 text-slate-950 hover:bg-sky-300">
+                <Button asChild size="lg" className="bg-blue-600 text-white shadow-[0_0_35px_rgba(37,99,235,.35)] hover:bg-blue-500">
                   <Link href="/onboarding">
-                    Start guided setup
+                    Start Free Trial
                     <ArrowRight data-icon="inline-end" className="size-4" />
                   </Link>
                 </Button>
                 <Button asChild size="lg" variant="outline">
-                  <Link href="/login">Open app</Link>
+                  <Link href="/demo">Book a Demo</Link>
                 </Button>
               </div>
-              <div className="mt-8 grid gap-3 sm:grid-cols-2">
-                {trustItems.map((item) => (
-                  <div key={item} className="flex items-start gap-3 text-sm leading-6 text-slate-300">
+              <div className="mt-7 flex flex-wrap gap-x-6 gap-y-3">
+                {["White-Label Ready", "AI-Powered", "Everything Connected"].map((item) => (
+                  <div key={item} className="flex items-center gap-2 text-sm font-medium text-slate-300">
                     <span className="mt-0.5 flex size-5 shrink-0 items-center justify-center rounded-full bg-sky-400/15 text-sky-300">
                       <Check className="size-3.5" />
                     </span>
@@ -70,8 +67,12 @@ export function PreLoginLanding() {
                   </div>
                 ))}
               </div>
+              <div className="mt-5 text-sm text-slate-500">No credit card required · Onboard in minutes</div>
             </div>
             <GrowthConstellation />
+          </div>
+          <div className="mx-auto mt-10 max-w-7xl">
+            <HeroInsightCards />
           </div>
         </section>
 

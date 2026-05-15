@@ -6,15 +6,14 @@ import { ArrowRight, BarChart3, Building2, CalendarClock, Check, ChevronRight, L
 import { brand, navItems } from "@/lib/marketing";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { BrunerLogo } from "@/components/app/bruner-logo";
 
 export function BrandMark() {
   return (
-    <Link href="/" aria-label="Digital360 by BrunerDigital home">
-      <BrunerLogo
-        subtitle="White-label suite"
-        markClassName="size-10"
-      />
+    <Link href="/" aria-label="BrunerDigital home" className="flex items-center gap-3">
+      <div className="flex size-9 items-center justify-center rounded-full border border-blue-400/70 bg-slate-950 text-sm font-semibold text-white shadow-[0_0_22px_rgba(37,99,235,.35)]">
+        BD
+      </div>
+      <div className="text-lg font-semibold text-white">BrunerDigital</div>
     </Link>
   );
 }
@@ -42,9 +41,9 @@ export function MarketingShell({ children }: { children: React.ReactNode }) {
             <Button asChild variant="ghost">
               <Link href="/login">Log in</Link>
             </Button>
-            <Button asChild className="bg-sky-400 text-slate-950 hover:bg-sky-300">
-              <Link href="/demo">
-                Book demo
+            <Button asChild className="bg-blue-600 text-white hover:bg-blue-500">
+              <Link href="/onboarding">
+                Start Free Trial
                 <ArrowRight data-icon="inline-end" className="size-4" />
               </Link>
             </Button>

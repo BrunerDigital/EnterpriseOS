@@ -68,11 +68,11 @@ export const brand = {
 };
 
 export const navItems = [
-  { label: "Features", href: "/features" },
+  { label: "Platform", href: "/features" },
   { label: "Solutions", href: "/use-cases" },
-  { label: "Pricing", href: "/pricing" },
   { label: "Resources", href: "/resources" },
-  { label: "Security", href: "/security" }
+  { label: "Pricing", href: "/pricing" },
+  { label: "About", href: "/about" }
 ];
 
 const defaultFaqs = [

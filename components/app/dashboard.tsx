@@ -1,60 +1,42 @@
 "use client";
 
 import { Area, AreaChart, CartesianGrid, ResponsiveContainer, Tooltip, XAxis } from "recharts";
-import { Bot, CalendarClock, Lightbulb, MessageSquareText, MoveUpRight, Sparkles } from "lucide-react";
+import { CalendarClock, Lightbulb, MessageSquareText, MoveUpRight, Sparkles } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { Separator } from "@/components/ui/separator";
-import { chartData, conversations, contacts, kpis, pipeline } from "@/lib/demo-data";
+import { chartData, conversations, contacts, pipeline } from "@/lib/demo-data";
 import { formatCurrency } from "@/lib/utils";
 import { AnalyticsShowcase, FunnelVelocity } from "@/components/app/analytics-visuals";
+
+const dashboardKpis = [
+  { label: "Total Revenue", value: "$48,920", change: "+28.4%", tone: "success" },
+  { label: "New Leads", value: "1,250", change: "+18.7%", tone: "success" },
+  { label: "Appointments", value: "342", change: "+22.1%", tone: "success" },
+  { label: "Conversion Rate", value: "27.4%", change: "+6.3%", tone: "success" }
+] as const;
 
 export function Dashboard() {
   return (
     <div className="flex flex-col gap-6">
-      <section className="overflow-hidden rounded-lg border border-white/10 bg-slate-950/62 shadow-panel">
-        <div className="grid gap-0 lg:grid-cols-[1.45fr_0.9fr]">
-          <div className="p-6 md:p-8">
-            <div className="flex flex-wrap items-center gap-2">
-              <Badge>Command center</Badge>
-              <Badge variant="success">AI recommendations live</Badge>
-            </div>
-            <h1 className="mt-5 max-w-4xl text-3xl font-semibold tracking-normal md:text-5xl">
-              White-label growth operations for every client workspace.
-            </h1>
-            <p className="mt-4 max-w-2xl text-base leading-7 text-muted-foreground">
-              Manage CRM, messaging, calendars, funnels, automation, reputation, billing, reporting, and AI assistance from one premium agency operating system.
-            </p>
-            <div className="mt-6 flex flex-wrap gap-3">
-              <Button>
-                <Sparkles data-icon="inline-start" />
-                Run AI audit
-              </Button>
-              <Button variant="outline">Create workflow</Button>
-            </div>
-          </div>
-          <div className="border-t border-white/10 bg-white/[0.025] p-6 lg:border-l lg:border-t-0">
-            <div className="flex items-center gap-3">
-              <div className="flex size-11 items-center justify-center rounded-lg bg-primary/15 text-sky-200">
-                <Bot />
-              </div>
-              <div>
-                <div className="font-semibold">AI dashboard insights</div>
-                <div className="text-sm text-muted-foreground">Generated 4 minutes ago</div>
-              </div>
-            </div>
-            <div className="mt-5 flex flex-col gap-3 text-sm leading-6 text-slate-300">
-              <p>17 leads are hot and untouched for more than 30 minutes. Prioritize Maya, Priya, and Summit Roofing first.</p>
-              <p>Revenue is up 18.4% week over week, driven by faster SMS replies and review-request automation.</p>
-            </div>
-          </div>
+      <section className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+        <div>
+          <h1 className="text-3xl font-semibold tracking-normal text-white">Dashboard</h1>
+          <p className="mt-1 text-sm text-muted-foreground">Welcome back. Here&apos;s what&apos;s happening with your business.</p>
+        </div>
+        <div className="flex flex-wrap gap-3">
+          <Button variant="outline">May 8 - May 15, 2026</Button>
+          <Button className="bg-blue-600 text-white hover:bg-blue-500">
+            <Sparkles data-icon="inline-start" />
+            Customize
+          </Button>
         </div>
       </section>
 
       <section className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
-        {kpis.map((kpi) => (
+        {dashboardKpis.map((kpi) => (
           <Card key={kpi.label} className="relative overflow-hidden">
             <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-sky-400 via-violet-400 to-emerald-300" />
             <div className="absolute -right-8 -top-8 size-24 rounded-full bg-sky-400/10 blur-2xl" />
