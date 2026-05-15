@@ -1,4 +1,7 @@
+"use client";
+
 import Link from "next/link";
+import { useEffect, useMemo, useState, type FormEvent } from "react";
 import { ArrowRight, Check, Circle, Lock, Sparkles } from "lucide-react";
 import { setupSteps, launchMetrics, getSetupStep } from "@/lib/setup";
 import { cn } from "@/lib/utils";
@@ -22,7 +25,27 @@ const statusStyles = {
 
 export function SetupConsole({ activeSlug, mode = "overview" }: SetupConsoleProps) {
   const activeStep = getSetupStep(activeSlug);
-  const progress = Math.round((setupSteps.filter((step) => step.status === "done").length + 0.9) / setupSteps.length * 100);
+  const [completedSteps, setCompletedSteps] = useState<string[]>([]);
+  const progress = Math.round(((completedSteps.length || 0.9) / setupSteps.length) * 100);
+
+  useEffect(() => {
+    const saved = window.localStorage.getItem("digital360_setup_steps");
+    if (saved) {
+      try {
+        setCompletedSteps(JSON.parse(saved) as string[]);
+      } catch {
+        window.localStorage.removeItem("digital360_setup_steps");
+      }
+    }
+  }, []);
+
+  function completeStep(slug: string) {
+    setCompletedSteps((current) => {
+      const next = Array.from(new Set([...current, slug]));
+      window.localStorage.setItem("digital360_setup_steps", JSON.stringify(next));
+      return next;
+    });
+  }
 
   return (
     <MarketingShell>
@@ -47,19 +70,20 @@ export function SetupConsole({ activeSlug, mode = "overview" }: SetupConsoleProp
                   {setupSteps.map((step) => {
                     const Icon = step.icon;
                     const selected = step.slug === activeStep.slug;
+                    const completed = completedSteps.includes(step.slug);
                     return (
                       <Link
                         key={step.slug}
                         href={step.href}
                         className={cn(
                           "flex items-center gap-3 rounded-md border px-3 py-3 text-sm transition hover:border-sky-400/35 hover:bg-sky-400/10",
-                          statusStyles[step.status],
+                          completed ? statusStyles.done : statusStyles[step.status],
                           selected && "border-sky-400/60 bg-sky-400/15 text-white"
                         )}
                       >
                         <Icon className="size-4 shrink-0" />
                         <span className="min-w-0 flex-1 truncate">{step.title}</span>
-                        {step.status === "locked" ? <Lock className="size-3.5" /> : <Circle className="size-2 fill-current" />}
+                        {step.status === "locked" && !completed ? <Lock className="size-3.5" /> : completed ? <Check className="size-4 text-emerald-200" /> : <Circle className="size-2 fill-current" />}
                       </Link>
                     );
                   })}
@@ -69,7 +93,7 @@ export function SetupConsole({ activeSlug, mode = "overview" }: SetupConsoleProp
 
             <div className="min-w-0">
               <SetupHero activeSlug={activeStep.slug} />
-              {mode === "overview" ? <SetupOverview /> : <SetupStepDetail slug={activeStep.slug} />}
+              {mode === "overview" ? <SetupOverview onCompleteStep={completeStep} /> : <SetupStepDetail slug={activeStep.slug} onCompleteStep={completeStep} />}
             </div>
           </div>
         </section>
@@ -125,7 +149,7 @@ function SetupHero({ activeSlug }: { activeSlug: string }) {
   );
 }
 
-function SetupOverview() {
+function SetupOverview({ onCompleteStep }: { onCompleteStep: (slug: string) => void }) {
   return (
     <>
       <section className="mt-6 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
@@ -164,13 +188,13 @@ function SetupOverview() {
             ))}
           </CardContent>
         </Card>
-        <SetupForm slug="brand" compact />
+        <SetupForm slug="brand" compact onCompleteStep={onCompleteStep} />
       </section>
     </>
   );
 }
 
-export function SetupStepDetail({ slug }: { slug: string }) {
+export function SetupStepDetail({ slug, onCompleteStep }: { slug: string; onCompleteStep: (slug: string) => void }) {
   const step = getSetupStep(slug);
 
   return (
@@ -194,13 +218,49 @@ export function SetupStepDetail({ slug }: { slug: string }) {
           ))}
         </CardContent>
       </Card>
-      <SetupForm slug={slug} />
+      <SetupForm slug={slug} onCompleteStep={onCompleteStep} />
     </section>
   );
 }
 
-function SetupForm({ slug, compact = false }: { slug: string; compact?: boolean }) {
+function SetupForm({ slug, compact = false, onCompleteStep }: { slug: string; compact?: boolean; onCompleteStep: (slug: string) => void }) {
   const step = getSetupStep(slug);
+  const [status, setStatus] = useState<"idle" | "saving" | "saved" | "error">("idle");
+  const [message, setMessage] = useState("");
+  const fields = useMemo(() => step.fields, [step.fields]);
+
+  async function submitSetup(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    const form = event.currentTarget;
+    const data = Object.fromEntries(new FormData(form));
+
+    setStatus("saving");
+    setMessage("");
+
+    try {
+      const response = await fetch("/api/setup-submissions", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          step: step.slug,
+          title: step.title,
+          fields: data,
+          page_url: window.location.href
+        })
+      });
+      const result = (await response.json()) as { success?: boolean; message?: string };
+      if (!response.ok || !result.success) {
+        throw new Error(result.message ?? "Setup progress could not be saved.");
+      }
+      onCompleteStep(step.slug);
+      setStatus("saved");
+      setMessage(result.message ?? "Setup progress saved.");
+      form.reset();
+    } catch (error) {
+      setStatus("error");
+      setMessage(error instanceof Error ? error.message : "Setup progress could not be saved.");
+    }
+  }
 
   return (
     <Card>
@@ -209,17 +269,24 @@ function SetupForm({ slug, compact = false }: { slug: string; compact?: boolean 
         <CardDescription>These fields are ready to connect to tenant-scoped persistence.</CardDescription>
       </CardHeader>
       <CardContent>
-        <form className="grid gap-4">
-          {step.fields.map((field) => (
+        <form className="grid gap-4" onSubmit={submitSetup}>
+          {fields.map((field) => (
             <label key={field} className="grid gap-2 text-sm font-medium text-slate-300">
               {field}
-              <Input placeholder={field} />
+              <Input name={field.toLowerCase().replaceAll(" ", "_")} placeholder={field} />
             </label>
           ))}
           <div className="rounded-lg border border-emerald-400/20 bg-emerald-400/10 p-4 text-sm leading-6 text-emerald-100">
             AI setup assistant will summarize this step, flag missing credentials, and recommend the next launch action.
           </div>
-          <Button className="bg-sky-400 text-slate-950 hover:bg-sky-300">Save and continue</Button>
+          {message ? (
+            <div className={cn("rounded-lg border p-3 text-sm", status === "error" ? "border-rose-400/25 bg-rose-400/10 text-rose-100" : "border-emerald-400/25 bg-emerald-400/10 text-emerald-100")}>
+              {message}
+            </div>
+          ) : null}
+          <Button disabled={status === "saving"} className="bg-sky-400 text-slate-950 hover:bg-sky-300">
+            {status === "saving" ? "Saving..." : "Save and continue"}
+          </Button>
         </form>
       </CardContent>
     </Card>

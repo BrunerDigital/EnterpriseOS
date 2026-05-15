@@ -73,6 +73,7 @@ npm run db:types
 - Strategy docs: `docs/`
 - Sitemap and robots: `app/sitemap.ts`, `app/robots.ts`
 - Public lead API route: `app/api/leads/route.ts`
+- Public setup progress API route: `app/api/setup-submissions/route.ts`
 - Browser lead capture: `public/lead-capture.js`
 
 ## Customize Brand, Pricing, And Copy
