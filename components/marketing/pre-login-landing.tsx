@@ -3,6 +3,7 @@ import { ArrowRight, BarChart3, Check, Globe2, ShieldCheck, Workflow, Zap } from
 import { Button } from "@/components/ui/button";
 import { pricingPlans } from "@/lib/marketing";
 import { CheckList, CtaBand, MarketingShell, ProductMockup, SectionHeader } from "@/components/marketing/marketing-shell";
+import { GrowthConstellation, ProofVisualization } from "@/components/marketing/growth-visuals";
 
 const onboardingSteps = [
   "Set the Digital360 brand, domain, and sender identity.",
@@ -70,7 +71,7 @@ export function PreLoginLanding() {
                 ))}
               </div>
             </div>
-            <ProductMockup />
+            <GrowthConstellation />
           </div>
         </section>
 
@@ -88,6 +89,18 @@ export function PreLoginLanding() {
                   <div className="rounded-md border border-emerald-400/20 bg-emerald-400/10 px-3 py-2 text-sm font-medium text-emerald-100">{outcome}</div>
                 </div>
               ))}
+            </div>
+          </div>
+        </section>
+
+        <section className="px-4 py-16 sm:px-6 lg:px-8">
+          <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">
+            <ProductMockup />
+            <div>
+              <SectionHeader title="Visual proof that every growth motion is connected" body="Digital360 makes the handoff from lead source to inbox, calendar, pipeline, review, and revenue visible enough for operators and clients to trust." />
+              <div className="mt-8">
+                <ProofVisualization />
+              </div>
             </div>
           </div>
         </section>

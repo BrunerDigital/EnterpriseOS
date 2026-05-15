@@ -9,6 +9,7 @@ import { Progress } from "@/components/ui/progress";
 import { Separator } from "@/components/ui/separator";
 import { chartData, conversations, contacts, kpis, pipeline } from "@/lib/demo-data";
 import { formatCurrency } from "@/lib/utils";
+import { AnalyticsShowcase, FunnelVelocity } from "@/components/app/analytics-visuals";
 
 export function Dashboard() {
   return (
@@ -54,17 +55,28 @@ export function Dashboard() {
 
       <section className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
         {kpis.map((kpi) => (
-          <Card key={kpi.label}>
+          <Card key={kpi.label} className="relative overflow-hidden">
+            <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-sky-400 via-violet-400 to-emerald-300" />
+            <div className="absolute -right-8 -top-8 size-24 rounded-full bg-sky-400/10 blur-2xl" />
             <CardHeader>
               <CardDescription>{kpi.label}</CardDescription>
               <div className="flex items-end justify-between gap-3">
                 <CardTitle className="text-3xl">{kpi.value}</CardTitle>
                 <Badge variant={kpi.tone}>{kpi.change}</Badge>
               </div>
+              <div className="mt-5 h-10 overflow-hidden rounded-md bg-slate-950/70">
+                <div className="flex h-full items-end gap-1 px-2 pb-1">
+                  {[42, 58, 51, 74, 69, 88, 81, 96].map((height, index) => (
+                    <div key={index} className="flex-1 rounded-t-sm bg-gradient-to-t from-sky-500 to-emerald-300" style={{ height: `${height}%` }} />
+                  ))}
+                </div>
+              </div>
             </CardHeader>
           </Card>
         ))}
       </section>
+
+      <AnalyticsShowcase />
 
       <section className="grid gap-6 xl:grid-cols-[1.3fr_0.85fr]">
         <Card>
@@ -125,7 +137,8 @@ export function Dashboard() {
         </Card>
       </section>
 
-      <section className="grid gap-6 xl:grid-cols-[1fr_1fr]">
+      <section className="grid gap-6 xl:grid-cols-[0.78fr_1.22fr]">
+        <FunnelVelocity />
         <Card>
           <CardHeader>
             <CardTitle>Deals pipeline</CardTitle>
@@ -155,7 +168,7 @@ export function Dashboard() {
           </CardContent>
         </Card>
 
-        <Card>
+        <Card className="xl:col-span-2">
           <CardHeader>
             <CardTitle>Conversations</CardTitle>
             <CardDescription>Two-way email, SMS, and social-style inbox foundation</CardDescription>
