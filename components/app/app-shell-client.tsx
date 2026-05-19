@@ -12,7 +12,7 @@ import { BrunerLogo } from "@/components/app/bruner-logo";
 import type { AppSession } from "@/lib/auth/session";
 import { canAccessAdmin, canAccessBilling, clientRoles, formatRole } from "@/lib/auth/roles";
 
-const adminOnlyRoutes = new Set(["/agency", "/white-label"]);
+const adminOnlyRoutes = new Set(["/agency", "/white-label", "/launch"]);
 const billingRoutes = new Set(["/payments", "/billing"]);
 const clientPreferredRoutes = new Set(["/dashboard", "/conversations", "/portal", "/reporting", "/help"]);
 
