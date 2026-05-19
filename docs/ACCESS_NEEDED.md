@@ -15,12 +15,11 @@ Use this to send invites and password resets from the BrunerDigital domain.
 
 ## Domain And DNS
 
-- Final app domain, such as `app.brunerdigital.com`
-- DNS provider access
-- Ability to add Vercel DNS records
-- Ability to add Supabase Auth redirect URLs:
-  - `https://app.brunerdigital.com/auth/callback`
-  - `https://app.brunerdigital.com/reset-password`
+- Cloudflare access for `brunerdigital.com`
+- Ability to add the Vercel DNS record for `digital360.brunerdigital.com`
+- Supabase Auth redirects are configured for:
+  - `https://digital360.brunerdigital.com/auth/callback`
+  - `https://digital360.brunerdigital.com/**`
 
 ## Stripe
 

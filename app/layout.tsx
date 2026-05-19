@@ -2,8 +2,10 @@ import type { Metadata } from "next";
 import Script from "next/script";
 import "./globals.css";
 
+const siteUrl = process.env.NEXT_PUBLIC_APP_URL ?? "https://digital360.brunerdigital.com";
+
 export const metadata: Metadata = {
-  metadataBase: new URL("https://brunerdigital.example"),
+  metadataBase: new URL(siteUrl),
   title: {
     default: "Digital360 by BrunerDigital | White-label AI Business Operating System",
     template: "%s | Digital360 by BrunerDigital"
@@ -12,7 +14,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Digital360 by BrunerDigital",
     description: "Run CRM, AI automation, funnels, conversations, calendars, reputation, reporting, billing, portals, and white-label controls from one place.",
-    url: "https://brunerdigital.example",
+    url: siteUrl,
     siteName: "Digital360 by BrunerDigital",
     images: [{ url: "/og/brunerdigital-og.png", width: 1200, height: 630, alt: "Digital360 product preview" }],
     type: "website"

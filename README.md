@@ -54,8 +54,8 @@ npm run db:types
 ## Deployment
 
 1. Create a production project on Vercel or another Next.js host.
-2. Set production environment variables from `.env.example`.
-3. Replace `https://brunerdigital.example` in `app/layout.tsx`, `app/sitemap.ts`, and `app/robots.ts`.
+2. Set production environment variables from `.env.example`, including `NEXT_PUBLIC_APP_URL=https://digital360.brunerdigital.com`.
+3. Add the production custom domain in Vercel and point DNS to Vercel.
 4. Connect analytics, pixels, CRM webhooks, email sending, payment provider, and calendar credentials.
 5. Replace legal placeholders with attorney-reviewed policies.
 6. Deploy from the main branch.
@@ -95,7 +95,7 @@ Analytics, ad pixels, CRM/webhook endpoints, transactional email, SMS, calendar 
 
 ## Recommended Next Actions
 
-1. Replace placeholder domain and OG image.
+1. Replace the placeholder OG image with a final BrunerDigital social preview.
 2. Connect form submissions to CRM and email automation.
 3. Load the email/ad/sales copy into your real tools.
 4. Review pricing with finance and legal.

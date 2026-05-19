@@ -3,7 +3,7 @@ import { allPages, flowSteps, funnelTemplates } from "@/lib/marketing";
 import { gtmLanes } from "@/lib/gtm-lanes";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const base = "https://brunerdigital.example";
+  const base = process.env.NEXT_PUBLIC_APP_URL ?? "https://digital360.brunerdigital.com";
   const routes = [
     "/",
     ...Object.keys(allPages),
