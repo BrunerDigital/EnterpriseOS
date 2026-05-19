@@ -1,19 +1,30 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
-import { ArrowRight, BarChart3, Building2, CalendarClock, Check, ChevronRight, Lock, Menu, MessageSquare, X, Zap } from "lucide-react";
-import { brand, navItems } from "@/lib/marketing";
+import { ArrowRight, BarChart3, Building2, CalendarClock, Check, ChevronDown, ChevronRight, Lock, Menu, MessageSquare, Search, X, Zap } from "lucide-react";
+import { brand } from "@/lib/marketing";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
+const marketingNav = [
+  { label: "Features", href: "/features" },
+  { label: "Solutions", href: "/use-cases" },
+  { label: "Pricing", href: "/pricing" },
+  { label: "Security", href: "/security" }
+];
+
 export function BrandMark() {
   return (
-    <Link href="/" aria-label="BrunerDigital home" className="flex items-center gap-3">
-      <div className="flex size-9 items-center justify-center rounded-full border border-blue-400/70 bg-slate-950 text-sm font-semibold text-white shadow-[0_0_22px_rgba(37,99,235,.35)]">
-        BD
+    <Link href="/" aria-label="Digital360 by BrunerDigital home" className="flex items-center gap-3">
+      <div className="relative size-14 overflow-hidden rounded-lg border border-white/15 bg-white shadow-[0_0_30px_rgba(59,130,246,.24)]">
+        <Image src="/brand/digital-360-logo.jpg" alt="Digital360 logo" fill sizes="56px" className="object-cover" priority />
       </div>
-      <div className="text-lg font-semibold text-white">BrunerDigital</div>
+      <div>
+        <div className="text-xl font-semibold leading-none tracking-normal text-white">Digital360</div>
+        <div className="mt-1 text-sm font-medium leading-none text-slate-300">by BrunerDigital</div>
+      </div>
     </Link>
   );
 }
@@ -22,28 +33,26 @@ export function MarketingShell({ children }: { children: React.ReactNode }) {
   const [open, setOpen] = useState(false);
 
   return (
-    <div className="min-h-screen overflow-hidden bg-[#020617] text-white">
+    <div className="min-h-screen overflow-hidden bg-[#020817] text-white">
       <div className="pointer-events-none fixed inset-0 -z-10">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_0%,rgba(14,165,233,0.22),transparent_31rem),radial-gradient(circle_at_82%_8%,rgba(99,102,241,0.18),transparent_28rem),linear-gradient(135deg,#020617_0%,#07111f_46%,#020617_100%)]" />
-        <div className="absolute inset-0 grid-fade opacity-80" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_24%_0%,rgba(29,78,216,0.18),transparent_30rem),radial-gradient(circle_at_88%_8%,rgba(45,212,191,0.09),transparent_26rem),linear-gradient(180deg,#030714_0%,#06111f_42%,#02050d_100%)]" />
+        <div className="absolute inset-0 grid-fade opacity-60" />
       </div>
-      <header className="sticky top-0 z-50 border-b border-white/10 bg-slate-950/72 backdrop-blur-2xl">
+      <header className="sticky top-0 z-50 border-b border-white/10 bg-[#030814]/84 backdrop-blur-2xl">
         <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
           <BrandMark />
           <nav className="hidden items-center gap-7 lg:flex">
-            {navItems.map((item) => (
+            {marketingNav.map((item) => (
               <Link key={item.href} href={item.href} className="text-sm font-medium text-slate-300 transition hover:text-white">
                 {item.label}
+                {item.label === "Solutions" ? <ChevronDown className="ml-1 inline size-3" /> : null}
               </Link>
             ))}
           </nav>
           <div className="hidden items-center gap-3 lg:flex">
-            <Button asChild variant="ghost">
-              <Link href="/login">Log in</Link>
-            </Button>
-            <Button asChild className="bg-blue-600 text-white hover:bg-blue-500">
-              <Link href="/onboarding">
-                Start Free Trial
+            <Button asChild className="h-10 rounded-md bg-blue-600 px-6 text-white shadow-[0_0_26px_rgba(37,99,235,.35)] hover:bg-blue-500">
+              <Link href="/demo">
+                Book a demo
                 <ArrowRight data-icon="inline-end" className="size-4" />
               </Link>
             </Button>
@@ -62,7 +71,7 @@ export function MarketingShell({ children }: { children: React.ReactNode }) {
             </button>
           </div>
           <nav className="mt-10 grid gap-3">
-            {[...navItems, { label: "Book Demo", href: "/demo" }, { label: "Start Trial", href: "/signup" }].map((item) => (
+            {[...marketingNav, { label: "Book a demo", href: "/demo" }, { label: "Log in", href: "/login" }].map((item) => (
               <Link key={item.href} href={item.href} onClick={() => setOpen(false)} className="rounded-lg border border-white/10 bg-white/[0.04] px-4 py-4 text-lg font-semibold">
                 {item.label}
               </Link>
@@ -85,7 +94,7 @@ export function Footer() {
   ];
 
   return (
-    <footer className="border-t border-white/10 bg-slate-950/70">
+    <footer className="border-t border-white/10 bg-[#020711]/86">
       <div className="mx-auto grid max-w-7xl gap-10 px-4 py-12 sm:px-6 lg:grid-cols-[1.2fr_2fr] lg:px-8">
         <div>
           <BrandMark />
@@ -120,91 +129,114 @@ export function Footer() {
 export function SectionHeader({ title, body, align = "left" }: { title: string; body?: string; align?: "left" | "center" }) {
   return (
     <div className={cn("max-w-3xl", align === "center" && "mx-auto text-center")}>
-      <h2 className="text-3xl font-semibold tracking-normal text-white md:text-5xl">{title}</h2>
-      {body ? <p className="mt-4 text-base leading-7 text-slate-400 md:text-lg">{body}</p> : null}
+      <h2 className="text-3xl font-semibold tracking-normal text-white md:text-4xl">{title}</h2>
+      {body ? <p className="mt-3 text-sm leading-6 text-slate-400 md:text-base">{body}</p> : null}
     </div>
   );
 }
 
 export function ProductMockup({ compact = false }: { compact?: boolean }) {
-  const pipeline = ["New lead", "AI qualified", "Demo booked", "Proposal", "Won"];
+  const metrics = [
+    ["Total Revenue", "$284,600", "+18.6%"],
+    ["New Leads", "1,250", "+24.1%"],
+    ["Appointments", "320", "+14.7%"],
+    ["Conversion", "24.6%", "+8.3%"]
+  ];
+  const activity = ["Website form submitted", "Appointment booked", "Payment received", "Review received"];
 
   return (
-    <div className={cn("glass-panel relative overflow-hidden rounded-lg p-3 shadow-panel", !compact && "lg:translate-y-5")}>
-      <div className="flex items-center justify-between border-b border-white/10 px-3 py-3">
-        <div className="flex items-center gap-2">
-          <div className="size-3 rounded-full bg-rose-400" />
-          <div className="size-3 rounded-full bg-amber-300" />
-          <div className="size-3 rounded-full bg-emerald-400" />
-        </div>
-        <div className="text-xs font-medium text-slate-500">brunerdigital.app / command-center</div>
-      </div>
-      <div className="grid gap-3 p-3 lg:grid-cols-[0.82fr_1.18fr]">
-        <div className="rounded-lg border border-white/10 bg-slate-950/70 p-4">
-          <div className="flex items-center justify-between">
-            <div>
-              <div className="text-sm font-semibold">Revenue cockpit</div>
-              <div className="text-xs text-slate-500">Digital360</div>
-            </div>
-            <div className="rounded-md bg-emerald-400/10 px-2 py-1 text-xs font-semibold text-emerald-300">Live</div>
+    <div className={cn("glass-panel relative overflow-hidden rounded-lg p-4 shadow-panel", !compact && "lg:translate-y-3")}>
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_78%_10%,rgba(37,99,235,.18),transparent_20rem)]" />
+      <div className="relative grid min-h-[360px] grid-cols-[2.75rem_1fr] overflow-hidden rounded-md border border-white/10 bg-[#050b15]/92">
+        <div className="border-r border-white/10 bg-[#050913] p-2">
+          <div className="relative mx-auto mb-4 size-7 overflow-hidden rounded-md bg-white">
+            <Image src="/brand/digital-360-logo.jpg" alt="" fill sizes="28px" className="object-cover" />
           </div>
-          <div className="mt-5 grid grid-cols-2 gap-3">
-            {[
-              ["$428k", "Pipeline"],
-              ["41%", "Booked lift"],
-              ["18m", "Reply time"],
-              ["4.8", "Review score"]
-            ].map(([value, label]) => (
-              <div key={label} className="rounded-md border border-white/10 bg-white/[0.04] p-3">
-                <div className="text-xl font-semibold text-white">{value}</div>
-                <div className="mt-1 text-xs text-slate-500">{label}</div>
+          <div className="grid gap-3">
+            {[Building2, BarChart3, CalendarClock, MessageSquare, Zap, Lock].map((Icon, index) => (
+              <div key={index} className={cn("flex size-8 items-center justify-center rounded-md text-slate-500", index === 0 && "bg-blue-600 text-white shadow-[0_0_20px_rgba(37,99,235,.45)]")}>
+                <Icon className="size-4" />
               </div>
             ))}
           </div>
-          <div className="mt-5 space-y-2">
-            {pipeline.map((stage, index) => (
-              <div key={stage} className="flex items-center gap-3">
-                <div className="w-24 text-xs text-slate-400">{stage}</div>
-                <div className="h-2 flex-1 rounded-full bg-white/10">
-                  <div className="h-2 rounded-full bg-gradient-to-r from-sky-400 to-emerald-300" style={{ width: `${92 - index * 13}%` }} />
+        </div>
+        <div className="p-4">
+          <div className="mb-4 flex items-center justify-between">
+            <div className="flex items-center gap-2">
+              <div className="text-sm font-semibold text-white">Command Center</div>
+              <div className="rounded-md border border-white/10 px-2 py-1 text-[10px] text-slate-500">Overview</div>
+            </div>
+            <div className="flex w-48 items-center gap-2 rounded-md border border-white/10 bg-white/[0.03] px-3 py-2 text-xs text-slate-500">
+              <Search className="size-3.5" />
+              Search
+            </div>
+          </div>
+          <div className="grid gap-3 md:grid-cols-4">
+            {metrics.map(([label, value, change]) => (
+              <div key={label} className="rounded-md border border-white/10 bg-white/[0.035] p-3">
+                <div className="text-[10px] text-slate-500">{label}</div>
+                <div className="mt-2 text-lg font-semibold text-white">{value}</div>
+                <div className="mt-1 text-[10px] font-medium text-emerald-300">{change}</div>
+              </div>
+            ))}
+          </div>
+          <div className="mt-4 grid gap-3 lg:grid-cols-[1.25fr_.75fr]">
+            <div className="rounded-md border border-white/10 bg-white/[0.025] p-4">
+              <div className="mb-4 flex items-center justify-between">
+                <div className="text-sm font-semibold text-white">Revenue</div>
+                <div className="text-[10px] text-slate-500">The month</div>
+              </div>
+              <svg viewBox="0 0 360 150" className="h-36 w-full" preserveAspectRatio="none" aria-hidden="true">
+                <defs>
+                  <linearGradient id="mockLineBlue" x1="0" x2="1">
+                    <stop stopColor="#2563eb" />
+                    <stop offset="1" stopColor="#2dd4bf" />
+                  </linearGradient>
+                </defs>
+                {[30, 70, 110].map((y) => <path key={y} d={`M0 ${y}H360`} stroke="rgba(148,163,184,.1)" />)}
+                <path d="M0 118 C38 95 58 112 86 82 C114 52 138 78 166 63 C202 42 224 68 256 42 C292 14 312 40 360 16" fill="none" stroke="url(#mockLineBlue)" strokeWidth="4" />
+                <path d="M0 126 C44 118 70 122 104 100 C138 82 164 95 198 76 C236 56 276 74 360 44" fill="none" stroke="#4f46e5" strokeWidth="3" opacity=".85" />
+              </svg>
+            </div>
+            <div className="rounded-md border border-white/10 bg-white/[0.025] p-4">
+              <div className="text-sm font-semibold text-white">Top Channels</div>
+              <div className="mt-5 flex items-center gap-4">
+                <div className="relative size-24 rounded-full bg-[conic-gradient(#2563eb_0_40%,#2dd4bf_40%_65%,#f59e0b_65%_85%,#8b5cf6_85%_100%)]">
+                  <div className="absolute inset-5 rounded-full bg-[#050b15]" />
+                </div>
+                <div className="grid flex-1 gap-2 text-[10px] text-slate-400">
+                  {["Paid Search", "Direct", "Organic", "Social"].map((item, index) => (
+                    <div key={item} className="flex items-center justify-between">
+                      <span>{item}</span>
+                      <span className="text-white">{[40, 25, 20, 15][index]}%</span>
+                    </div>
+                  ))}
                 </div>
               </div>
-            ))}
-          </div>
-        </div>
-        <div className="grid gap-3">
-          <div className="rounded-lg border border-white/10 bg-white/[0.04] p-4">
-            <div className="mb-4 flex items-center justify-between">
-              <div className="flex items-center gap-2 text-sm font-semibold"><MessageSquare className="size-4 text-sky-300" /> Unified inbox</div>
-              <span className="text-xs text-slate-500">AI draft ready</span>
             </div>
-            {["New lead from audit funnel", "Missed call follow-up", "Review request approved"].map((item, index) => (
-              <div key={item} className="mb-2 flex items-center justify-between rounded-md border border-white/10 bg-slate-950/55 p-3 text-sm">
-                <span>{item}</span>
-                <span className={cn("text-xs", index === 0 ? "text-sky-300" : "text-slate-500")}>{index === 0 ? "Now" : `${index + 2}m`}</span>
-              </div>
-            ))}
           </div>
-          <div className="grid gap-3 md:grid-cols-2">
-            <MiniPanel icon={<Zap className="size-4" />} title="Automation" text="Speed-to-lead sequence active" />
-            <MiniPanel icon={<CalendarClock className="size-4" />} title="Calendar" text="12 demos booked this week" />
-            <MiniPanel icon={<BarChart3 className="size-4" />} title="Reporting" text="Source ROI by workspace" />
-            <MiniPanel icon={<Lock className="size-4" />} title="White-label" text="Client portal branded" />
+          <div className="mt-3 grid gap-3 md:grid-cols-2">
+            <div className="rounded-md border border-white/10 bg-white/[0.025] p-4">
+              <div className="mb-3 text-sm font-semibold text-white">Recent Activity</div>
+              {activity.map((item, index) => (
+                <div key={item} className="flex items-center justify-between border-t border-white/10 py-2 text-xs first:border-t-0">
+                  <span className="text-slate-300">{item}</span>
+                  <span className="text-slate-500">{index + 2} min ago</span>
+                </div>
+              ))}
+            </div>
+            <div className="rounded-md border border-white/10 bg-white/[0.025] p-4">
+              <div className="mb-3 text-sm font-semibold text-white">Tasks</div>
+              {["Follow up with John Smith", "Revise proposal", "Check in with new lead"].map((item, index) => (
+                <div key={item} className="flex items-center justify-between border-t border-white/10 py-2 text-xs first:border-t-0">
+                <span>{item}</span>
+                  <span className={cn("font-semibold", index === 0 ? "text-rose-300" : index === 1 ? "text-amber-300" : "text-sky-300")}>{["High", "Medium", "Low"][index]}</span>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  );
-}
-
-function MiniPanel({ icon, title, text }: { icon: React.ReactNode; title: string; text: string }) {
-  return (
-    <div className="rounded-md border border-white/10 bg-slate-950/55 p-3">
-      <div className="flex items-center gap-2 text-sm font-semibold text-white">
-        <span className="text-sky-300">{icon}</span>
-        {title}
-      </div>
-      <p className="mt-2 text-xs leading-5 text-slate-500">{text}</p>
     </div>
   );
 }
