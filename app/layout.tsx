@@ -10,7 +10,11 @@ export const metadata: Metadata = {
     default: "Digital360 by BrunerDigital | White-label AI Business Operating System",
     template: "%s | Digital360 by BrunerDigital"
   },
+  alternates: {
+    canonical: siteUrl
+  },
   description: "White-label AI-powered business suite for agencies, service businesses, franchises, and multi-location growth teams.",
+  keywords: ["Digital360", "BrunerDigital", "white-label CRM", "AI business operating system", "agency CRM", "marketing automation", "client portal"],
   openGraph: {
     title: "Digital360 by BrunerDigital",
     description: "Run CRM, AI automation, funnels, conversations, calendars, reputation, reporting, billing, portals, and white-label controls from one place.",
@@ -22,7 +26,8 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Digital360 by BrunerDigital",
-    description: "The white-label AI business operating system for modern growth teams."
+    description: "The white-label AI business operating system for modern growth teams.",
+    images: ["/og/brunerdigital-og.png"]
   }
 };
 

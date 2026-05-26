@@ -8,6 +8,7 @@
     "start": "next start",
     "lint": "eslint . --max-warnings=0",
     "typecheck": "tsc --noEmit",
+    "assets:social": "node tools/generate-social-assets.mjs",
     "seed": "node --env-file=.env --import tsx supabase/seed.ts",
     "db:types": "npx supabase gen types typescript --local > lib/supabase/database.types.ts"
   },

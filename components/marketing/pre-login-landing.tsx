@@ -5,15 +5,22 @@ import {
   BarChart3,
   Bot,
   Building2,
+  CalendarClock,
   Check,
+  CreditCard,
+  FileText,
   Home,
   Landmark,
   Layers3,
+  Mail,
   MessageSquare,
   Palette,
   Play,
   Rocket,
+  ShieldCheck,
   Sparkles,
+  Star,
+  TrendingUp,
   Users,
   Workflow,
   Wrench
@@ -58,6 +65,34 @@ const launchSteps = [
   ["3. Import & Connect", "Bring in data and connect tools."],
   ["4. Launch", "Go live and grow with confidence."],
   ["5. Scale", "Optimize, automate, and increase impact."]
+];
+
+const launchMetrics = [
+  ["7-14 days", "Typical guided launch window"],
+  ["10+ modules", "CRM, inbox, calendar, funnels, reviews, reporting, billing, portal, AI, automations"],
+  ["1 workspace", "Start with one team, client, or location and expand cleanly"]
+];
+
+const replacementStack = [
+  { title: "CRM & pipeline", body: "Contacts, companies, opportunities, stages, notes, tags, and next steps.", icon: Users },
+  { title: "Conversations", body: "Email, SMS, missed-call, and social-style message workflows in one queue.", icon: MessageSquare },
+  { title: "Campaigns & funnels", body: "Lead forms, landing pages, email campaigns, and attribution paths.", icon: FileText },
+  { title: "Scheduling", body: "Calendar booking, appointments, reminders, and no-show recovery workflows.", icon: CalendarClock },
+  { title: "Reputation", body: "Review requests, response drafting, scorecards, and local proof loops.", icon: Star },
+  { title: "Billing & portals", body: "Invoices, subscriptions, client portal access, and white-label delivery.", icon: CreditCard }
+];
+
+const objectionCards = [
+  { title: "We already have a CRM.", body: "Digital360 is the operating layer around the CRM: speed-to-lead, calendar, reviews, reporting, billing, portals, and AI follow-up." },
+  { title: "Our tools are scattered.", body: "Start by centralizing the highest-leak workflows: lead capture, response, booking, pipeline, and client proof." },
+  { title: "We need this under our brand.", body: "The suite is built around white-label controls, branded portals, custom domains, roles, and agency/client workspaces." }
+];
+
+const faqItems = [
+  ["Who is Digital360 best for?", "Agencies, local service businesses, franchises, multi-location teams, consultants, and operators who need one connected growth workspace."],
+  ["Is this ready for public demos?", "Yes. The public site, onboarding flow, protected app shell, demo data, Supabase-backed lead capture, branded domain, and launch assets are live."],
+  ["What still needs credentials?", "SMTP, Stripe, Twilio, SendGrid or Mailgun, Google Calendar, Meta, Google Business Profile, and OpenAI can be connected as production credentials are issued."],
+  ["What should we launch first?", "Start with a demo/audit CTA, capture launch interest, book consults, and use the onboarding console to configure the first real workspace."]
 ];
 
 export function PreLoginLanding() {
@@ -120,6 +155,26 @@ export function PreLoginLanding() {
           </div>
         </section>
 
+        <section className="border-y border-white/10 bg-gradient-to-r from-blue-600/12 via-[#061426]/70 to-emerald-400/10 px-4 py-8 sm:px-6 lg:px-8">
+          <div className="mx-auto grid max-w-7xl gap-6 lg:grid-cols-[1fr_0.95fr] lg:items-center">
+            <div>
+              <div className="text-sm font-semibold uppercase tracking-[0.18em] text-emerald-300">Public launch offer</div>
+              <h2 className="mt-3 text-3xl font-semibold tracking-normal text-white md:text-4xl">See where your growth stack is leaking before another lead goes cold.</h2>
+              <p className="mt-4 max-w-3xl text-sm leading-6 text-slate-300 md:text-base">
+                Book a Digital360 rollout walkthrough and we will map your current lead capture, follow-up, calendar, reviews, reporting, and client portal gaps into a launch plan.
+              </p>
+            </div>
+            <div className="grid gap-3 sm:grid-cols-3">
+              {launchMetrics.map(([value, label]) => (
+                <div key={value} className="rounded-lg border border-white/10 bg-white/[0.035] p-4">
+                  <div className="bg-gradient-to-r from-emerald-300 to-blue-400 bg-clip-text text-2xl font-semibold text-transparent">{value}</div>
+                  <p className="mt-2 text-xs leading-5 text-slate-400">{label}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
         <section className="border-y border-white/10 bg-[#07111f]/44 px-4 py-12 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-7xl">
             <SectionTitle
@@ -139,6 +194,40 @@ export function PreLoginLanding() {
                   </article>
                 );
               })}
+            </div>
+          </div>
+        </section>
+
+        <section className="border-b border-white/10 px-4 py-12 sm:px-6 lg:px-8">
+          <div className="mx-auto max-w-7xl">
+            <div className="grid gap-8 lg:grid-cols-[0.76fr_1.24fr] lg:items-start">
+              <div>
+                <h2 className="text-3xl font-semibold tracking-normal text-white md:text-4xl">Replace the messy stack with one operating layer.</h2>
+                <p className="mt-4 text-sm leading-6 text-slate-400 md:text-base">
+                  Digital360 is built for the handoffs that usually break: ads to forms, forms to follow-up, follow-up to appointments, appointments to pipeline, pipeline to proof.
+                </p>
+                <div className="mt-6 flex flex-wrap gap-3">
+                  {["CRM", "Inbox", "Calendar", "Funnels", "Reviews", "Reports", "Billing", "Portals", "AI"].map((item) => (
+                    <span key={item} className="rounded-md border border-white/10 bg-white/[0.035] px-3 py-2 text-sm font-medium text-slate-300">{item}</span>
+                  ))}
+                </div>
+              </div>
+              <div className="grid gap-4 md:grid-cols-2">
+                {replacementStack.map((item) => {
+                  const Icon = item.icon;
+                  return (
+                    <article key={item.title} className="rounded-lg border border-white/10 bg-[#07111f]/76 p-5">
+                      <div className="flex items-center gap-3">
+                        <span className="flex size-10 items-center justify-center rounded-md bg-blue-600/20 text-blue-300">
+                          <Icon className="size-5" />
+                        </span>
+                        <h3 className="font-semibold text-white">{item.title}</h3>
+                      </div>
+                      <p className="mt-3 text-sm leading-6 text-slate-400">{item.body}</p>
+                    </article>
+                  );
+                })}
+              </div>
             </div>
           </div>
         </section>
@@ -190,6 +279,30 @@ export function PreLoginLanding() {
           </div>
         </section>
 
+        <section id="demo" className="border-b border-white/10 bg-[#061426]/46 px-4 py-12 sm:px-6 lg:px-8">
+          <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
+            <div>
+              <div className="inline-flex items-center gap-2 rounded-md border border-emerald-400/20 bg-emerald-400/10 px-3 py-2 text-sm font-semibold text-emerald-200">
+                <TrendingUp className="size-4" />
+                Launch window open
+              </div>
+              <h2 className="mt-5 text-3xl font-semibold tracking-normal text-white md:text-5xl">Book the walkthrough. Leave with the rollout map.</h2>
+              <p className="mt-4 max-w-2xl text-sm leading-6 text-slate-400 md:text-base">
+                We will review your current stack, identify the biggest lead-to-revenue leaks, and show how Digital360 can become the connected operating system for your team or clients.
+              </p>
+              <div className="mt-6 grid gap-3">
+                {objectionCards.map((card) => (
+                  <div key={card.title} className="rounded-lg border border-white/10 bg-white/[0.03] p-4">
+                    <h3 className="font-semibold text-white">{card.title}</h3>
+                    <p className="mt-2 text-sm leading-6 text-slate-400">{card.body}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <LaunchDemoForm />
+          </div>
+        </section>
+
         <section className="px-4 py-10 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-7xl">
             <div className="grid gap-6 rounded-lg border border-white/10 bg-white/[0.025] p-6 md:grid-cols-[1fr_12rem] md:items-center">
@@ -197,7 +310,7 @@ export function PreLoginLanding() {
                 <h2 className="text-center text-xl font-semibold text-white md:text-2xl">
                   Ready to run <span className="text-blue-400">your</span> business on one connected platform?
                 </h2>
-                <p className="mt-2 text-center text-sm text-slate-400">From setup to scale, demo and see Digital360 in the way.</p>
+                <p className="mt-2 text-center text-sm text-slate-400">From setup to scale, demo Digital360 in the workflows that matter most.</p>
                 <div className="mt-6 grid gap-4 md:grid-cols-5">
                   {launchSteps.map(([title, body], index) => (
                     <div key={title} className="relative">
@@ -219,6 +332,25 @@ export function PreLoginLanding() {
                 <Button asChild className="mt-6 w-full bg-blue-600 text-white hover:bg-blue-500">
                   <Link href="/demo">Book a demo</Link>
                 </Button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section className="border-t border-white/10 px-4 py-12 sm:px-6 lg:px-8">
+          <div className="mx-auto max-w-7xl">
+            <div className="grid gap-8 lg:grid-cols-[0.7fr_1.3fr]">
+              <div>
+                <h2 className="text-3xl font-semibold tracking-normal text-white md:text-4xl">Launch questions, answered.</h2>
+                <p className="mt-4 text-sm leading-6 text-slate-400">The public launch is built to capture demand now and connect deeper automations as credentials and real customer workflows come online.</p>
+              </div>
+              <div className="grid gap-4 md:grid-cols-2">
+                {faqItems.map(([question, answer]) => (
+                  <article key={question} className="rounded-lg border border-white/10 bg-white/[0.03] p-5">
+                    <h3 className="font-semibold text-white">{question}</h3>
+                    <p className="mt-3 text-sm leading-6 text-slate-400">{answer}</p>
+                  </article>
+                ))}
               </div>
             </div>
           </div>
@@ -293,5 +425,78 @@ function BrandControlPanel() {
         </div>
       </div>
     </div>
+  );
+}
+
+function LaunchDemoForm() {
+  const fields = [
+    ["name", "Name", "text", "Brittany Blakely"],
+    ["email", "Work email", "email", "you@company.com"],
+    ["company", "Company", "text", "Company name"],
+    ["phone", "Phone", "tel", "(555) 555-0199"]
+  ];
+
+  return (
+    <form
+      id="launch-demo"
+      data-lead-form
+      action="/api/leads"
+      data-source="Digital360 public launch demo"
+      data-thank-you="/demo/thank-you/"
+      className="rounded-lg border border-blue-400/20 bg-[#07111f]/88 p-5 shadow-panel"
+    >
+      <input className="hidden" name="website" tabIndex={-1} autoComplete="off" />
+      <input type="hidden" name="source" value="Digital360 public launch demo" />
+      <input type="hidden" name="thank_you_path" value="/demo/thank-you/" />
+      <div className="flex items-center gap-3">
+        <span className="flex size-10 items-center justify-center rounded-md bg-blue-600 text-white">
+          <Mail className="size-5" />
+        </span>
+        <div>
+          <h2 className="text-xl font-semibold text-white">Request your launch walkthrough</h2>
+          <p className="mt-1 text-sm text-slate-400">Your request is captured with source and UTM attribution.</p>
+        </div>
+      </div>
+      <div className="mt-6 grid gap-4 md:grid-cols-2">
+        {fields.map(([name, label, type, placeholder]) => (
+          <label key={name} className="grid gap-2 text-sm font-medium text-slate-300">
+            {label}
+            <input
+              name={name}
+              type={type}
+              required={["name", "email", "company"].includes(name)}
+              className="h-11 rounded-md border border-white/10 bg-[#050b15] px-3 text-sm text-white outline-none transition placeholder:text-slate-600 focus:border-blue-400"
+              placeholder={placeholder}
+            />
+          </label>
+        ))}
+      </div>
+      <label className="mt-4 grid gap-2 text-sm font-medium text-slate-300">
+        What do you want to improve first?
+        <select name="launch_goal" className="h-11 rounded-md border border-white/10 bg-[#050b15] px-3 text-sm text-white outline-none transition focus:border-blue-400" defaultValue="">
+          <option value="" disabled>Choose one</option>
+          <option>Capture more leads</option>
+          <option>Respond faster</option>
+          <option>Book more appointments</option>
+          <option>Improve reporting</option>
+          <option>Package a white-label client offer</option>
+        </select>
+      </label>
+      <label className="mt-4 grid gap-2 text-sm font-medium text-slate-300">
+        Current tools
+        <input name="current_stack" className="h-11 rounded-md border border-white/10 bg-[#050b15] px-3 text-sm text-white outline-none transition placeholder:text-slate-600 focus:border-blue-400" placeholder="CRM, calendar, email/SMS, reporting tools" />
+      </label>
+      <div className="mt-5 rounded-lg border border-emerald-400/20 bg-emerald-400/10 p-4 text-sm leading-6 text-emerald-100">
+        <div className="flex gap-3">
+          <ShieldCheck className="mt-0.5 size-5 shrink-0" />
+          <span>We will use this to prepare your walkthrough and map the highest-impact rollout path.</span>
+        </div>
+      </div>
+      <Button type="submit" className="mt-5 w-full bg-blue-600 text-white hover:bg-blue-500">
+        Request walkthrough
+        <ArrowRight className="size-4" />
+      </Button>
+      <div data-lead-status className="mt-4 min-h-5 text-sm font-semibold text-emerald-300" />
+    </form>
   );
 }

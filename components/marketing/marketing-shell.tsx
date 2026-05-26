@@ -100,7 +100,7 @@ export function Footer() {
           <BrandMark />
           <p className="mt-5 max-w-md text-sm leading-6 text-slate-400">{brand.oneLiner}</p>
           <div className="mt-6 rounded-lg border border-sky-400/20 bg-sky-400/10 p-4 text-sm text-sky-100">
-            Analytics, pixels, CRM webhooks, payments, and email sending are intentionally placeholder-ready until production credentials are connected.
+            Digital360 captures public launch interest today and is structured to connect analytics, CRM webhooks, payments, and email sending as credentials come online.
           </div>
         </div>
         <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
@@ -119,7 +119,7 @@ export function Footer() {
         </div>
       </div>
       <div className="mx-auto flex max-w-7xl flex-col gap-2 border-t border-white/10 px-4 py-6 text-xs text-slate-500 sm:px-6 md:flex-row md:items-center md:justify-between lg:px-8">
-        <span>© 2026 Digital360 by BrunerDigital. Launch-ready marketing system placeholder.</span>
+        <span>© 2026 Digital360 by BrunerDigital. All rights reserved.</span>
         <span>Built for white-label SaaS launch, demand generation, and investor-ready demos.</span>
       </div>
     </footer>

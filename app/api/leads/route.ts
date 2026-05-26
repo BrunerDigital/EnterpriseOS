@@ -23,6 +23,10 @@ export async function POST(request: Request) {
     return NextResponse.json({ success: false, message: "Work email is required." }, { status: 400 });
   }
 
+  if (typeof payload.website === "string" && payload.website.trim().length > 0) {
+    return NextResponse.json({ success: true, message: "Thanks. Your Digital360 setup request was received." });
+  }
+
   const admin = createAdminClient();
   const { data: tenant } = await admin.from("tenants").select("id").eq("slug", "brunerdigital").maybeSingle();
 
@@ -57,6 +61,7 @@ export async function POST(request: Request) {
   return NextResponse.json({
     success: true,
     message: "Thanks. Your Digital360 setup request was received.",
-    source: payload.source ?? "Digital360 public site"
+    source: payload.source ?? "Digital360 public site",
+    redirect: typeof payload.thank_you_path === "string" && payload.thank_you_path.startsWith("/") ? payload.thank_you_path : "/demo/thank-you/"
   });
 }

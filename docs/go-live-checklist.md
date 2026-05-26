@@ -1,30 +1,13 @@
 # Go-live Checklist
 
-## Website
+For the current launch checklist, use `docs/GO_LIVE_CHECKLIST.md`.
 
-- Build passes.
-- Mobile navigation works.
-- Forms route to CRM.
-- Thank-you pages load.
-- Sitemap and robots are live.
-- Legal pages are final.
+## Today
 
-## Analytics
-
-- Page views.
-- Demo requested.
-- Trial started.
-- Funnel lead captured.
-- Pricing selected.
-- Upgrade clicked.
-- Onboarding step completed.
-
-## Launch
-
-- Email sequences loaded.
-- Ad accounts configured.
-- Retargeting audiences active.
-- Sales deck approved.
-- Demo workspace ready.
-- Support inbox and help center ready.
-- Customer onboarding checklist assigned.
+- Public site: ready.
+- Demo capture: ready.
+- Social launch graphics: ready.
+- Launch playbook: ready.
+- External credentials: pending as services are connected.
+- Analytics/pixels: pending owner confirmation.
+- Legal review: pending owner confirmation.

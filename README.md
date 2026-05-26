@@ -95,7 +95,7 @@ Analytics, ad pixels, CRM/webhook endpoints, transactional email, SMS, calendar 
 
 ## Recommended Next Actions
 
-1. Replace the placeholder OG image with a final BrunerDigital social preview.
+1. Connect the launch demo form to the live CRM, email, and notification workflow through `LEADS_WEBHOOK_URL`.
 2. Connect form submissions to CRM and email automation.
 3. Load the email/ad/sales copy into your real tools.
 4. Review pricing with finance and legal.

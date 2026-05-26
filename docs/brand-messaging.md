@@ -26,7 +26,7 @@ Confident, precise, executive, direct, and useful. Avoid hype and vague transfor
 | --- | --- |
 | We already have a CRM. | Digital360 connects CRM to follow-up, scheduling, funnels, reputation, billing, and reporting. |
 | Migration sounds risky. | Start with the included migration checklist, field mapping, and phased rollout. |
-| Our team will not use another tool. | Digital360 by Digital360 reduces tool switching and gives each role a focused workspace. |
+| Our team will not use another tool. | Digital360 by BrunerDigital reduces tool switching and gives each role a focused workspace. |
 | We need white-label control. | Brand, domain, workspaces, portals, outbound identity, and client assets are built into the model. |
 
 ## Sales Narrative
