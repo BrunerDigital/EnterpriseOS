@@ -2,7 +2,7 @@
 
 Digital360 by BrunerDigital is a premium white-label AI business operating system for agencies, service businesses, franchises, multi-location brands, consultants, and growth teams.
 
-This project now includes a complete launch-ready marketing website, funnel library, conversion flows, copy system, brand strategy, content calendar, ad assets, email sequences, sales enablement assets, visual direction, launch checklists, SEO plumbing, sitemap, robots, legal placeholders, and an existing internal product demo at `/dashboard`.
+This project now includes a complete launch-ready marketing website, funnel library, conversion flows, copy system, brand strategy, content calendar, ad assets, email sequences, sales enablement assets, visual direction, launch checklists, SEO plumbing, sitemap, robots, launch-ready legal pages, and an existing internal product demo at `/dashboard`.
 
 The backend foundation is Supabase-first: SQL migrations, RLS policies, Supabase Auth-ready profiles, typed Supabase clients, and a service-role seed script. Prisma has been removed from the stack.
 
@@ -57,7 +57,7 @@ npm run db:types
 2. Set production environment variables from `.env.example`, including `NEXT_PUBLIC_APP_URL=https://digital360.brunerdigital.com`.
 3. Add the production custom domain in Vercel and point DNS to Vercel.
 4. Connect analytics, pixels, CRM webhooks, email sending, payment provider, and calendar credentials.
-5. Replace legal placeholders with attorney-reviewed policies.
+5. Review launch legal pages with counsel before heavy paid traffic or regulated customer onboarding.
 6. Deploy from the main branch.
 
 ## Important Locations
@@ -69,7 +69,8 @@ npm run db:types
 - Supabase schema: `supabase/migrations/`
 - Supabase seed: `supabase/seed.ts`
 - Supabase clients and types: `lib/supabase/`
-- Tracking placeholder: `lib/tracking.ts`
+- Tracking and pixel plumbing: `lib/tracking.ts`, `components/app/tracking-scripts.tsx`
+- Integration readiness: `app/integrations`, `lib/integrations.ts`
 - Strategy docs: `docs/`
 - Sitemap and robots: `app/sitemap.ts`, `app/robots.ts`
 - Public lead API route: `app/api/leads/route.ts`
@@ -87,17 +88,17 @@ npm run db:types
 
 ## Created Pages
 
-Homepage, pricing, feature overview, CRM, AI automation, conversations, funnel builder, calendar scheduling, reputation, reporting, agency, white-label, franchise/multi-location, integrations, security, about, contact, resources/blog, help center, comparison, use cases, local services, consultants/coaches, marketing teams, funnel templates, waitlist, early access, partner program, trial/demo/application flows, onboarding/setup flows, thank-you pages, abandoned signup recovery, upgrade, cancellation, legal placeholders, and product demo.
+Homepage, pricing, feature overview, CRM, AI automation, conversations, funnel builder, calendar scheduling, reputation, reporting, agency, white-label, franchise/multi-location, integrations, security, about, contact, resources/blog, help center, comparison, use cases, local services, consultants/coaches, marketing teams, funnel templates, waitlist, early access, partner program, trial/demo/application flows, onboarding/setup flows, thank-you pages, abandoned signup recovery, upgrade, cancellation, legal pages, and product demo.
 
 ## Credentials Still Needed
 
-Analytics, ad pixels, CRM/webhook endpoints, transactional email, SMS, calendar sync, payment processor, authentication, custom domain, file uploads, production database, monitoring, and legal policy text.
+External account credentials are still needed for live CRM/webhook routing, transactional email, SMS, calendar sync, payment processing, OpenAI live responses, analytics/pixels, file uploads, and monitoring. The app now includes protected API foundations and readiness checks for those connections.
 
 ## Recommended Next Actions
 
-1. Connect the launch demo form to the live CRM, email, and notification workflow through `LEADS_WEBHOOK_URL`.
-2. Connect form submissions to CRM and email automation.
-3. Load the email/ad/sales copy into your real tools.
-4. Review pricing with finance and legal.
-5. QA the full mobile funnel before paid traffic.
+1. Add live Vercel env vars for `LEADS_WEBHOOK_URL`, analytics/pixel IDs, and `NEXT_PUBLIC_DEMO_BOOKING_URL`.
+2. Add SendGrid or Mailgun sender credentials if lead email alerts should be sent directly from the app.
+3. Add protected service tokens for AI, billing, and messaging before enabling live OpenAI, Stripe, or Twilio calls.
+4. Review pricing, legal pages, and consent language with finance/legal.
+5. QA the full mobile funnel and conversion events before paid traffic.
 

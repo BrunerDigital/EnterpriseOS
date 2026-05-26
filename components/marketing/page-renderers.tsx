@@ -22,6 +22,8 @@ export function MarketingPageView({ page }: { page: MarketingPage }) {
 }
 
 function Hero({ page }: { page: MarketingPage }) {
+  const demoHref = process.env.NEXT_PUBLIC_DEMO_BOOKING_URL || "/demo";
+
   return (
     <section className="relative px-4 pb-16 pt-16 sm:px-6 md:pt-24 lg:px-8">
       <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">
@@ -30,13 +32,13 @@ function Hero({ page }: { page: MarketingPage }) {
           <p className="mt-6 max-w-2xl text-base leading-8 text-slate-300 md:text-xl">{page.subheadline}</p>
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
             <Button asChild size="lg" className="bg-sky-400 text-slate-950 hover:bg-sky-300">
-              <Link href={page.primaryCta?.toLowerCase().includes("demo") ? "/demo" : "/signup"}>
+              <Link href={page.primaryCta?.toLowerCase().includes("demo") ? demoHref : "/signup"}>
                 {page.primaryCta ?? "Start free trial"}
                 <ArrowRight data-icon="inline-end" className="size-4" />
               </Link>
             </Button>
             <Button asChild size="lg" variant="outline">
-              <Link href={page.secondaryCta?.toLowerCase().includes("pricing") ? "/pricing" : "/demo"}>{page.secondaryCta ?? "Book demo"}</Link>
+              <Link href={page.secondaryCta?.toLowerCase().includes("pricing") ? "/pricing" : demoHref}>{page.secondaryCta ?? "Book demo"}</Link>
             </Button>
           </div>
           <div className="mt-8 grid gap-3 sm:grid-cols-2">
@@ -96,6 +98,8 @@ function FaqSection({ page }: { page: MarketingPage }) {
 }
 
 function PricingSection() {
+  const demoHref = process.env.NEXT_PUBLIC_DEMO_BOOKING_URL || "/demo";
+
   return (
     <section className="px-4 py-16 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-7xl">
@@ -112,7 +116,7 @@ function PricingSection() {
                 <CheckList items={plan.features} />
               </div>
               <Button asChild className="mt-8 w-full bg-sky-400 text-slate-950 hover:bg-sky-300">
-                <Link href={plan.name === "Enterprise" ? "/demo" : "/signup"}>{plan.name === "Enterprise" ? "Talk to sales" : "Choose plan"}</Link>
+                <Link href={plan.name === "Enterprise" ? demoHref : "/signup"}>{plan.name === "Enterprise" ? "Talk to sales" : "Choose plan"}</Link>
               </Button>
             </div>
           ))}
@@ -232,6 +236,9 @@ export function FunnelPageView({ funnel }: { funnel: FunnelTemplate }) {
 }
 
 export function FlowPageView({ flow }: { flow: FlowStep }) {
+  const demoHref = process.env.NEXT_PUBLIC_DEMO_BOOKING_URL;
+  const isDemoThankYou = flow.slug === "/demo/thank-you";
+
   return (
     <MarketingShell>
       <main>
@@ -241,6 +248,14 @@ export function FlowPageView({ flow }: { flow: FlowStep }) {
               <div className="mb-5 inline-flex items-center gap-2 rounded-md border border-sky-400/20 bg-sky-400/10 px-3 py-2 text-sm font-semibold text-sky-200">{flow.title}</div>
               <h1 className="text-4xl font-semibold tracking-normal text-white md:text-6xl">{flow.headline}</h1>
               <p className="mt-5 text-lg leading-8 text-slate-300">{flow.body}</p>
+              {isDemoThankYou && demoHref ? (
+                <Button asChild size="lg" className="mt-7 bg-sky-400 text-slate-950 hover:bg-sky-300">
+                  <Link href={demoHref}>
+                    Pick a calendar time
+                    <ArrowRight className="size-4" />
+                  </Link>
+                </Button>
+              ) : null}
               <div className="mt-8 glass-panel rounded-lg p-6">
                 <h2 className="text-xl font-semibold text-white">Flow checklist</h2>
                 <div className="mt-5">
@@ -274,6 +289,10 @@ function LeadForm({ title, fields, cta }: { title: string; fields: string[]; cta
         <label className="grid gap-2 text-sm font-medium text-slate-300">
           Work email
           <input name="email" type="email" required className="h-11 rounded-md border border-white/10 bg-slate-950/70 px-3 text-sm text-white outline-none transition placeholder:text-slate-600 focus:border-sky-400" placeholder="you@company.com" />
+        </label>
+        <label className="flex items-start gap-3 rounded-lg border border-white/10 bg-white/[0.025] p-3 text-xs leading-5 text-slate-400">
+          <input name="contact_consent" value="yes" required type="checkbox" className="mt-1 size-4 rounded border-white/20 bg-slate-950" />
+          <span>I agree BrunerDigital may contact me about Digital360 using the information I submit. I can opt out of marketing messages at any time.</span>
         </label>
       </div>
       <Button type="submit" className="mt-6 w-full bg-sky-400 text-slate-950 hover:bg-sky-300">{cta}</Button>

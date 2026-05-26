@@ -18,4 +18,4 @@ Most copy lives in `lib/marketing.ts`. Update brand messaging, pricing, pages, f
 
 ## Connect Forms
 
-Current forms are UI placeholders. Connect them to server actions, API routes, CRM webhooks, analytics events, email sequences, and spam protection before launch.
+Current forms submit through `public/lead-capture.js` to `POST /api/leads`, capture UTM/source data, enforce a honeypot field, and redirect to `/demo/thank-you/`. Add `LEADS_WEBHOOK_URL` or SendGrid/Mailgun notification env vars to forward production leads into the sales workflow.

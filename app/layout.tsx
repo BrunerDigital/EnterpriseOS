@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Script from "next/script";
+import { TrackingScripts } from "@/components/app/tracking-scripts";
 import "./globals.css";
 
 const siteUrl = process.env.NEXT_PUBLIC_APP_URL ?? "https://digital360.brunerdigital.com";
@@ -36,6 +37,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
     <html lang="en" className="dark">
       <body>
         {children}
+        <TrackingScripts />
         <Script src="/lead-capture.js" strategy="afterInteractive" />
       </body>
     </html>

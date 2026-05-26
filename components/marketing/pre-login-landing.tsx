@@ -96,6 +96,8 @@ const faqItems = [
 ];
 
 export function PreLoginLanding() {
+  const demoHref = process.env.NEXT_PUBLIC_DEMO_BOOKING_URL || "/demo";
+
   return (
     <MarketingShell>
       <main>
@@ -113,7 +115,7 @@ export function PreLoginLanding() {
               </p>
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
                 <Button asChild size="lg" className="bg-blue-600 text-white shadow-[0_0_32px_rgba(37,99,235,.34)] hover:bg-blue-500">
-                  <Link href="/demo">
+                  <Link href={demoHref}>
                     Book a demo
                     <ArrowRight className="size-4" />
                   </Link>
@@ -330,7 +332,7 @@ export function PreLoginLanding() {
                 <p className="text-sm text-slate-400">Most clients launch in</p>
                 <div className="mt-2 bg-gradient-to-r from-emerald-300 to-blue-400 bg-clip-text text-4xl font-semibold text-transparent">7-14 days</div>
                 <Button asChild className="mt-6 w-full bg-blue-600 text-white hover:bg-blue-500">
-                  <Link href="/demo">Book a demo</Link>
+                  <Link href={demoHref}>Book a demo</Link>
                 </Button>
               </div>
             </div>
@@ -492,6 +494,12 @@ function LaunchDemoForm() {
           <span>We will use this to prepare your walkthrough and map the highest-impact rollout path.</span>
         </div>
       </div>
+      <label className="mt-4 flex items-start gap-3 rounded-lg border border-white/10 bg-white/[0.025] p-4 text-xs leading-5 text-slate-400">
+        <input name="contact_consent" value="yes" required type="checkbox" className="mt-1 size-4 rounded border-white/20 bg-[#050b15]" />
+        <span>
+          I agree BrunerDigital may contact me about Digital360 using the information I submit. I can opt out of marketing messages at any time.
+        </span>
+      </label>
       <Button type="submit" className="mt-5 w-full bg-blue-600 text-white hover:bg-blue-500">
         Request walkthrough
         <ArrowRight className="size-4" />

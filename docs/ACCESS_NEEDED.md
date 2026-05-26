@@ -27,14 +27,18 @@ Use this to send invites and password resets from the BrunerDigital domain.
 - Stripe publishable key
 - Stripe webhook signing secret
 - Product and pricing decisions for Digital360 plans
+- `BILLING_API_TOKEN` for protected checkout session creation
 
 ## Messaging And Email Integrations
 
 - Twilio account SID
 - Twilio auth token
 - Twilio messaging service SID or phone number
+- `MESSAGING_API_TOKEN` for protected outbound message calls
 - SendGrid or Mailgun API key
 - Verified sending domain
+- Lead alert destination email for `LEADS_NOTIFICATION_EMAIL`
+- Sender email for `SENDGRID_FROM_EMAIL` or `MAILGUN_FROM_EMAIL`
 
 ## Calendar, Social, Reviews, And AI
 
@@ -43,6 +47,17 @@ Use this to send invites and password resets from the BrunerDigital domain.
 - Meta app ID and secret
 - Google Business Profile OAuth client ID and secret
 - OpenAI API key
+- `AI_ASSISTANT_API_TOKEN` for protected live AI calls
+
+## Analytics And Launch Routing
+
+- Demo booking URL for `NEXT_PUBLIC_DEMO_BOOKING_URL`
+- Sales owner name and email
+- Google Analytics measurement ID
+- Google Ads conversion ID and label, if using paid search
+- Meta Pixel ID, if using Meta ads
+- LinkedIn Partner ID and conversion ID, if using LinkedIn ads
+- CRM, Slack, Make, Zapier, or webhook destination for `LEADS_WEBHOOK_URL`
 
 ## Security Follow-Up
 

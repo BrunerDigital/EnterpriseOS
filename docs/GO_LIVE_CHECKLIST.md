@@ -19,17 +19,17 @@ Status for May 26, 2026: ready for public launch visibility, demo capture, and s
 - [x] UTM/source fields are supported.
 - [x] Honeypot spam protection is implemented.
 - [x] Optional webhook forwarding via `LEADS_WEBHOOK_URL` is implemented.
-- [ ] Send a production test lead after deploy.
+- [x] SendGrid/Mailgun/webhook notification fanout is implemented.
+- [x] Production test lead endpoint has been verified.
 - [ ] Connect webhook to CRM, Make/Zapier, Slack, or email alert destination.
+- [ ] Add `LEADS_NOTIFICATION_EMAIL` and sender credentials if email alerts are preferred.
 - [ ] Define lead owner and 10-minute launch-day response SLA.
 
 ## Analytics And Tracking
 
-- [ ] Add Vercel Analytics or preferred analytics.
-- [ ] Add Google Analytics if desired.
-- [ ] Add Meta Pixel before Meta paid traffic.
-- [ ] Add LinkedIn Insight Tag before LinkedIn paid traffic.
-- [ ] Add Google Ads conversion tag before search campaigns.
+- [x] Add conditional tracking loaders for Vercel Analytics, Google Analytics, Google Ads, Meta Pixel, and LinkedIn Insight Tag.
+- [ ] Add production analytics/pixel IDs in Vercel.
+- [ ] Verify `demo_requested` and paid conversion events in each platform.
 - [ ] Confirm cookie/consent approach if required.
 
 ## Product Demo
@@ -43,6 +43,8 @@ Status for May 26, 2026: ready for public launch visibility, demo capture, and s
 ## Integrations
 
 - [x] Mock integration structure exists for Stripe, Twilio, SendGrid/Mailgun, Google Calendar, Meta, Google Business Profile, and OpenAI.
+- [x] Protected API foundations exist for OpenAI, Stripe checkout, and Twilio outbound SMS.
+- [x] Integration readiness dashboard exists in the app.
 - [ ] Add production Stripe keys and webhook signatures.
 - [ ] Add Twilio messaging credentials and compliance copy.
 - [ ] Add SendGrid/Mailgun sender domain authentication.

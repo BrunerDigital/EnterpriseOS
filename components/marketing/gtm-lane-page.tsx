@@ -213,6 +213,10 @@ function ConversionForm({ lane }: { lane: GTMLane }) {
           Work email
           <input name="email" type="email" required className="h-11 rounded-md border border-white/10 bg-slate-950/70 px-3 text-sm text-white outline-none transition placeholder:text-slate-600 focus:border-sky-400" placeholder="you@company.com" />
         </label>
+        <label className="flex items-start gap-3 rounded-lg border border-white/10 bg-white/[0.025] p-3 text-xs leading-5 text-slate-400">
+          <input name="contact_consent" value="yes" required type="checkbox" className="mt-1 size-4 rounded border-white/20 bg-slate-950" />
+          <span>I agree BrunerDigital may contact me about Digital360 using the information I submit. I can opt out of marketing messages at any time.</span>
+        </label>
       </div>
       <Button type="submit" className="mt-6 w-full bg-sky-400 text-slate-950 hover:bg-sky-300">
         {lane.primaryCta}

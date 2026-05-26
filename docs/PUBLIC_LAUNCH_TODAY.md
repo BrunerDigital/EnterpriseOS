@@ -16,6 +16,10 @@ The public launch should sell the outcome first: fewer disconnected tools, faste
 - Public landing page with premium Digital360 styling and direct launch-demo form.
 - Branded Digital360 logo and name across public pages and the app shell.
 - Supabase-backed lead capture endpoint with honeypot spam field, UTM/source capture, optional webhook forwarding, and thank-you redirect.
+- Lead notification fanout is implemented for webhook, SendGrid, and Mailgun once credentials are supplied.
+- Conditional tracking loaders are implemented for Vercel Analytics, GA4, Google Ads, Meta Pixel, and LinkedIn Insight Tag.
+- Protected API foundations are implemented for OpenAI assistant calls, Stripe checkout sessions, and Twilio outbound SMS.
+- Integration readiness dashboard is available at `/integrations`.
 - Live thank-you route at `/demo/thank-you/`.
 - OG image generated at `/og/brunerdigital-og.png`.
 - Launch social assets generated in `/public/social`.
@@ -24,8 +28,10 @@ The public launch should sell the outcome first: fewer disconnected tools, faste
 
 ## Must Confirm Before Heavy Promotion
 
-- Add production `LEADS_WEBHOOK_URL` if leads should instantly forward into a CRM, Slack, Make/Zapier, or email workflow.
-- Add analytics and ad pixels: Vercel Analytics, Google Analytics, Meta Pixel, LinkedIn Insight Tag, and Google Ads tag as desired.
+- Add production `LEADS_WEBHOOK_URL` if leads should instantly forward into a CRM, Slack, Make/Zapier, or workflow automation.
+- Add `LEADS_NOTIFICATION_EMAIL` plus SendGrid or Mailgun sender credentials if email alerts should fire directly from the app.
+- Add analytics and ad pixel IDs in Vercel: Vercel Analytics, Google Analytics, Meta Pixel, LinkedIn Insight Tag, and Google Ads as desired.
+- Add `NEXT_PUBLIC_DEMO_BOOKING_URL` and sales owner env vars if CTA buttons should go directly to the live calendar.
 - Confirm legal copy for privacy, terms, data handling, and SMS/email consent before paid traffic.
 - Confirm the preferred sales calendar link, owner, and follow-up SLA.
 - Send a test lead after deploy and confirm it appears in Supabase and any connected webhook destination.

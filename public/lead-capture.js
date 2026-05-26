@@ -76,6 +76,19 @@
           });
         }
 
+        var config = window.digital360Tracking || {};
+
+        if (typeof window.gtag === "function" && config.googleAdsId && config.googleAdsConversionLabel) {
+          window.gtag("event", "conversion", {
+            send_to: config.googleAdsId + "/" + config.googleAdsConversionLabel,
+            source: json.source || form.getAttribute("data-source") || ""
+          });
+        }
+
+        if (typeof window.lintrk === "function" && config.linkedinConversionId) {
+          window.lintrk("track", { conversion_id: config.linkedinConversionId });
+        }
+
         status(form, json.message || "Thanks. Your request was received.", false);
 
         if (json.redirect) {

@@ -16,6 +16,16 @@ Hero mockup, product preview, pricing cards, feature cards, FAQ blocks, comparis
 - `/public/social/digital360-carousel-03-proof.png` - carousel proof slide.
 - `/public/social/digital360-carousel-04-offer.png` - carousel CTA slide.
 
+## Generated Product Previews
+
+- `/public/previews/launch-landing.png` - public landing page desktop QA preview.
+- `/public/previews/launch-mobile.png` - public landing page mobile QA preview.
+- `/public/previews/integrations-readiness.png` - authenticated integrations readiness preview.
+- `/public/previews/ai-command.png` - authenticated AI command center preview.
+- `/public/previews/reporting-readiness.png` - authenticated reporting and analytics preview.
+- `/public/previews/privacy.png` - public privacy page preview.
+- `/public/previews/terms.png` - public terms page preview.
+
 ## Marketing Assets
 
 Copy hooks, CTA library, objection responses, ad concepts, video scripts, email sequences, lead magnet concepts, webinar topics, blog topics, social plans, and launch checklists.

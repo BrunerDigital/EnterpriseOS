@@ -21,6 +21,11 @@ npx supabase db push
 npm run seed
 ```
 
+Current migrations:
+
+- `202605110001_enterpriseos_schema.sql` - baseline multi-tenant schema, demo-ready tables, indexes, and RLS policies.
+- `202605260002_launch_hardening.sql` - stricter admin/billing integration policies and function execution grants.
+
 ## 3. Auth Mapping
 
 Recommended auth strategy:
@@ -54,3 +59,5 @@ Good candidates:
 - Never expose integration secrets to the browser.
 - Add tenant ID and workspace ID to all app-level records.
 - Add audit logs for AI, billing, impersonation, permission, and integration changes.
+- Apply RLS migrations before inviting non-admin users.
+- Re-run `npm run db:types` after migrations are pushed.

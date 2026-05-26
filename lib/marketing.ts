@@ -850,7 +850,7 @@ export const visualLibrary = [
 
 export const launchChecklists = {
   marketing: ["Finalize ICP", "Approve positioning", "Publish core pages", "Connect demo CTA", "Load retargeting audiences"],
-  website: ["Run build", "Check mobile", "Set metadata", "Publish sitemap", "Add legal placeholders", "QA forms"],
+  website: ["Run build", "Check mobile", "Set metadata", "Publish sitemap", "Review legal pages", "QA forms"],
   seo: ["Map keywords", "Write titles and descriptions", "Add internal links", "Create pillar pages", "Submit sitemap"],
   analytics: ["Install analytics", "Define events", "Capture UTMs", "Add pixels", "Verify conversions"],
   crm: ["Create pipeline", "Map forms", "Create lead sources", "Assign owners", "Test routing"],
