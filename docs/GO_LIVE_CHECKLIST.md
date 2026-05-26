@@ -16,6 +16,7 @@ Status for May 26, 2026: ready for public launch visibility, demo capture, and s
 ## Data And Leads
 
 - [x] Supabase-ready lead capture is implemented.
+- [x] Public lead capture creates or updates CRM company/contact records in Supabase.
 - [x] UTM/source fields are supported.
 - [x] Honeypot spam protection is implemented.
 - [x] Optional webhook forwarding via `LEADS_WEBHOOK_URL` is implemented.
@@ -44,6 +45,7 @@ Status for May 26, 2026: ready for public launch visibility, demo capture, and s
 
 - [x] Mock integration structure exists for Stripe, Twilio, SendGrid/Mailgun, Google Calendar, Meta, Google Business Profile, and OpenAI.
 - [x] Protected API foundations exist for OpenAI, Stripe checkout, and Twilio outbound SMS.
+- [x] Production internal API tokens are configured in Vercel for AI, billing, and messaging.
 - [x] Integration readiness dashboard exists in the app.
 - [ ] Add production Stripe keys and webhook signatures.
 - [ ] Add Twilio messaging credentials and compliance copy.

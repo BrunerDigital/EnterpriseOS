@@ -27,14 +27,14 @@ Use this to send invites and password resets from the BrunerDigital domain.
 - Stripe publishable key
 - Stripe webhook signing secret
 - Product and pricing decisions for Digital360 plans
-- `BILLING_API_TOKEN` for protected checkout session creation
+- `BILLING_API_TOKEN` for protected checkout session creation. Production token has been generated in Vercel.
 
 ## Messaging And Email Integrations
 
 - Twilio account SID
 - Twilio auth token
 - Twilio messaging service SID or phone number
-- `MESSAGING_API_TOKEN` for protected outbound message calls
+- `MESSAGING_API_TOKEN` for protected outbound message calls. Production token has been generated in Vercel.
 - SendGrid or Mailgun API key
 - Verified sending domain
 - Lead alert destination email for `LEADS_NOTIFICATION_EMAIL`
@@ -47,7 +47,7 @@ Use this to send invites and password resets from the BrunerDigital domain.
 - Meta app ID and secret
 - Google Business Profile OAuth client ID and secret
 - OpenAI API key
-- `AI_ASSISTANT_API_TOKEN` for protected live AI calls
+- `AI_ASSISTANT_API_TOKEN` for protected live AI calls. Production token has been generated in Vercel.
 
 ## Analytics And Launch Routing
 
