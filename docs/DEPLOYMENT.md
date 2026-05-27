@@ -11,6 +11,7 @@ NEXT_PUBLIC_APP_URL
 NEXT_PUBLIC_SUPABASE_URL
 NEXT_PUBLIC_SUPABASE_ANON_KEY
 SUPABASE_SERVICE_ROLE_KEY
+CONFIG_ENCRYPTION_KEY
 ```
 
 Recommended before launch:
@@ -41,6 +42,12 @@ NEXT_PUBLIC_GOOGLE_ADS_CONVERSION_LABEL
 NEXT_PUBLIC_META_PIXEL_ID
 NEXT_PUBLIC_LINKEDIN_PARTNER_ID
 NEXT_PUBLIC_LINKEDIN_CONVERSION_ID
+```
+
+`CONFIG_ENCRYPTION_KEY` is required before admins can save API keys or other sensitive values in `/settings/config`. Generate a 32-byte base64url value with:
+
+```bash
+node -e "console.log(require('crypto').randomBytes(32).toString('base64url'))"
 ```
 
 ## 2. Build Settings
@@ -95,6 +102,7 @@ npm run build
 ```
 
 Then verify routes, auth, tenant isolation, webhooks, email/SMS deliverability, and billing in staging before production.
+Use `/settings/config` to enter provider credentials after the first production deploy; saved secrets are encrypted and masked in the app.
 
 ## 6. Production Smoke Tests
 

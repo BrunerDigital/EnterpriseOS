@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { readRuntimeIntegrationConfigByTenantSlug } from "@/lib/server/integration-config-store";
 
 type CheckoutRequest = {
   priceId?: string;
@@ -8,8 +9,9 @@ type CheckoutRequest = {
 };
 
 export async function POST(request: Request) {
-  const stripeKey = process.env.STRIPE_SECRET_KEY;
-  const expectedToken = process.env.BILLING_API_TOKEN;
+  const settings = await loadStripeSettings();
+  const stripeKey = settings.secretKey;
+  const expectedToken = settings.internalToken;
   const suppliedToken = request.headers.get("authorization")?.replace(/^Bearer\s+/i, "");
 
   if (!stripeKey) {
@@ -62,4 +64,19 @@ export async function POST(request: Request) {
   const data = (await response.json()) as { id: string; url: string };
 
   return NextResponse.json({ success: true, sessionId: data.id, url: data.url });
+}
+
+async function loadStripeSettings() {
+  try {
+    const config = await readRuntimeIntegrationConfigByTenantSlug("stripe");
+    return {
+      secretKey: config?.all.STRIPE_SECRET_KEY || process.env.STRIPE_SECRET_KEY,
+      internalToken: config?.all.BILLING_API_TOKEN || process.env.BILLING_API_TOKEN
+    };
+  } catch {
+    return {
+      secretKey: process.env.STRIPE_SECRET_KEY,
+      internalToken: process.env.BILLING_API_TOKEN
+    };
+  }
 }

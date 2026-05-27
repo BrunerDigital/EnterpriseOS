@@ -1,6 +1,8 @@
+import Link from "next/link";
 import { AppShell } from "@/components/app/app-shell";
 import { IntegrationStatusPanel } from "@/components/app/integration-status-panel";
 import { PageHeader } from "@/components/app/page-header";
+import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { getIntegrationStatuses, summarizeReadiness } from "@/lib/integrations";
 
@@ -13,8 +15,21 @@ export default function Page() {
       <PageHeader
         title="Integrations"
         description="Production readiness for payments, messaging, email, calendar, ads, AI, analytics, and lead routing."
-        action="Connect app"
+        action="Review systems"
       />
+      <div className="mb-6 rounded-lg border border-white/10 bg-white/[0.03] p-4">
+        <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
+          <div>
+            <div className="text-sm font-semibold text-foreground">Admin platform configuration</div>
+            <p className="mt-1 text-sm text-muted-foreground">
+              Add account IDs, API keys, webhooks, analytics pixels, routing emails, and enabled datapoints in one secure admin area.
+            </p>
+          </div>
+          <Button asChild>
+            <Link href="/settings/config">Open config</Link>
+          </Button>
+        </div>
+      </div>
       <section className="mb-6 grid gap-4 md:grid-cols-4">
         <Card>
           <CardHeader>

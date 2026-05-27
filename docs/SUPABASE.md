@@ -25,6 +25,7 @@ Current migrations:
 
 - `202605110001_enterpriseos_schema.sql` - baseline multi-tenant schema, demo-ready tables, indexes, and RLS policies.
 - `202605260002_launch_hardening.sql` - stricter admin/billing integration policies and function execution grants.
+- `202605270003_extend_integration_providers.sql` - adds config-center provider enum values for analytics, automations, infrastructure, and booking platforms.
 
 ## 3. Auth Mapping
 
@@ -59,5 +60,6 @@ Good candidates:
 - Never expose integration secrets to the browser.
 - Add tenant ID and workspace ID to all app-level records.
 - Add audit logs for AI, billing, impersonation, permission, and integration changes.
+- Store tenant-level platform config in `integrations.config`; secret values are encrypted by the app before insert/update.
 - Apply RLS migrations before inviting non-admin users.
 - Re-run `npm run db:types` after migrations are pushed.

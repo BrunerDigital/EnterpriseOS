@@ -35,12 +35,14 @@ export async function POST(request: Request) {
 
   let notificationResults: Awaited<ReturnType<typeof notifyLead>> = [];
   let crmResult: { contactId?: string; companyId?: string; status: "created" | "updated" | "skipped" } = { status: "skipped" };
+  let tenantId: string | undefined;
 
   try {
     const admin = createAdminClient();
     const { data: tenant } = await admin.from("tenants").select("id").eq("slug", "brunerdigital").maybeSingle();
 
     if (tenant) {
+      tenantId = tenant.id;
       const { data: workspace } = await admin
         .from("workspaces")
         .select("id")
@@ -160,7 +162,7 @@ export async function POST(request: Request) {
     console.error("Digital360 lead audit write failed", error);
   }
 
-  notificationResults = await notifyLead(payload);
+  notificationResults = await notifyLead(payload, tenantId);
 
   return NextResponse.json({
     success: true,

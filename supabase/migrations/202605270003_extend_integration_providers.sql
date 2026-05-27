@@ -1,0 +1,10 @@
+alter type public.integration_provider add value if not exists 'google_analytics';
+alter type public.integration_provider add value if not exists 'google_ads';
+alter type public.integration_provider add value if not exists 'linkedin';
+alter type public.integration_provider add value if not exists 'custom_webhook';
+alter type public.integration_provider add value if not exists 'slack';
+alter type public.integration_provider add value if not exists 'make';
+alter type public.integration_provider add value if not exists 'zapier';
+alter type public.integration_provider add value if not exists 'calendly';
+alter type public.integration_provider add value if not exists 'cloudflare';
+alter type public.integration_provider add value if not exists 'vercel';

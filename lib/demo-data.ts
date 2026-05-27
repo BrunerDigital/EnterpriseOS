@@ -16,6 +16,7 @@ import {
   Rocket,
   Settings,
   ShieldCheck,
+  SlidersHorizontal,
   Sparkles,
   Star,
   Users,
@@ -43,7 +44,8 @@ export const navItems = [
   { href: "/white-label", label: "White Label", icon: Flag },
   { href: "/team", label: "Team", icon: Users },
   { href: "/integrations", label: "Integrations", icon: Activity },
-  { href: "/billing", label: "Settings", icon: Settings },
+  { href: "/settings/config", label: "Platform Config", icon: SlidersHorizontal },
+  { href: "/billing", label: "Billing", icon: Settings },
   { href: "/help", label: "Docs", icon: Sparkles }
 ];
 

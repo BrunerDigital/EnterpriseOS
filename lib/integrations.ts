@@ -5,7 +5,7 @@ export type IntegrationReadiness = "connected" | "ready" | "needs_credentials";
 export type IntegrationStatus = {
   key: string;
   name: string;
-  category: "Data" | "Revenue" | "Messaging" | "Calendar" | "Ads" | "AI" | "Analytics" | "Operations";
+  category: "Data" | "Revenue" | "Messaging" | "Calendar" | "Ads" | "AI" | "Analytics" | "Operations" | "Infrastructure";
   readiness: IntegrationReadiness;
   configured: string[];
   missing: string[];
@@ -32,7 +32,7 @@ function status(
     key,
     name,
     category,
-    readiness: missing.length === 0 ? "connected" : configured.length > 0 ? "ready" : "needs_credentials",
+    readiness: required.length === 0 ? (configured.length > 0 ? "connected" : "needs_credentials") : missing.length === 0 ? "connected" : configured.length > 0 ? "ready" : "needs_credentials",
     configured,
     missing,
     nextStep
@@ -117,12 +117,44 @@ export function getIntegrationStatuses(): IntegrationStatus[] {
       "Add GBP OAuth credentials before syncing locations and reviews."
     ),
     status(
+      "linkedin",
+      "LinkedIn",
+      "Ads",
+      ["NEXT_PUBLIC_LINKEDIN_PARTNER_ID"],
+      "Add LinkedIn Insight Tag and conversion IDs before running B2B launch campaigns.",
+      ["NEXT_PUBLIC_LINKEDIN_CONVERSION_ID", "LINKEDIN_CLIENT_ID", "LINKEDIN_CLIENT_SECRET"]
+    ),
+    status(
       "openai",
       "OpenAI",
       "AI",
       ["OPENAI_API_KEY", "AI_ASSISTANT_API_TOKEN"],
       "Add the OpenAI API key and an internal API token before enabling live model calls.",
       ["OPENAI_MODEL"]
+    ),
+    status(
+      "automation-routers",
+      "Slack, Make, and Zapier",
+      "Operations",
+      [],
+      "Add optional webhook URLs when you want lead fanout, alerts, or no-code automation routing.",
+      ["SLACK_WEBHOOK_URL", "MAKE_WEBHOOK_URL", "ZAPIER_WEBHOOK_URL"]
+    ),
+    status(
+      "cloudflare",
+      "Cloudflare",
+      "Infrastructure",
+      [],
+      "Store DNS zone, account, and API token references for domain and security operations.",
+      ["CLOUDFLARE_ACCOUNT_ID", "CLOUDFLARE_ZONE_ID", "CLOUDFLARE_API_TOKEN"]
+    ),
+    status(
+      "vercel",
+      "Vercel",
+      "Infrastructure",
+      [],
+      "Store deployment project references and optional API token for deployment checks.",
+      ["VERCEL_PROJECT_ID", "VERCEL_TEAM_ID", "VERCEL_TOKEN"]
     )
   ];
 }

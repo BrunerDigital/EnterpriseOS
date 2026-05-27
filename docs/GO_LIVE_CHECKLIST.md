@@ -22,6 +22,7 @@ Status for May 26, 2026: ready for public launch visibility, demo capture, and s
 - [x] Optional webhook forwarding via `LEADS_WEBHOOK_URL` is implemented.
 - [x] SendGrid/Mailgun/webhook notification fanout is implemented.
 - [x] Production test lead endpoint has been verified.
+- [x] Lead notification fanout can read saved tenant config from `/settings/config`.
 - [ ] Connect webhook to CRM, Make/Zapier, Slack, or email alert destination.
 - [ ] Add `LEADS_NOTIFICATION_EMAIL` and sender credentials if email alerts are preferred.
 - [ ] Define lead owner and 10-minute launch-day response SLA.
@@ -29,6 +30,7 @@ Status for May 26, 2026: ready for public launch visibility, demo capture, and s
 ## Analytics And Tracking
 
 - [x] Add conditional tracking loaders for Vercel Analytics, Google Analytics, Google Ads, Meta Pixel, and LinkedIn Insight Tag.
+- [x] Public tracking loader can read safe analytics and pixel IDs from `/settings/config`.
 - [ ] Add production analytics/pixel IDs in Vercel.
 - [ ] Verify `demo_requested` and paid conversion events in each platform.
 - [ ] Confirm cookie/consent approach if required.
@@ -47,6 +49,8 @@ Status for May 26, 2026: ready for public launch visibility, demo capture, and s
 - [x] Protected API foundations exist for OpenAI, Stripe checkout, and Twilio outbound SMS.
 - [x] Production internal API tokens are configured in Vercel for AI, billing, and messaging.
 - [x] Integration readiness dashboard exists in the app.
+- [x] Admin platform config center exists at `/settings/config` for credentials, account IDs, webhooks, notes, and datapoints.
+- [ ] Confirm `CONFIG_ENCRYPTION_KEY` is set in Vercel production before saving provider secrets.
 - [ ] Add production Stripe keys and webhook signatures.
 - [ ] Add Twilio messaging credentials and compliance copy.
 - [ ] Add SendGrid/Mailgun sender domain authentication.
@@ -60,6 +64,7 @@ Status for May 26, 2026: ready for public launch visibility, demo capture, and s
 - [x] Vercel production project is linked.
 - [x] Custom subdomain path is established.
 - [ ] Confirm production environment variables in Vercel.
+- [ ] Enter live third-party credentials in `/settings/config`.
 - [ ] Add uptime monitoring.
 - [ ] Add support inbox and escalation owner.
 - [ ] Keep a rollback deployment available in Vercel.

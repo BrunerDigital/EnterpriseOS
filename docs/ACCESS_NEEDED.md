@@ -2,6 +2,8 @@
 
 These items require external credentials or DNS/provider access. The app is deployed and functional without them, but these are the remaining go-live connections.
 
+Agency admins can enter and update platform values inside Digital360 at `/settings/config` after `CONFIG_ENCRYPTION_KEY` is set in Vercel. Secrets entered there are encrypted server-side and masked after save.
+
 ## Supabase Auth Email
 
 - BrunerDigital SMTP host
@@ -61,6 +63,7 @@ Use this to send invites and password resets from the BrunerDigital domain.
 
 ## Security Follow-Up
 
+- Confirm `CONFIG_ENCRYPTION_KEY` is set in Vercel production before saving provider secrets in the app.
 - Rotate the Supabase personal access token that was pasted into the chat.
 - Rotate any temporary launch passwords after handoff.
 - Enable production error monitoring before paid users are onboarded.

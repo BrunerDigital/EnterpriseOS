@@ -1,4 +1,5 @@
 import "server-only";
+import { readRuntimeIntegrationConfig, type RuntimeIntegrationConfig } from "@/lib/server/integration-config-store";
 
 export type LeadNotificationResult = {
   provider: "webhook" | "sendgrid" | "mailgun";
@@ -15,8 +16,24 @@ type LeadPayload = Record<string, unknown> & {
   page_url?: string;
 };
 
-export async function notifyLead(payload: LeadPayload): Promise<LeadNotificationResult[]> {
-  const results = await Promise.allSettled([postLeadWebhook(payload), sendSendGridLeadEmail(payload), sendMailgunLeadEmail(payload)]);
+type LeadNotificationSettings = {
+  webhookUrl?: string;
+  notificationEmail?: string;
+  sendgridApiKey?: string;
+  sendgridFromEmail?: string;
+  sendgridFromName?: string;
+  mailgunApiKey?: string;
+  mailgunDomain?: string;
+  mailgunFromEmail?: string;
+};
+
+export async function notifyLead(payload: LeadPayload, tenantId?: string): Promise<LeadNotificationResult[]> {
+  const settings = await loadLeadNotificationSettings(tenantId);
+  const results = await Promise.allSettled([
+    postLeadWebhook(payload, settings),
+    sendSendGridLeadEmail(payload, settings),
+    sendMailgunLeadEmail(payload, settings)
+  ]);
 
   return results.map((result) => {
     if (result.status === "fulfilled") return result.value;
@@ -24,8 +41,45 @@ export async function notifyLead(payload: LeadPayload): Promise<LeadNotification
   });
 }
 
-async function postLeadWebhook(payload: LeadPayload): Promise<LeadNotificationResult> {
-  const webhookUrl = process.env.LEADS_WEBHOOK_URL;
+async function loadLeadNotificationSettings(tenantId?: string): Promise<LeadNotificationSettings> {
+  const fallback: LeadNotificationSettings = {
+    webhookUrl: process.env.LEADS_WEBHOOK_URL,
+    notificationEmail: process.env.LEADS_NOTIFICATION_EMAIL,
+    sendgridApiKey: process.env.SENDGRID_API_KEY,
+    sendgridFromEmail: process.env.SENDGRID_FROM_EMAIL,
+    sendgridFromName: process.env.SENDGRID_FROM_NAME,
+    mailgunApiKey: process.env.MAILGUN_API_KEY,
+    mailgunDomain: process.env.MAILGUN_DOMAIN,
+    mailgunFromEmail: process.env.MAILGUN_FROM_EMAIL
+  };
+
+  if (!tenantId) return fallback;
+
+  const [routing, sendgrid, mailgun] = await Promise.allSettled([
+    readRuntimeIntegrationConfig(tenantId, "custom_webhook"),
+    readRuntimeIntegrationConfig(tenantId, "sendgrid"),
+    readRuntimeIntegrationConfig(tenantId, "mailgun")
+  ]);
+
+  return {
+    webhookUrl: readConfigValue(routing, "LEADS_WEBHOOK_URL", fallback.webhookUrl),
+    notificationEmail: readConfigValue(routing, "LEADS_NOTIFICATION_EMAIL", fallback.notificationEmail),
+    sendgridApiKey: readConfigValue(sendgrid, "SENDGRID_API_KEY", fallback.sendgridApiKey),
+    sendgridFromEmail: readConfigValue(sendgrid, "SENDGRID_FROM_EMAIL", fallback.sendgridFromEmail),
+    sendgridFromName: readConfigValue(sendgrid, "SENDGRID_FROM_NAME", fallback.sendgridFromName),
+    mailgunApiKey: readConfigValue(mailgun, "MAILGUN_API_KEY", fallback.mailgunApiKey),
+    mailgunDomain: readConfigValue(mailgun, "MAILGUN_DOMAIN", fallback.mailgunDomain),
+    mailgunFromEmail: readConfigValue(mailgun, "MAILGUN_FROM_EMAIL", fallback.mailgunFromEmail)
+  };
+}
+
+function readConfigValue(result: PromiseSettledResult<RuntimeIntegrationConfig>, key: string, fallback?: string) {
+  if (result.status !== "fulfilled") return fallback;
+  return result.value.all[key] || fallback;
+}
+
+async function postLeadWebhook(payload: LeadPayload, settings: LeadNotificationSettings): Promise<LeadNotificationResult> {
+  const webhookUrl = settings.webhookUrl;
   if (!webhookUrl) return { provider: "webhook", status: "skipped", reason: "LEADS_WEBHOOK_URL is not configured." };
 
   try {
@@ -43,10 +97,10 @@ async function postLeadWebhook(payload: LeadPayload): Promise<LeadNotificationRe
   }
 }
 
-async function sendSendGridLeadEmail(payload: LeadPayload): Promise<LeadNotificationResult> {
-  const apiKey = process.env.SENDGRID_API_KEY;
-  const to = process.env.LEADS_NOTIFICATION_EMAIL;
-  const from = process.env.SENDGRID_FROM_EMAIL;
+async function sendSendGridLeadEmail(payload: LeadPayload, settings: LeadNotificationSettings): Promise<LeadNotificationResult> {
+  const apiKey = settings.sendgridApiKey;
+  const to = settings.notificationEmail;
+  const from = settings.sendgridFromEmail;
 
   if (!apiKey || !to || !from) {
     return { provider: "sendgrid", status: "skipped", reason: "SENDGRID_API_KEY, SENDGRID_FROM_EMAIL, or LEADS_NOTIFICATION_EMAIL is missing." };
@@ -61,7 +115,7 @@ async function sendSendGridLeadEmail(payload: LeadPayload): Promise<LeadNotifica
       },
       body: JSON.stringify({
         personalizations: [{ to: [{ email: to }] }],
-        from: { email: from, name: "Digital360" },
+        from: { email: from, name: settings.sendgridFromName || "Digital360" },
         subject: `New Digital360 lead: ${payload.company ?? payload.email}`,
         content: [{ type: "text/plain", value: formatLead(payload) }]
       })
@@ -75,11 +129,11 @@ async function sendSendGridLeadEmail(payload: LeadPayload): Promise<LeadNotifica
   }
 }
 
-async function sendMailgunLeadEmail(payload: LeadPayload): Promise<LeadNotificationResult> {
-  const apiKey = process.env.MAILGUN_API_KEY;
-  const domain = process.env.MAILGUN_DOMAIN;
-  const to = process.env.LEADS_NOTIFICATION_EMAIL;
-  const from = process.env.MAILGUN_FROM_EMAIL;
+async function sendMailgunLeadEmail(payload: LeadPayload, settings: LeadNotificationSettings): Promise<LeadNotificationResult> {
+  const apiKey = settings.mailgunApiKey;
+  const domain = settings.mailgunDomain;
+  const to = settings.notificationEmail;
+  const from = settings.mailgunFromEmail;
 
   if (!apiKey || !domain || !to || !from) {
     return { provider: "mailgun", status: "skipped", reason: "MAILGUN_API_KEY, MAILGUN_DOMAIN, MAILGUN_FROM_EMAIL, or LEADS_NOTIFICATION_EMAIL is missing." };

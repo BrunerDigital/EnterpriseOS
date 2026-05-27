@@ -173,7 +173,17 @@ async function main() {
       "meta",
       "google_business_profile",
       "openai",
-      "supabase"
+      "supabase",
+      "google_analytics",
+      "google_ads",
+      "linkedin",
+      "custom_webhook",
+      "slack",
+      "make",
+      "zapier",
+      "calendly",
+      "cloudflare",
+      "vercel"
     ].map((provider) => ({
       tenant_id: tenant.id,
       provider,

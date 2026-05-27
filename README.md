@@ -55,10 +55,11 @@ npm run db:types
 
 1. Create a production project on Vercel or another Next.js host.
 2. Set production environment variables from `.env.example`, including `NEXT_PUBLIC_APP_URL=https://digital360.brunerdigital.com`.
-3. Add the production custom domain in Vercel and point DNS to Vercel.
-4. Connect analytics, pixels, CRM webhooks, email sending, payment provider, and calendar credentials.
-5. Review launch legal pages with counsel before heavy paid traffic or regulated customer onboarding.
-6. Deploy from the main branch.
+3. Set `CONFIG_ENCRYPTION_KEY` before saving any API keys or secrets from the in-app admin config center.
+4. Add the production custom domain in Vercel and point DNS to Vercel.
+5. Connect analytics, pixels, CRM webhooks, email sending, payment provider, and calendar credentials.
+6. Review launch legal pages with counsel before heavy paid traffic or regulated customer onboarding.
+7. Deploy from the main branch.
 
 ## Important Locations
 
@@ -71,6 +72,7 @@ npm run db:types
 - Supabase clients and types: `lib/supabase/`
 - Tracking and pixel plumbing: `lib/tracking.ts`, `components/app/tracking-scripts.tsx`
 - Integration readiness: `app/integrations`, `lib/integrations.ts`
+- Admin platform config: `app/settings/config`, `lib/integration-config/catalog.ts`, `lib/server/integration-config-store.ts`
 - Strategy docs: `docs/`
 - Sitemap and robots: `app/sitemap.ts`, `app/robots.ts`
 - Public lead API route: `app/api/leads/route.ts`
@@ -92,11 +94,11 @@ Homepage, pricing, feature overview, CRM, AI automation, conversations, funnel b
 
 ## Credentials Still Needed
 
-External account credentials are still needed for live CRM/webhook routing, transactional email, SMS, calendar sync, payment processing, OpenAI live responses, analytics/pixels, file uploads, and monitoring. The app now includes protected API foundations and readiness checks for those connections.
+External account credentials are still needed for live CRM/webhook routing, transactional email, SMS, calendar sync, payment processing, OpenAI live responses, analytics/pixels, file uploads, and monitoring. Agency admins can now enter and update those values at `/settings/config`; secrets are encrypted server-side and masked after save.
 
 ## Recommended Next Actions
 
-1. Add live Vercel env vars for `LEADS_WEBHOOK_URL`, analytics/pixel IDs, and `NEXT_PUBLIC_DEMO_BOOKING_URL`.
+1. Add `CONFIG_ENCRYPTION_KEY` in Vercel, then enter platform credentials in `/settings/config`.
 2. Add SendGrid or Mailgun sender credentials if lead email alerts should be sent directly from the app.
 3. Add protected service tokens for AI, billing, and messaging before enabling live OpenAI, Stripe, or Twilio calls.
 4. Review pricing, legal pages, and consent language with finance/legal.

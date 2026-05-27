@@ -92,6 +92,7 @@ export function TrackingScripts() {
         />
       ) : null}
 
+      <Script src="/tracking-config-loader.js" strategy="afterInteractive" />
       {vercelAnalyticsEnabled ? <Script src="/_vercel/insights/script.js" strategy="afterInteractive" /> : null}
     </>
   );

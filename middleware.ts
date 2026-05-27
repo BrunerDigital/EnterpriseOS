@@ -28,6 +28,7 @@ const protectedRoutes = [
   "/portal",
   "/reporting",
   "/reputation",
+  "/settings",
   "/team",
   "/white-label"
 ];

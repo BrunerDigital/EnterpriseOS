@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { readRuntimeIntegrationConfigByTenantSlug } from "@/lib/server/integration-config-store";
 
 type AiRequest = {
   task?: string;
@@ -18,8 +19,9 @@ export async function POST(request: Request) {
   const task = typeof payload.task === "string" && payload.task.trim().length > 0 ? payload.task.trim() : "Recommend the next best growth action.";
   const context = typeof payload.context === "string" ? payload.context.trim() : "";
   const moduleName = typeof payload.module === "string" ? payload.module.trim() : "Digital360";
-  const apiKey = process.env.OPENAI_API_KEY;
-  const model = process.env.OPENAI_MODEL || "gpt-4.1-mini";
+  const settings = await loadOpenAiSettings();
+  const apiKey = settings.apiKey;
+  const model = settings.model;
 
   if (!apiKey) {
     return NextResponse.json({
@@ -30,7 +32,7 @@ export async function POST(request: Request) {
     });
   }
 
-  const expectedToken = process.env.AI_ASSISTANT_API_TOKEN;
+  const expectedToken = settings.internalToken;
   const suppliedToken = request.headers.get("authorization")?.replace(/^Bearer\s+/i, "");
 
   if (!expectedToken || suppliedToken !== expectedToken) {
@@ -74,6 +76,23 @@ export async function POST(request: Request) {
     model,
     output: data.output_text ?? data.output?.flatMap((item) => item.content ?? []).map((item) => item.text).filter(Boolean).join("\n") ?? ""
   });
+}
+
+async function loadOpenAiSettings() {
+  try {
+    const config = await readRuntimeIntegrationConfigByTenantSlug("openai");
+    return {
+      apiKey: config?.all.OPENAI_API_KEY || process.env.OPENAI_API_KEY,
+      model: config?.all.OPENAI_MODEL || process.env.OPENAI_MODEL || "gpt-4.1-mini",
+      internalToken: config?.all.AI_ASSISTANT_API_TOKEN || process.env.AI_ASSISTANT_API_TOKEN
+    };
+  } catch {
+    return {
+      apiKey: process.env.OPENAI_API_KEY,
+      model: process.env.OPENAI_MODEL || "gpt-4.1-mini",
+      internalToken: process.env.AI_ASSISTANT_API_TOKEN
+    };
+  }
 }
 
 function fallbackRecommendation(module: string, task: string, context: string) {

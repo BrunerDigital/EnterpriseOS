@@ -1131,6 +1131,16 @@ export type Database = {
         | "google_business_profile"
         | "openai"
         | "supabase"
+        | "google_analytics"
+        | "google_ads"
+        | "linkedin"
+        | "custom_webhook"
+        | "slack"
+        | "make"
+        | "zapier"
+        | "calendly"
+        | "cloudflare"
+        | "vercel"
       message_channel: "email" | "sms" | "social" | "chat"
     }
     CompositeTypes: {
@@ -1283,6 +1293,16 @@ export const Constants = {
         "google_business_profile",
         "openai",
         "supabase",
+        "google_analytics",
+        "google_ads",
+        "linkedin",
+        "custom_webhook",
+        "slack",
+        "make",
+        "zapier",
+        "calendly",
+        "cloudflare",
+        "vercel",
       ],
       message_channel: ["email", "sms", "social", "chat"],
     },

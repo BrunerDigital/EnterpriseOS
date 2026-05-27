@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { readRuntimeIntegrationConfigByTenantSlug } from "@/lib/server/integration-config-store";
 
 type MessageRequest = {
   to?: string;
@@ -6,10 +7,11 @@ type MessageRequest = {
 };
 
 export async function POST(request: Request) {
-  const accountSid = process.env.TWILIO_ACCOUNT_SID;
-  const authToken = process.env.TWILIO_AUTH_TOKEN;
-  const messagingServiceSid = process.env.TWILIO_MESSAGING_SERVICE_SID;
-  const expectedToken = process.env.MESSAGING_API_TOKEN;
+  const settings = await loadTwilioSettings();
+  const accountSid = settings.accountSid;
+  const authToken = settings.authToken;
+  const messagingServiceSid = settings.messagingServiceSid;
+  const expectedToken = settings.internalToken;
   const suppliedToken = request.headers.get("authorization")?.replace(/^Bearer\s+/i, "");
 
   if (!accountSid || !authToken || !messagingServiceSid) {
@@ -54,4 +56,23 @@ export async function POST(request: Request) {
   const data = (await response.json()) as { sid: string; status: string };
 
   return NextResponse.json({ success: true, sid: data.sid, status: data.status });
+}
+
+async function loadTwilioSettings() {
+  try {
+    const config = await readRuntimeIntegrationConfigByTenantSlug("twilio");
+    return {
+      accountSid: config?.all.TWILIO_ACCOUNT_SID || process.env.TWILIO_ACCOUNT_SID,
+      authToken: config?.all.TWILIO_AUTH_TOKEN || process.env.TWILIO_AUTH_TOKEN,
+      messagingServiceSid: config?.all.TWILIO_MESSAGING_SERVICE_SID || process.env.TWILIO_MESSAGING_SERVICE_SID,
+      internalToken: config?.all.MESSAGING_API_TOKEN || process.env.MESSAGING_API_TOKEN
+    };
+  } catch {
+    return {
+      accountSid: process.env.TWILIO_ACCOUNT_SID,
+      authToken: process.env.TWILIO_AUTH_TOKEN,
+      messagingServiceSid: process.env.TWILIO_MESSAGING_SERVICE_SID,
+      internalToken: process.env.MESSAGING_API_TOKEN
+    };
+  }
 }
