@@ -1,0 +1,21 @@
+import type { Metadata } from "next";
+import Link from "next/link";
+import { MarketingShell } from "@/components/marketing/marketing-shell";
+
+export const metadata: Metadata = { title: "BrunerDigital services and solutions", description: "Connect strategy, design, development, content, and business systems with BrunerDigital.", alternates: { canonical: "/brunerdigital" } };
+const services = [
+  { name: "Pathway", role: "Direction", detail: "Business discovery, audience and offer clarity, customer-journey mapping, priorities, and a practical execution plan.", slug: "pathway" },
+  { name: "DevTech", role: "Build", detail: "Websites, landing pages, applications, and digital experiences with a defined scope, responsive behavior, and a tested handoff.", slug: "dev-tech" },
+  { name: "SocialHand", role: "Content and growth", detail: "Content strategy, creative production, social publishing plans, and marketing support shaped around agreed channels and deliverables.", slug: "social-hand" },
+  { name: "Systomatic", role: "Connected operations", detail: "Workflow discovery, integrations, automation design, reporting, and documentation for the systems behind the customer journey.", slug: "systomatic" },
+  { name: "Digital360 partnership", role: "Ongoing coordination", detail: "A scoped agency relationship connecting the services you need. The Digital360 software product has its own private-launch availability and rollout plan.", slug: "digital-360" }
+];
+
+export default function BrunerDigitalPage() {
+  return <MarketingShell><main className="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:px-8">
+    <p className="text-sm font-semibold uppercase tracking-widest text-emerald-300">BrunerDigital · Bigger. Better. Bruner.</p><h1 className="mt-4 max-w-4xl text-4xl font-semibold sm:text-6xl">Bigger ideas. Better systems.</h1><p className="mt-6 max-w-3xl text-lg leading-8 text-slate-300">We connect strategy, design, technology, and marketing around the way your business works. Start with a focused project or discuss an ongoing partnership.</p>
+    <div className="mt-10 grid gap-5 md:grid-cols-2">{services.map(service => <article key={service.name} className="rounded-xl border border-white/15 bg-white/[0.035] p-6"><p className="text-sm text-emerald-300">{service.role}</p><h2 className="mt-2 text-2xl font-semibold">{service.name}</h2><p className="mt-4 leading-7 text-slate-300">{service.detail}</p><a className="mt-5 inline-block font-semibold underline underline-offset-4" href={`https://brunerdigital.com/digital-solutions/${service.slug}/`}>Explore {service.name}</a></article>)}</div>
+    <section className="mt-12"><h2 className="text-3xl font-semibold">One connected path from plan to delivery.</h2><ol className="mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">{[["Understand", "Clarify goals, customers, systems, and constraints."], ["Scope", "Agree outcomes, deliverables, ownership, timing, and price."], ["Build", "Create and test the agreed experience and workflows."], ["Improve", "Review evidence, resolve gaps, and prioritize the next step."]].map(([title, detail], index) => <li key={title} className="border-t border-white/20 pt-4"><span className="text-sm text-emerald-300">0{index + 1}</span><h3 className="mt-2 text-xl font-semibold">{title}</h3><p className="mt-3 text-sm leading-7 text-slate-300">{detail}</p></li>)}</ol></section>
+    <section className="mt-12 rounded-xl border border-emerald-300/20 bg-emerald-300/10 p-7"><h2 className="text-2xl font-semibold">Services, software, and reusable resources.</h2><p className="mt-4 leading-7 text-slate-300">Agency engagements are scoped around your needs. Digital360 is the software platform in private launch. The Digital Asset Vault is the home for separately defined resources and products. We will confirm availability, responsibilities, and terms before you commit.</p><div className="mt-6 flex flex-wrap gap-5"><a className="font-semibold underline underline-offset-4" href="https://brunerdigital.com/start-a-project/">Start a BrunerDigital project</a><Link className="font-semibold text-emerald-300 underline underline-offset-4" href="/launch-status">Digital360 availability</Link><a className="underline underline-offset-4" href="https://brunerdigital.com/digital-asset-vault/">Visit the Digital Asset Vault</a></div></section>
+  </main></MarketingShell>;
+}

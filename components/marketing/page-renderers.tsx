@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { articles } from "@/lib/editorial";
 import { ArrowRight, Building2, CalendarClock, Check, FileText, Mail, Megaphone, ShieldCheck, Sparkles, Users, Workflow } from "lucide-react";
 import { adSystem, allPages, contentSystem, copyLibrary, emailSequences, flowSteps, funnelTemplates, launchChecklists, pricingPlans, salesEnablement, visualLibrary, type FlowStep, type FunnelTemplate, type MarketingPage } from "@/lib/marketing";
 import { Button } from "@/components/ui/button";
@@ -9,6 +10,7 @@ export function MarketingPageView({ page }: { page: MarketingPage }) {
     <MarketingShell>
       <main>
         <Hero page={page} />
+        {page.slug === "/resources" ? <section className="mx-auto max-w-7xl px-4 pb-12 sm:px-6 lg:px-8"><h2 className="text-3xl font-semibold">Field notes for connected business</h2><div className="mt-7 grid gap-5 md:grid-cols-2 lg:grid-cols-3">{articles.map(article => <article key={article.slug} className="rounded-xl border border-white/15 bg-white/[0.035] p-6"><p className="text-sm text-emerald-300">{article.category}</p><h3 className="mt-3 text-xl font-semibold"><Link href={`/resources/${article.slug}`} className="underline-offset-4 hover:underline">{article.title}</Link></h3><p className="mt-4 text-sm leading-7 text-slate-300">{article.description}</p></article>)}</div></section> : null}
         {page.slug === "/pricing" ? <PricingSection /> : null}
         {page.slug === "/features" ? <FeatureIndex /> : null}
         {page.slug === "/resources" ? <ResourceLibrary /> : null}
@@ -32,8 +34,8 @@ function Hero({ page }: { page: MarketingPage }) {
           <p className="mt-6 max-w-2xl text-base leading-8 text-slate-300 md:text-xl">{page.subheadline}</p>
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
             <Button asChild size="lg" className="bg-sky-400 text-slate-950 hover:bg-sky-300">
-              <Link href={page.primaryCta?.toLowerCase().includes("demo") ? demoHref : "/signup"}>
-                {page.primaryCta ?? "Start free trial"}
+              <Link href={demoHref}>
+                Request a walkthrough
                 <ArrowRight data-icon="inline-end" className="size-4" />
               </Link>
             </Button>
@@ -62,7 +64,7 @@ function ContentSections({ page }: { page: MarketingPage }) {
   return (
     <section className="px-4 py-16 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-7xl">
-        <SectionHeader title="Designed for launch speed and long-term scale" body="Every page uses original conversion copy, proof structures, and implementation-ready workflows for premium SaaS selling." />
+        <SectionHeader title="Explore the workflow" body="These sections describe the product direction. Review current availability and discuss the first workflow you need." />
         <div className="mt-10 grid gap-5 lg:grid-cols-3">
           {page.sections.map((section) => (
             <article key={section.title} className="glass-panel rounded-lg p-6">
@@ -83,7 +85,7 @@ function FaqSection({ page }: { page: MarketingPage }) {
   return (
     <section className="border-y border-white/10 bg-white/[0.025] px-4 py-16 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-5xl">
-        <SectionHeader align="center" title="Questions buyers ask before launch" body="Use these as live FAQ copy, sales enablement snippets, and objection handling blocks." />
+        <SectionHeader align="center" title="Questions before a rollout" body="Bring your requirements to a walkthrough so we can confirm fit, availability, and next steps." />
         <div className="mt-10 grid gap-4">
           {(page.faqs ?? []).map((faq) => (
             <div key={faq.q} className="rounded-lg border border-white/10 bg-slate-950/58 p-5">
@@ -103,20 +105,20 @@ function PricingSection() {
   return (
     <section className="px-4 py-16 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-7xl">
+        <p className="mb-7 max-w-3xl text-base leading-7 text-slate-300">These are intended workspace options. Pricing, feature availability, implementation, and provider usage are confirmed in a scoped discussion. This page does not start a subscription.</p>
         <div className="grid gap-5 lg:grid-cols-3">
           {pricingPlans.map((plan, index) => (
             <div key={plan.name} className={`rounded-lg border p-6 ${index === 1 ? "border-sky-400/50 bg-sky-400/10 shadow-glow" : "border-white/10 bg-white/[0.035]"}`}>
               <div className="text-sm font-semibold text-sky-300">{plan.bestFor}</div>
               <h2 className="mt-3 text-2xl font-semibold text-white">{plan.name}</h2>
               <div className="mt-4 flex items-end gap-2">
-                <span className="text-4xl font-semibold">{plan.price}</span>
-                <span className="pb-1 text-sm text-slate-500">{plan.note}</span>
+                <span className="text-3xl font-semibold">Discuss scope</span>
               </div>
               <div className="mt-6">
                 <CheckList items={plan.features} />
               </div>
               <Button asChild className="mt-8 w-full bg-sky-400 text-slate-950 hover:bg-sky-300">
-                <Link href={plan.name === "Enterprise" ? demoHref : "/signup"}>{plan.name === "Enterprise" ? "Talk to sales" : "Choose plan"}</Link>
+                <Link href={demoHref}>Discuss fit and availability</Link>
               </Button>
             </div>
           ))}
