@@ -7,6 +7,7 @@ const siteUrl = process.env.NEXT_PUBLIC_APP_URL ?? "https://digital360.brunerdig
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
+  icons: { icon: "/brand/digital-360-logo.jpg" },
   title: {
     default: "Digital360 by BrunerDigital | White-label AI Business Operating System",
     template: "%s | Digital360 by BrunerDigital"

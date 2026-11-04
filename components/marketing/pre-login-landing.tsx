@@ -68,9 +68,9 @@ const launchSteps = [
 ];
 
 const launchMetrics = [
-  ["7-14 days", "Typical guided launch window"],
-  ["10+ modules", "CRM, inbox, calendar, funnels, reviews, reporting, billing, portal, AI, automations"],
-  ["1 workspace", "Start with one team, client, or location and expand cleanly"]
+  ["Discover", "Map your current customer journey and tools"],
+  ["Prioritize", "Choose the first workflow and agree its scope"],
+  ["Verify", "Confirm availability before planning a rollout"]
 ];
 
 const replacementStack = [
@@ -128,7 +128,7 @@ export function PreLoginLanding() {
                 </Button>
               </div>
               <div className="mt-7 flex flex-wrap gap-x-6 gap-y-3">
-                {["White-label ready", "AI-powered", "All-in-one platform", "Enterprise secure"].map((item) => (
+                {["Built for agencies", "Business workspace vision", "Private launch", "Guided walkthroughs"].map((item) => (
                   <div key={item} className="flex items-center gap-2 text-xs font-medium text-slate-300">
                     <span className="flex size-4 items-center justify-center rounded-full border border-emerald-400/45 text-emerald-300">
                       <Check className="size-3" />
@@ -142,7 +142,7 @@ export function PreLoginLanding() {
           </div>
 
           <div className="mx-auto mt-10 max-w-7xl">
-            <p className="text-center text-sm text-slate-500">Trusted by agencies and businesses that demand more.</p>
+            <p className="text-center text-sm text-slate-400">Designed with these teams in mind.</p>
             <div className="mt-6 grid gap-3 text-slate-500 sm:grid-cols-2 lg:grid-cols-6">
               {trustSegments.map((segment) => {
                 const Icon = segment.icon;
@@ -160,7 +160,7 @@ export function PreLoginLanding() {
         <section className="border-y border-white/10 bg-gradient-to-r from-blue-600/12 via-[#061426]/70 to-emerald-400/10 px-4 py-8 sm:px-6 lg:px-8">
           <div className="mx-auto grid max-w-7xl gap-6 lg:grid-cols-[1fr_0.95fr] lg:items-center">
             <div>
-              <div className="text-sm font-semibold uppercase tracking-[0.18em] text-emerald-300">Public launch offer</div>
+              <div className="text-sm font-semibold uppercase tracking-[0.18em] text-emerald-300">Plan your first workflow</div>
               <h2 className="mt-3 text-3xl font-semibold tracking-normal text-white md:text-4xl">See where your growth stack is leaking before another lead goes cold.</h2>
               <p className="mt-4 max-w-3xl text-sm leading-6 text-slate-300 md:text-base">
                 Book a Digital360 rollout walkthrough and we will map your current lead capture, follow-up, calendar, reviews, reporting, and client portal gaps into a launch plan.
@@ -181,7 +181,7 @@ export function PreLoginLanding() {
           <div className="mx-auto max-w-7xl">
             <SectionTitle
               title={<>Everything <span className="bg-gradient-to-r from-emerald-300 to-blue-500 bg-clip-text text-transparent">connected.</span> Everything aligned.</>}
-              body="Digital360 unifies your entire customer journey in one platform so you can capture more demand, convert faster, and deliver exceptional experiences."
+              body="Our product direction connects the customer journey. These capability areas are being developed and must be confirmed against the current availability page."
             />
             <div className="mt-8 grid gap-5 md:grid-cols-2 xl:grid-cols-4">
               {growthCards.map((card) => {
@@ -241,7 +241,7 @@ export function PreLoginLanding() {
               <SectionTitle
                 align="left"
                 title={<>AI that works <span className="text-blue-400">for you.</span></>}
-                body="Digital360 AI helps you write, respond, prioritize, score, and optimize so your team can focus on what matters most."
+                body="AI assistance is part of the product direction. Live model connections, data access, usage controls, and human review need to be verified for each workflow."
               />
               <div className="mt-6 grid gap-3 md:grid-cols-2 xl:grid-cols-4">
                 {aiCards.map((card) => {
@@ -329,8 +329,8 @@ export function PreLoginLanding() {
                 </div>
               </div>
               <div className="rounded-lg border border-white/10 bg-[#07111f] p-5 text-center">
-                <p className="text-sm text-slate-400">Most clients launch in</p>
-                <div className="mt-2 bg-gradient-to-r from-emerald-300 to-blue-400 bg-clip-text text-4xl font-semibold text-transparent">7-14 days</div>
+                <p className="text-sm text-slate-300">Start with a scoped conversation</p>
+                <div className="mt-2 text-2xl font-semibold text-emerald-300">Private access</div>
                 <Button asChild className="mt-6 w-full bg-blue-600 text-white hover:bg-blue-500">
                   <Link href={demoHref}>Book a demo</Link>
                 </Button>
@@ -344,7 +344,7 @@ export function PreLoginLanding() {
             <div className="grid gap-8 lg:grid-cols-[0.7fr_1.3fr]">
               <div>
                 <h2 className="text-3xl font-semibold tracking-normal text-white md:text-4xl">Launch questions, answered.</h2>
-                <p className="mt-4 text-sm leading-6 text-slate-400">The public launch is built to capture demand now and connect deeper automations as credentials and real customer workflows come online.</p>
+                <p className="mt-4 text-sm leading-6 text-slate-300">Explore the product direction and discuss the first workflow you need. Current availability and implementation requirements are documented before a rollout.</p>
               </div>
               <div className="grid gap-4 md:grid-cols-2">
                 {faqItems.map(([question, answer]) => (
@@ -423,7 +423,7 @@ function BrandControlPanel() {
         <div>
           <div className="text-xs text-slate-500">Domain</div>
           <div className="mt-2 rounded-md border border-white/10 bg-[#050913] px-3 py-3 text-sm text-slate-300">app.yourbrand.com</div>
-          <Button className="mt-3 w-full bg-blue-600 text-white hover:bg-blue-500">Save Changes</Button>
+          <p className="mt-3 text-xs leading-5 text-slate-300">Illustrative brand controls. Settings are not saved from this preview.</p>
         </div>
       </div>
     </div>

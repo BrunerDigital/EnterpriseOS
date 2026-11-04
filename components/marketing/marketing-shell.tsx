@@ -12,7 +12,7 @@ const marketingNav = [
   { label: "Features", href: "/features" },
   { label: "Solutions", href: "/use-cases" },
   { label: "Pricing", href: "/pricing" },
-  { label: "Security", href: "/security" }
+  { label: "Availability", href: "/launch-status" }
 ];
 
 export function BrandMark() {
@@ -79,6 +79,10 @@ export function MarketingShell({ children }: { children: React.ReactNode }) {
           </nav>
         </div>
       ) : null}
+      <aside aria-label="Digital360 launch availability" className="border-b border-emerald-300/20 bg-emerald-300/10 px-4 py-3 text-center text-sm leading-6 text-slate-200">
+        <span className="font-semibold text-emerald-300">Private launch.</span>{" "}Explore the product direction and request a walkthrough. Access remains invite-only.{" "}
+        <Link href="/launch-status" className="font-semibold underline underline-offset-4">View availability</Link>
+      </aside>
       {children}
       <Footer />
     </div>
@@ -90,7 +94,7 @@ export function Footer() {
     { title: "Platform", links: [["Features", "/features"], ["Pricing", "/pricing"], ["Integrations", "/integrations"], ["Security", "/security"]] },
     { title: "Solutions", links: [["Agencies", "/agency"], ["Local services", "/solutions/local-service-businesses"], ["Franchises", "/solutions/franchises"], ["Marketing teams", "/solutions/marketing-teams"]] },
     { title: "Resources", links: [["Resources", "/resources"], ["Help center", "/help"], ["Comparison", "/comparison"], ["Use cases", "/use-cases"]] },
-    { title: "Company", links: [["About", "/about"], ["Contact", "/contact"], ["Privacy", "/legal/privacy"], ["Terms", "/legal/terms"]] }
+    { title: "Company", links: [["BrunerDigital services", "/brunerdigital"], ["Availability", "/launch-status"], ["Contact", "/contact"], ["Privacy", "/legal/privacy"], ["Terms", "/legal/terms"]] }
   ];
 
   return (
@@ -100,7 +104,7 @@ export function Footer() {
           <BrandMark />
           <p className="mt-5 max-w-md text-sm leading-6 text-slate-400">{brand.oneLiner}</p>
           <div className="mt-6 rounded-lg border border-sky-400/20 bg-sky-400/10 p-4 text-sm text-sky-100">
-            Digital360 captures public launch interest today and is structured to connect analytics, CRM webhooks, payments, and email sending as credentials come online.
+            Digital360 is in private launch. Product previews include sample data. Review current availability before planning a customer rollout.
           </div>
         </div>
         <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
@@ -120,7 +124,7 @@ export function Footer() {
       </div>
       <div className="mx-auto flex max-w-7xl flex-col gap-2 border-t border-white/10 px-4 py-6 text-xs text-slate-500 sm:px-6 md:flex-row md:items-center md:justify-between lg:px-8">
         <span>© 2026 Digital360 by BrunerDigital. All rights reserved.</span>
-        <span>Built for white-label SaaS launch, demand generation, and investor-ready demos.</span>
+        <Link href="/brunerdigital" className="underline underline-offset-4">Strategy, build, growth, and operations by BrunerDigital.</Link>
       </div>
     </footer>
   );
@@ -147,6 +151,7 @@ export function ProductMockup({ compact = false }: { compact?: boolean }) {
   return (
     <div className={cn("glass-panel relative overflow-hidden rounded-lg p-4 shadow-panel", !compact && "lg:translate-y-3")}>
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_78%_10%,rgba(37,99,235,.18),transparent_20rem)]" />
+      <p className="relative mb-3 text-xs leading-5 text-slate-300">Illustrative product view · Sample data, not customer results.</p>
       <div className="relative grid min-h-[360px] grid-cols-[2.75rem_1fr] overflow-hidden rounded-md border border-white/10 bg-[#050b15]/92">
         <div className="border-r border-white/10 bg-[#050913] p-2">
           <div className="relative mx-auto mb-4 size-7 overflow-hidden rounded-md bg-white">
@@ -252,7 +257,7 @@ export function CtaBand() {
           </div>
           <div className="flex flex-col gap-3 sm:flex-row lg:justify-end">
             <Button asChild size="lg" className="bg-sky-400 text-slate-950 hover:bg-sky-300">
-              <Link href="/signup">Start free trial</Link>
+              <Link href="/demo">Request private access</Link>
             </Button>
             <Button asChild size="lg" variant="outline">
               <Link href="/demo">Book demo</Link>
