@@ -1099,6 +1099,7 @@ export type Database = {
       }
       workspaces: {
         Row: {
+          agency_admin_only: boolean
           created_at: string
           id: string
           name: string
@@ -1107,6 +1108,7 @@ export type Database = {
           updated_at: string
         }
         Insert: {
+          agency_admin_only?: boolean
           created_at?: string
           id?: string
           name: string
@@ -1115,6 +1117,7 @@ export type Database = {
           updated_at?: string
         }
         Update: {
+          agency_admin_only?: boolean
           created_at?: string
           id?: string
           name?: string

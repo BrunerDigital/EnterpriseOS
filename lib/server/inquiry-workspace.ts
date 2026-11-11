@@ -17,7 +17,7 @@ export async function resolveInquiryWorkspace(session: AppSession) {
   const [tenantResult, workspaceResult] = await Promise.all([
     admin.from("tenants").select("id").eq("id", session.profile.tenantId).eq("slug", "brunerdigital").maybeSingle(),
     admin.from("workspaces").select("id, name, type").eq("id", workspaceId)
-      .eq("tenant_id", session.profile.tenantId).eq("type", inquiryWorkspaceType).maybeSingle()
+      .eq("tenant_id", session.profile.tenantId).eq("type", inquiryWorkspaceType).eq("agency_admin_only", true).maybeSingle()
   ]);
   if (tenantResult.error || workspaceResult.error) throw new Error("Unable to verify the inquiry workspace");
   if (!tenantResult.data || !workspaceResult.data) return { status: "forbidden" as const };

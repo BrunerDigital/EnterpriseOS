@@ -43,7 +43,7 @@ export async function POST(request: Request) {
   }
 
   let notificationResults: Awaited<ReturnType<typeof notifyLead>> = [];
-  let crmResult: { contactId?: string; companyId?: string; status: "created" | "updated" | "skipped" } = { status: "skipped" };
+  let crmResult: { contactId?: string; companyId?: string; status: "created" | "linked" | "skipped" } = { status: "skipped" };
   let tenantId: string | undefined;
 
   try {
@@ -59,6 +59,7 @@ export async function POST(request: Request) {
         .eq("id", workspaceId)
         .eq("tenant_id", tenant.id)
         .eq("type", inquiryWorkspaceType)
+        .eq("agency_admin_only", true)
         .maybeSingle() : { data: null };
 
       if (workspace) {
@@ -113,21 +114,7 @@ export async function POST(request: Request) {
           .maybeSingle();
 
         if (existingContact) {
-          await admin
-            .from("contacts")
-            .update({
-              company_id: companyId ?? null,
-              first_name: personName.first,
-              last_name: personName.last,
-              phone: cleanString(payload.phone) ?? null,
-              status: "lead",
-              lead_score: calculateLaunchLeadScore(payload),
-              ai_summary: buildLeadSummary(payload),
-              custom_fields: customFields
-            })
-            .eq("id", existingContact.id);
-
-          crmResult = { status: "updated", contactId: existingContact.id, companyId };
+          crmResult = { status: "linked", contactId: existingContact.id };
         } else {
           const { data: insertedContact } = await admin
             .from("contacts")
@@ -178,7 +165,6 @@ export async function POST(request: Request) {
     success: true,
     message: "Thanks. Your Digital360 setup request was received.",
     source: payload.source ?? "Digital360 public site",
-    crm: crmResult,
     notifications: notificationResults.map((result) => ({ provider: result.provider, status: result.status })),
     redirect: typeof payload.thank_you_path === "string" && payload.thank_you_path.startsWith("/") ? payload.thank_you_path : "/demo/thank-you/"
   });
