@@ -1,5 +1,7 @@
 import { NextResponse } from "next/server";
+import { walkthroughFormSource } from "@/lib/campaign-attribution";
 import { createAdminClient } from "@/lib/supabase/admin";
+import { inquiryWorkspaceId, inquiryWorkspaceType } from "@/lib/server/project-inquiries";
 import { notifyLead } from "@/lib/server/lead-notifications";
 import type { Json } from "@/lib/supabase/database.types";
 
@@ -19,6 +21,13 @@ export async function POST(request: Request) {
     payload = (await request.json()) as LeadPayload;
   } catch {
     return NextResponse.json({ success: false, message: "Invalid lead payload." }, { status: 400 });
+  }
+
+  if (!payload || typeof payload !== "object" || Array.isArray(payload)) {
+    return NextResponse.json({ success: false, message: "Invalid lead payload." }, { status: 400 });
+  }
+  if (payload.source === walkthroughFormSource) {
+    return NextResponse.json({ success: false, message: "Reload the Digital360 walkthrough form and try again." }, { status: 409 });
   }
 
   if (!payload.email || typeof payload.email !== "string") {
@@ -43,13 +52,14 @@ export async function POST(request: Request) {
 
     if (tenant) {
       tenantId = tenant.id;
-      const { data: workspace } = await admin
+      const workspaceId = inquiryWorkspaceId();
+      const { data: workspace } = workspaceId ? await admin
         .from("workspaces")
         .select("id")
+        .eq("id", workspaceId)
         .eq("tenant_id", tenant.id)
-        .order("created_at", { ascending: true })
-        .limit(1)
-        .maybeSingle();
+        .eq("type", inquiryWorkspaceType)
+        .maybeSingle() : { data: null };
 
       if (workspace) {
         const companyName = cleanString(payload.company);

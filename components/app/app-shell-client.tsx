@@ -16,12 +16,15 @@ const adminOnlyRoutes = new Set(["/agency", "/white-label", "/launch", "/setting
 const billingRoutes = new Set(["/payments", "/billing"]);
 const clientPreferredRoutes = new Set(["/dashboard", "/conversations", "/portal", "/reporting", "/help"]);
 
-function filterNavItems(role: AppSession["profile"]["role"]) {
+function filterNavItems(role: AppSession["profile"]["role"], tenantSlug: string) {
   if (clientRoles.includes(role)) {
     return navItems.filter((item) => clientPreferredRoutes.has(item.href));
   }
 
   return navItems.filter((item) => {
+    if (item.href === "/crm/inquiries") {
+      return canAccessAdmin(role) && tenantSlug === "brunerdigital";
+    }
     if (adminOnlyRoutes.has(item.href)) {
       return canAccessAdmin(role);
     }
@@ -36,7 +39,7 @@ function filterNavItems(role: AppSession["profile"]["role"]) {
 
 export function AppShellClient({ children, session }: { children: React.ReactNode; session: AppSession }) {
   const pathname = usePathname();
-  const visibleNavItems = filterNavItems(session.profile.role);
+  const visibleNavItems = filterNavItems(session.profile.role, session.tenant.slug);
 
   return (
     <div className="min-h-screen grid-fade">

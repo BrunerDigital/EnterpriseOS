@@ -1,6 +1,7 @@
 import { type NextRequest, NextResponse } from "next/server";
 import { createServerClient } from "@supabase/ssr";
 import type { Database } from "@/lib/supabase/database.types";
+import { digital360WalkthroughCampaign } from "@/lib/campaign-attribution";
 
 type CookieToSet = {
   name: string;
@@ -64,7 +65,9 @@ export async function middleware(request: NextRequest) {
   if (!user && isProtectedPath(request.nextUrl.pathname)) {
     const loginUrl = request.nextUrl.clone();
     loginUrl.pathname = "/login";
-    loginUrl.searchParams.set("next", request.nextUrl.pathname);
+    const path = request.nextUrl.pathname;
+    const keepCampaign = path === "/crm/inquiries" && request.nextUrl.searchParams.get("campaign") === digital360WalkthroughCampaign;
+    loginUrl.searchParams.set("next", keepCampaign ? `${path}?campaign=${digital360WalkthroughCampaign}` : path);
     return NextResponse.redirect(loginUrl);
   }
 
