@@ -1,7 +1,7 @@
 import type { MetadataRoute } from "next";
 import { allPages, flowSteps, funnelTemplates } from "@/lib/marketing";
 import { gtmLanes } from "@/lib/gtm-lanes";
-import { articles } from "@/lib/editorial";
+import { articles, editorialDate } from "@/lib/editorial";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const base = process.env.NEXT_PUBLIC_APP_URL ?? "https://digital360.brunerdigital.com";
@@ -20,9 +20,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/legal/terms"
   ];
 
+  const articleDates = new Map(articles.map(article => [`/resources/${article.slug}`, article.publishedAt ?? editorialDate]));
+
   return [...new Set(routes)].map((route) => ({
     url: `${base}${route === "/" ? "" : route}`,
-    lastModified: new Date("2026-11-04"),
+    lastModified: new Date(articleDates.get(route) ?? editorialDate),
     changeFrequency: route.includes("legal") ? "yearly" : "weekly",
     priority: route === "/" ? 1 : 0.7
   }));

@@ -68,6 +68,7 @@
   },
   {
     "slug":"white-label-crm-readiness",
+    "image": { "src": "/resources/brand-readiness.png", "alt": "Digital360 white-label workspace readiness illustration" },
     "title":"A white-label CRM needs more than a logo setting",
     "description":"Evaluate business scope, permissions, persistence, provider delivery, support, and recovery before offering a branded platform to clients.",
     "category":"Digital360",
@@ -77,6 +78,41 @@
       {"title":"Distinguish the demonstration from the workflow", "paragraphs":["A screen filled with sample contacts can explain a product direction. A working CRM also needs validated writes, reloads, ownership, activity history, duplicate handling, archival, and recovery. Ask what is persistent and which operations have been tested across roles and businesses.","Apply the same scrutiny to integrations. A provider logo, configuration field, or connected badge does not prove that a message was delivered, a payment reconciled, or a calendar conflict handled. Each integration needs a specific account, scoped data access, failure behavior, and operational ownership."]},
       {"title":"Scope the customer promise", "paragraphs":["Clarify which application surfaces can be branded, how outbound sender identity works, what domain setup involves, and which services are included. Separate software access from migration, implementation, ongoing agency work, third-party usage, and advertising spend.","Before customer activation, establish support coverage, monitoring, backups, recovery, audit history, consent handling, and a controlled onboarding path. These requirements help the agency understand the work it is taking responsibility for."]},
       {"title":"Where Digital360 stands", "paragraphs":["Digital360 by BrunerDigital is in private launch. Its public pages and walkthrough path are available, while product previews include sample data and operational CRM and white-label workflows continue to be developed and verified. Access remains invite-only.","Use the availability page and a guided discussion to assess the first workflow you need. BrunerDigital's strategy, website, content, and systems services can be scoped separately. A private walkthrough does not create an account, start a subscription, or establish that every illustrated capability is ready for customer use."]}
+    ]
+  },
+  {
+    "slug": "website-inquiry-handoff",
+    "title": "Who owns the next step after a website inquiry?",
+    "description": "Assign an owner, make the queue visible, and test how a website inquiry moves from form submission to a human response.",
+    "category": "Digital360",
+    "service": "Digital360 platform",
+    "publishedAt": "2026-11-12",
+    "image": {
+      "src": "/resources/lead-handoff.png",
+      "alt": "Digital360 inquiry handoff illustration with a sample form and response queue"
+    },
+    "sections": [
+      {
+        "title": "Trace one inquiry",
+        "paragraphs": [
+          "A form confirmation tells a visitor their message arrived. The team still needs to know who owns the follow-up, where to see the request, and how to spot a missed next step.",
+          "Start with one inquiry type. Ask the person who answers it to describe the steps they actually take, including any inbox, spreadsheet, or calendar they check. Record what they need to make a decision."
+        ]
+      },
+      {
+        "title": "Give the queue an owner and a backup",
+        "paragraphs": [
+          "Put each request in a queue with its source and a due date. Agree on what a meaningful first response looks like. A service business may need a detail before estimating a job. An agency may need to confirm the buyer and project timing.",
+          "Name a backup and decide how they will find open inquiries when the usual owner is away. Track the time to a human reply and the number of requests that miss their next step."
+        ]
+      },
+      {
+        "title": "Check what happens when a response drops",
+        "paragraphs": [
+          "Run a controlled test and check that the request appears once, the source is visible, and the right roles can review it. Repeat the request after an interrupted response to see whether the visitor gets the original receipt.",
+          "Digital360's walkthrough form now saves requests in an agency intake queue. The walkthrough uses sample data to help teams evaluate one workflow. Digital360 is in invite-only private launch."
+        ]
+      }
     ]
   }
 ]
