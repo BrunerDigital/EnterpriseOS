@@ -6,6 +6,31 @@ export type Json =
   | { [key: string]: Json | undefined }
   | Json[]
 
+type ProjectInquiryRow = {
+  id: string
+  workspace_id: string
+  contact_id: string | null
+  source: "brunerdigital_website" | "digital360_walkthrough"
+  request_id: string
+  fingerprint: string
+  name: string
+  email: string
+  phone: string | null
+  company: string | null
+  service: string
+  message: string | null
+  website_url: string | null
+  budget: string | null
+  timeline: string | null
+  utm_source: string | null
+  utm_medium: string | null
+  utm_campaign: string | null
+  utm_content: string | null
+  utm_term: string | null
+  contact_consent: boolean | null
+  received_at: string
+}
+
 export type Database = {
   graphql_public: {
     Tables: {
@@ -819,6 +844,15 @@ export type Database = {
           },
         ]
       }
+      project_inquiries: {
+        Row: ProjectInquiryRow
+        Insert: Partial<ProjectInquiryRow> & Pick<ProjectInquiryRow, "workspace_id" | "source" | "request_id" | "fingerprint" | "name" | "email" | "service">
+        Update: Partial<ProjectInquiryRow>
+        Relationships: [
+          { foreignKeyName: "project_inquiries_workspace_id_fkey"; columns: ["workspace_id"]; isOneToOne: false; referencedRelation: "workspaces"; referencedColumns: ["id"] },
+          { foreignKeyName: "project_inquiries_contact_id_fkey"; columns: ["contact_id"]; isOneToOne: false; referencedRelation: "contacts"; referencedColumns: ["id"] }
+        ]
+      }
       reports: {
         Row: {
           ai_insight: string | null
@@ -1065,6 +1099,7 @@ export type Database = {
       }
       workspaces: {
         Row: {
+          agency_admin_only: boolean
           created_at: string
           id: string
           name: string
@@ -1073,6 +1108,7 @@ export type Database = {
           updated_at: string
         }
         Insert: {
+          agency_admin_only?: boolean
           created_at?: string
           id?: string
           name: string
@@ -1081,6 +1117,7 @@ export type Database = {
           updated_at?: string
         }
         Update: {
+          agency_admin_only?: boolean
           created_at?: string
           id?: string
           name?: string
@@ -1106,6 +1143,10 @@ export type Database = {
       can_access_workspace: {
         Args: { target_workspace_id: string }
         Returns: boolean
+      }
+      capture_brunerdigital_inquiry: {
+        Args: { p_workspace_id: string; p_request_id: string; p_source: string; p_brief: Json }
+        Returns: { request_id: string; replayed: boolean; tenant_id: string }[]
       }
       current_profile_tenant_id: { Args: never; Returns: string }
       is_tenant_member: { Args: { target_tenant_id: string }; Returns: boolean }

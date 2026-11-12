@@ -265,7 +265,7 @@ export function FlowPageView({ flow }: { flow: FlowStep }) {
                 </div>
               </div>
             </div>
-            <LeadForm title={flow.title} fields={flow.fields} cta={flow.cta} />
+            <LeadForm title={flow.title} fields={flow.fields} cta={flow.cta} walkthrough={flow.slug === "/demo"} />
           </div>
         </section>
       </main>
@@ -273,19 +273,22 @@ export function FlowPageView({ flow }: { flow: FlowStep }) {
   );
 }
 
-function LeadForm({ title, fields, cta }: { title: string; fields: string[]; cta: string }) {
+function LeadForm({ title, fields, cta, walkthrough = false }: { title: string; fields: string[]; cta: string; walkthrough?: boolean }) {
   return (
-    <form data-lead-form action="/api/leads" data-source={title} data-thank-you="/demo/thank-you/" className="glass-panel rounded-lg p-6">
+    <form data-lead-form={walkthrough ? undefined : true} data-walkthrough-form={walkthrough ? true : undefined}
+      action={walkthrough ? "/api/walkthroughs" : "/api/leads"} method={walkthrough ? "post" : undefined}
+      data-source={title} data-thank-you="/demo/thank-you/" className="glass-panel rounded-lg p-6">
       <input className="hidden" name="website" tabIndex={-1} autoComplete="off" />
-      <input type="hidden" name="source" value={title} />
-      <input type="hidden" name="thank_you_path" value="/demo/thank-you/" />
-      <h2 className="text-2xl font-semibold text-white">{title}</h2>
-      <p className="mt-2 text-sm leading-6 text-slate-400">Submit this form to create a lead record, capture source attribution, and forward into the configured CRM/webhook path.</p>
+      {walkthrough ? null : <><input type="hidden" name="source" value={title} />
+        <input type="hidden" name="thank_you_path" value="/demo/thank-you/" /></>}
+      <h2 className="text-2xl font-semibold text-white">{walkthrough ? "Walkthrough request" : title}</h2>
+      <p className="mt-2 text-sm leading-6 text-slate-400">{walkthrough ? "Tell us what you want to evaluate. We’ll follow up about fit and scheduling." : "Submit this form to create a lead record, capture source attribution, and forward into the configured CRM/webhook path."}</p>
       <div className="mt-6 grid gap-4">
         {fields.map((field) => (
           <label key={field} className="grid gap-2 text-sm font-medium text-slate-300">
             {field}
-            <input name={field.toLowerCase().replaceAll(" ", "_")} className="h-11 rounded-md border border-white/10 bg-slate-950/70 px-3 text-sm text-white outline-none transition placeholder:text-slate-600 focus:border-sky-400" placeholder={field} />
+            <input name={field.toLowerCase().replaceAll(" ", "_")} required={walkthrough && (field === "Name" || field === "Company")}
+              className="h-11 rounded-md border border-white/10 bg-slate-950/70 px-3 text-sm text-white outline-none transition placeholder:text-slate-600 focus:border-sky-400" placeholder={field} />
           </label>
         ))}
         <label className="grid gap-2 text-sm font-medium text-slate-300">
@@ -294,11 +297,14 @@ function LeadForm({ title, fields, cta }: { title: string; fields: string[]; cta
         </label>
         <label className="flex items-start gap-3 rounded-lg border border-white/10 bg-white/[0.025] p-3 text-xs leading-5 text-slate-400">
           <input name="contact_consent" value="yes" required type="checkbox" className="mt-1 size-4 rounded border-white/20 bg-slate-950" />
-          <span>I agree BrunerDigital may contact me about Digital360 using the information I submit. I can opt out of marketing messages at any time.</span>
+          {walkthrough
+            ? <span>I agree BrunerDigital may contact me about this walkthrough request. <Link href="/legal/privacy" className="underline">Privacy policy</Link></span>
+            : <span>I agree BrunerDigital may contact me about Digital360 using the information I submit. I can opt out of marketing messages at any time.</span>}
         </label>
       </div>
-      <Button type="submit" className="mt-6 w-full bg-sky-400 text-slate-950 hover:bg-sky-300">{cta}</Button>
-      <div data-lead-status className="mt-4 min-h-5 text-sm font-semibold text-emerald-300" />
+      <Button type="submit" disabled={walkthrough} className="mt-6 w-full bg-sky-400 text-slate-950 hover:bg-sky-300">{cta}</Button>
+      {walkthrough ? <noscript><p className="mt-3 text-sm text-slate-300">Enable JavaScript to use this form or <Link href="/contact" className="underline">contact BrunerDigital</Link>.</p></noscript> : null}
+      <div data-lead-status role="status" className="mt-4 min-h-5 text-sm font-semibold text-emerald-300" />
     </form>
   );
 }

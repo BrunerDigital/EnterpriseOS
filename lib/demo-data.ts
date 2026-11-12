@@ -27,6 +27,7 @@ export const navItems = [
   { href: "/dashboard", label: "Dashboard", icon: LayoutDashboard },
   { href: "/launch", label: "Launch Center", icon: Rocket },
   { href: "/crm/contacts", label: "Contacts", icon: Users },
+  { href: "/crm/inquiries", label: "Inquiries", icon: Inbox },
   { href: "/companies", label: "Companies", icon: Building2 },
   { href: "/deals", label: "Deals", icon: BriefcaseBusiness },
   { href: "/calendar", label: "Calendar", icon: CalendarDays },

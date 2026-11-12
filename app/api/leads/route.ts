@@ -1,5 +1,7 @@
 import { NextResponse } from "next/server";
+import { walkthroughFormSource } from "@/lib/campaign-attribution";
 import { createAdminClient } from "@/lib/supabase/admin";
+import { inquiryWorkspaceId, inquiryWorkspaceType } from "@/lib/server/project-inquiries";
 import { notifyLead } from "@/lib/server/lead-notifications";
 import type { Json } from "@/lib/supabase/database.types";
 
@@ -21,6 +23,13 @@ export async function POST(request: Request) {
     return NextResponse.json({ success: false, message: "Invalid lead payload." }, { status: 400 });
   }
 
+  if (!payload || typeof payload !== "object" || Array.isArray(payload)) {
+    return NextResponse.json({ success: false, message: "Invalid lead payload." }, { status: 400 });
+  }
+  if (payload.source === walkthroughFormSource) {
+    return NextResponse.json({ success: false, message: "Reload the Digital360 walkthrough form and try again." }, { status: 409 });
+  }
+
   if (!payload.email || typeof payload.email !== "string") {
     return NextResponse.json({ success: false, message: "Work email is required." }, { status: 400 });
   }
@@ -34,7 +43,7 @@ export async function POST(request: Request) {
   }
 
   let notificationResults: Awaited<ReturnType<typeof notifyLead>> = [];
-  let crmResult: { contactId?: string; companyId?: string; status: "created" | "updated" | "skipped" } = { status: "skipped" };
+  let crmResult: { contactId?: string; companyId?: string; status: "created" | "linked" | "skipped" } = { status: "skipped" };
   let tenantId: string | undefined;
 
   try {
@@ -43,13 +52,15 @@ export async function POST(request: Request) {
 
     if (tenant) {
       tenantId = tenant.id;
-      const { data: workspace } = await admin
+      const workspaceId = inquiryWorkspaceId();
+      const { data: workspace } = workspaceId ? await admin
         .from("workspaces")
         .select("id")
+        .eq("id", workspaceId)
         .eq("tenant_id", tenant.id)
-        .order("created_at", { ascending: true })
-        .limit(1)
-        .maybeSingle();
+        .eq("type", inquiryWorkspaceType)
+        .eq("agency_admin_only", true)
+        .maybeSingle() : { data: null };
 
       if (workspace) {
         const companyName = cleanString(payload.company);
@@ -103,21 +114,7 @@ export async function POST(request: Request) {
           .maybeSingle();
 
         if (existingContact) {
-          await admin
-            .from("contacts")
-            .update({
-              company_id: companyId ?? null,
-              first_name: personName.first,
-              last_name: personName.last,
-              phone: cleanString(payload.phone) ?? null,
-              status: "lead",
-              lead_score: calculateLaunchLeadScore(payload),
-              ai_summary: buildLeadSummary(payload),
-              custom_fields: customFields
-            })
-            .eq("id", existingContact.id);
-
-          crmResult = { status: "updated", contactId: existingContact.id, companyId };
+          crmResult = { status: "linked", contactId: existingContact.id };
         } else {
           const { data: insertedContact } = await admin
             .from("contacts")
@@ -168,7 +165,6 @@ export async function POST(request: Request) {
     success: true,
     message: "Thanks. Your Digital360 setup request was received.",
     source: payload.source ?? "Digital360 public site",
-    crm: crmResult,
     notifications: notificationResults.map((result) => ({ provider: result.provider, status: result.status })),
     redirect: typeof payload.thank_you_path === "string" && payload.thank_you_path.startsWith("/") ? payload.thank_you_path : "/demo/thank-you/"
   });
