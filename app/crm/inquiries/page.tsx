@@ -3,19 +3,19 @@ import { notFound } from "next/navigation";
 import { AppShellClient } from "@/components/app/app-shell-client";
 import { Badge } from "@/components/ui/badge";
 import { getAppSession, type AppSession } from "@/lib/auth/session";
-import { digital360WalkthroughCampaign } from "@/lib/campaign-attribution";
+import { connectedFormsCampaign, digital360WalkthroughCampaign } from "@/lib/campaign-attribution";
 import { canViewInquiryWorkspace, resolveInquiryWorkspace } from "@/lib/server/inquiry-workspace";
 
 export const dynamic = "force-dynamic";
 
-async function loadInquiries(session: AppSession, campaignOnly: boolean) {
+async function loadInquiries(session: AppSession, campaign: string | undefined) {
   const scope = await resolveInquiryWorkspace(session);
   if (scope.status !== "ready") return scope;
 
   let query = scope.admin.from("project_inquiries")
     .select("id, request_id, name, email, phone, company, service, message, website_url, budget, timeline, source, received_at, contact_id, contact_consent, utm_source, utm_medium, utm_campaign, utm_content, utm_term")
     .eq("workspace_id", scope.workspace.id);
-  if (campaignOnly) query = query.eq("utm_campaign", digital360WalkthroughCampaign);
+  if (campaign) query = query.eq("utm_campaign", campaign);
   const { data: inquiries, error } = await query.order("received_at", { ascending: false }).order("id", { ascending: false }).limit(50);
   if (error) throw new Error("Unable to load inquiries");
   return { status: "ready" as const, workspace: scope.workspace, inquiries };
@@ -27,8 +27,10 @@ export default async function InquiriesPage({ searchParams }: { searchParams: Pr
   const session = await getAppSession();
   if (!canViewInquiryWorkspace(session)) notFound();
 
-  const campaignOnly = (await searchParams).campaign === digital360WalkthroughCampaign;
-  const outcome = await loadInquiries(session, campaignOnly).catch(() => ({ status: "failed" as const }));
+  const requestedCampaign = (await searchParams).campaign;
+  const campaign = requestedCampaign === digital360WalkthroughCampaign || requestedCampaign === connectedFormsCampaign
+    ? requestedCampaign : undefined;
+  const outcome = await loadInquiries(session, campaign).catch(() => ({ status: "failed" as const }));
   if (outcome.status === "forbidden") notFound();
   const result = outcome.status === "ready" ? outcome : null;
 
@@ -36,11 +38,12 @@ export default async function InquiriesPage({ searchParams }: { searchParams: Pr
     <AppShellClient session={{ ...session, workspace: result?.workspace ?? null }}>
       <header className="mb-6">
         <h1 className="text-3xl font-semibold md:text-4xl">Inquiries</h1>
-        <p className="mt-2 text-sm text-muted-foreground">Review Digital360 walkthrough requests and their campaign attribution.</p>
+        <p className="mt-2 text-sm text-muted-foreground">Review walkthrough requests and website inquiries with campaign attribution.</p>
       </header>
       <nav aria-label="Filter inquiries" className="mb-5 flex flex-wrap gap-3 text-sm">
-        <Link href="/crm/inquiries" aria-current={campaignOnly ? undefined : "page"} className="rounded-md border border-white/15 px-3 py-2 aria-[current=page]:border-emerald-300">All inquiries</Link>
-        <Link href={`/crm/inquiries?campaign=${digital360WalkthroughCampaign}`} aria-current={campaignOnly ? "page" : undefined} className="rounded-md border border-white/15 px-3 py-2 aria-[current=page]:border-emerald-300">Digital360 campaign</Link>
+        <Link href="/crm/inquiries" aria-current={campaign ? undefined : "page"} className="rounded-md border border-white/15 px-3 py-2 aria-[current=page]:border-emerald-300">All inquiries</Link>
+        <Link href={`/crm/inquiries?campaign=${digital360WalkthroughCampaign}`} aria-current={campaign === digital360WalkthroughCampaign ? "page" : undefined} className="rounded-md border border-white/15 px-3 py-2 aria-[current=page]:border-emerald-300">Digital360 campaign</Link>
+        <Link href={`/crm/inquiries?campaign=${connectedFormsCampaign}`} aria-current={campaign === connectedFormsCampaign ? "page" : undefined} className="rounded-md border border-white/15 px-3 py-2 aria-[current=page]:border-emerald-300">Connected Forms</Link>
       </nav>
       {outcome.status === "failed" ? <p role="alert" className="rounded-lg border border-white/15 p-5">Inquiries are temporarily unavailable. Try again shortly.</p> : null}
       {outcome.status === "unconfigured" ? <p className="rounded-lg border border-white/15 p-5">This inbox is awaiting a workspace connection.</p> : null}
@@ -52,6 +55,7 @@ export default async function InquiriesPage({ searchParams }: { searchParams: Pr
               <span className="ml-2 font-semibold">{inquiry.name}</span>
               <span className="ml-2 text-sm text-muted-foreground">{inquiry.service}</span>
               {inquiry.utm_campaign === digital360WalkthroughCampaign ? <Badge className="ml-2" variant="secondary">Digital360 campaign</Badge> : null}
+              {inquiry.utm_campaign === connectedFormsCampaign ? <Badge className="ml-2" variant="secondary">Connected Forms</Badge> : null}
               <time className="mt-1 block text-xs text-muted-foreground sm:ml-2 sm:inline" dateTime={inquiry.received_at}>{timeFormat.format(new Date(inquiry.received_at))} UTC</time>
             </summary>
             <dl className="mt-4 grid min-w-0 gap-x-6 gap-y-3 break-words text-sm sm:grid-cols-2 lg:grid-cols-3">

@@ -1144,6 +1144,10 @@ export type Database = {
         Args: { target_workspace_id: string }
         Returns: boolean
       }
+      brunerdigital_inquiry_overview: {
+        Args: { p_workspace_id: string; p_since: string }
+        Returns: Json
+      }
       capture_brunerdigital_inquiry: {
         Args: { p_workspace_id: string; p_request_id: string; p_source: string; p_brief: Json }
         Returns: { request_id: string; replayed: boolean; tenant_id: string }[]
