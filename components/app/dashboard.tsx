@@ -18,10 +18,10 @@ const dashboardKpis = [
   { label: "Conversion Rate", value: "27.4%", change: "+6.3%", tone: "success" }
 ] as const;
 
-export function Dashboard() {
+export function Dashboard({ showHeader = true }: { showHeader?: boolean } = {}) {
   return (
     <div className="flex flex-col gap-6">
-      <section className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+      {showHeader ? <section className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
         <div>
           <h1 className="text-3xl font-semibold tracking-normal text-white">Dashboard</h1>
           <p className="mt-1 text-sm text-muted-foreground">Welcome back. Here&apos;s what&apos;s happening with your business.</p>
@@ -33,7 +33,7 @@ export function Dashboard() {
             Customize
           </Button>
         </div>
-      </section>
+      </section> : null}
 
       <section className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
         {dashboardKpis.map((kpi) => (
