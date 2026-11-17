@@ -2,6 +2,7 @@ import Link from "next/link";
 import { ArrowRight, BarChart3, Check, ClipboardList, Mail, Megaphone, MessageSquare, Route, ShieldCheck, Sparkles, Target, Workflow } from "lucide-react";
 import type { GTMLane } from "@/lib/gtm-lanes";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import { CheckList, MarketingShell, SectionHeader } from "@/components/marketing/marketing-shell";
 
 export function GTMLanePage({ lane }: { lane: GTMLane }) {
@@ -26,9 +27,9 @@ export function GTMLanePage({ lane }: { lane: GTMLane }) {
               </div>
               <div className="mt-8 grid gap-3 sm:grid-cols-3">
                 {lane.metrics.map((metric) => (
-                  <div key={metric.label} className="rounded-lg border border-white/10 bg-white/[0.035] p-4">
+                  <div key={metric.label} className="glass-inset p-inset">
                     <div className="text-2xl font-semibold text-white">{metric.value}</div>
-                    <div className="mt-1 text-xs leading-5 text-slate-500">{metric.label}</div>
+                    <div className="mt-1 text-xs leading-5 text-muted-foreground">{metric.label}</div>
                   </div>
                 ))}
               </div>
@@ -42,7 +43,7 @@ export function GTMLanePage({ lane }: { lane: GTMLane }) {
             <SectionHeader title="The buying problem this lane solves" body={`This funnel is written for ${lane.audience}, with pain-aware copy and a direct path from campaign click to qualified conversation.`} />
             <div className="grid gap-4 md:grid-cols-2">
               {lane.painPoints.map((point) => (
-                <div key={point} className="rounded-lg border border-white/10 bg-slate-950/60 p-5">
+                <div key={point} className="glass-inset p-5">
                   <Target className="size-5 text-sky-300" />
                   <p className="mt-4 text-sm leading-6 text-slate-300">{point}</p>
                 </div>
@@ -56,7 +57,7 @@ export function GTMLanePage({ lane }: { lane: GTMLane }) {
             <SectionHeader title="Offer stack" body="Each lane has a clear conversion offer, supporting assets, and a fulfillment promise that matches the buyer’s operating reality." />
             <div className="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
               {lane.offerStack.map((offer, index) => (
-                <article key={offer.title} className="glass-panel rounded-lg p-6">
+                <article key={offer.title} className="glass-panel p-panel">
                   <div className="flex size-10 items-center justify-center rounded-lg bg-sky-400/12 text-sky-300">{index + 1}</div>
                   <h3 className="mt-5 text-xl font-semibold text-white">{offer.title}</h3>
                   <p className="mt-3 text-sm leading-6 text-slate-400">{offer.body}</p>
@@ -80,7 +81,7 @@ export function GTMLanePage({ lane }: { lane: GTMLane }) {
               <SectionHeader title="Campaign assets for launch" body="Use these hooks and scripts to create the first paid, outbound, and retargeting tests for this lane." />
               <div className="mt-8 grid gap-4">
                 {lane.ads.map((ad) => (
-                  <div key={`${ad.channel}-${ad.hook}`} className="rounded-lg border border-white/10 bg-white/[0.035] p-5">
+                  <div key={`${ad.channel}-${ad.hook}`} className="glass-panel p-panel">
                     <div className="flex items-center gap-3 text-sm font-semibold text-sky-300">
                       <Megaphone className="size-4" />
                       {ad.channel}
@@ -90,7 +91,7 @@ export function GTMLanePage({ lane }: { lane: GTMLane }) {
                   </div>
                 ))}
               </div>
-              <div className="mt-8 rounded-lg border border-white/10 bg-white/[0.035] p-6">
+              <div className="mt-8 glass-panel p-panel">
                 <div className="flex items-center gap-3 text-sky-300">
                   <ClipboardList className="size-5" />
                   <h3 className="text-xl font-semibold text-white">Sales call path</h3>
@@ -117,10 +118,10 @@ function LanePreview({ lane }: { lane: GTMLane }) {
           <span className="size-3 rounded-full bg-amber-300" />
           <span className="size-3 rounded-full bg-emerald-400" />
         </div>
-        <div className="text-xs text-slate-500">gtm lane / {lane.name.toLowerCase()}</div>
+        <div className="text-xs text-muted-foreground">gtm lane / {lane.name.toLowerCase()}</div>
       </div>
       <div className="grid gap-4 pt-4 lg:grid-cols-[0.82fr_1fr]">
-        <div className="rounded-lg border border-white/10 bg-slate-950/70 p-5">
+        <div className="glass-panel p-panel">
           <div className="flex items-center gap-3 text-sky-300">
             <Sparkles className="size-5" />
             <span className="text-sm font-semibold text-white">{lane.funnel.offer}</span>
@@ -128,9 +129,9 @@ function LanePreview({ lane }: { lane: GTMLane }) {
           <p className="mt-4 text-sm leading-6 text-slate-400">{lane.funnel.conversionGoal}</p>
           <div className="mt-5 grid gap-3">
             {lane.funnel.sections.slice(0, 4).map((step, index) => (
-              <div key={step} className="flex items-center justify-between rounded-md border border-white/10 bg-white/[0.035] p-3 text-sm">
+              <div key={step} className="flex items-center justify-between glass-inset p-inset text-sm">
                 <span>{step}</span>
-                <span className="text-xs text-slate-500">0{index + 1}</span>
+                <span className="text-xs text-muted-foreground">0{index + 1}</span>
               </div>
             ))}
           </div>
@@ -162,24 +163,24 @@ function LanePreview({ lane }: { lane: GTMLane }) {
 
 function MiniMetric({ icon, label, value }: { icon: React.ReactNode; label: string; value: string }) {
   return (
-    <div className="rounded-md border border-white/10 bg-slate-950/55 p-4">
+    <div className="glass-panel p-4">
       <div className="text-sky-300">{icon}</div>
       <div className="mt-3 text-sm font-semibold text-white">{value}</div>
-      <div className="mt-1 text-xs text-slate-500">{label}</div>
+      <div className="mt-1 text-xs text-muted-foreground">{label}</div>
     </div>
   );
 }
 
 function FunnelPanel({ title, icon, items }: { title: string; icon: React.ReactNode; items: string[] }) {
   return (
-    <div className="glass-panel rounded-lg p-6">
+    <div className="glass-panel p-panel">
       <div className="flex items-center gap-3 text-sky-300">
         {icon}
         <h3 className="text-xl font-semibold text-white">{title}</h3>
       </div>
       <div className="mt-5 grid gap-3">
         {items.map((item) => (
-          <div key={item} className="flex items-start gap-3 rounded-md border border-white/10 bg-slate-950/50 p-3 text-sm leading-6 text-slate-300">
+          <div key={item} className="flex items-start gap-3 glass-panel p-3 text-sm leading-6 text-slate-300">
             <Check className="mt-1 size-4 shrink-0 text-emerald-300" />
             {item}
           </div>
@@ -191,7 +192,7 @@ function FunnelPanel({ title, icon, items }: { title: string; icon: React.ReactN
 
 function ConversionForm({ lane }: { lane: GTMLane }) {
   return (
-    <form id="gtm-form" data-lead-form action="/api/leads" data-source={lane.name} data-thank-you={lane.funnel.thankYouPath} className="glass-panel sticky top-24 rounded-lg p-6">
+    <form id="gtm-form" data-lead-form action="/api/leads" data-source={lane.name} data-thank-you={lane.funnel.thankYouPath} className="glass-panel p-panel lg:sticky lg:top-24">
       <input className="hidden" name="website" tabIndex={-1} autoComplete="off" />
       <input type="hidden" name="source" value={lane.name} />
       <input type="hidden" name="thank_you_path" value={lane.funnel.thankYouPath} />
@@ -206,14 +207,14 @@ function ConversionForm({ lane }: { lane: GTMLane }) {
         {lane.funnel.fields.map((field) => (
           <label key={field} className="grid gap-2 text-sm font-medium text-slate-300">
             {field}
-            <input name={field.toLowerCase().replaceAll(" ", "_")} className="h-11 rounded-md border border-white/10 bg-slate-950/70 px-3 text-sm text-white outline-none transition placeholder:text-slate-600 focus:border-sky-400" placeholder={field} />
+            <Input name={field.toLowerCase().replaceAll(" ", "_")} placeholder={field} />
           </label>
         ))}
         <label className="grid gap-2 text-sm font-medium text-slate-300">
           Work email
-          <input name="email" type="email" required className="h-11 rounded-md border border-white/10 bg-slate-950/70 px-3 text-sm text-white outline-none transition placeholder:text-slate-600 focus:border-sky-400" placeholder="you@company.com" />
+          <Input name="email" type="email" required placeholder="you@company.com" />
         </label>
-        <label className="flex items-start gap-3 rounded-lg border border-white/10 bg-white/[0.025] p-3 text-xs leading-5 text-slate-400">
+        <label className="flex items-start gap-3 glass-inset p-inset text-xs leading-5 text-slate-400">
           <input name="contact_consent" value="yes" required type="checkbox" className="mt-1 size-4 rounded border-white/20 bg-slate-950" />
           <span>I agree BrunerDigital may contact me about Digital360 using the information I submit. I can opt out of marketing messages at any time.</span>
         </label>

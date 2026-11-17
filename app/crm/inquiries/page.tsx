@@ -42,12 +42,12 @@ export default async function InquiriesPage({ searchParams }: { searchParams: Pr
         <Link href="/crm/inquiries" aria-current={campaignOnly ? undefined : "page"} className="rounded-md border border-white/15 px-3 py-2 aria-[current=page]:border-emerald-300">All inquiries</Link>
         <Link href={`/crm/inquiries?campaign=${digital360WalkthroughCampaign}`} aria-current={campaignOnly ? "page" : undefined} className="rounded-md border border-white/15 px-3 py-2 aria-[current=page]:border-emerald-300">Digital360 campaign</Link>
       </nav>
-      {outcome.status === "failed" ? <p role="alert" className="rounded-lg border border-white/15 p-5">Inquiries are temporarily unavailable. Try again shortly.</p> : null}
-      {outcome.status === "unconfigured" ? <p className="rounded-lg border border-white/15 p-5">This inbox is awaiting a workspace connection.</p> : null}
-      {result && !result.inquiries.length ? <p className="rounded-lg border border-white/15 p-5">No inquiries match this view.</p> : null}
+      {outcome.status === "failed" ? <p role="alert" className="glass-panel p-card">Inquiries are temporarily unavailable. Try again shortly.</p> : null}
+      {outcome.status === "unconfigured" ? <p className="glass-panel p-card">This inbox is awaiting a workspace connection.</p> : null}
+      {result && !result.inquiries.length ? <p className="glass-panel p-card">No inquiries match this view.</p> : null}
       {result?.inquiries.length ? <section aria-label="Latest inquiries" className="space-y-3">
         {result.inquiries.map(inquiry => (
-          <details key={inquiry.id} className="rounded-xl border border-white/15 bg-white/[0.025] p-4">
+          <details key={inquiry.id} className="glass-panel p-card">
             <summary className="cursor-pointer rounded-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-emerald-300">
               <span className="ml-2 font-semibold">{inquiry.name}</span>
               <span className="ml-2 text-sm text-muted-foreground">{inquiry.service}</span>

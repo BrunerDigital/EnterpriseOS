@@ -1,9 +1,10 @@
 import Link from "next/link";
 import { signIn } from "@/app/login/actions";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardDescription, CardHeader } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { BrunerLogo } from "@/components/app/bruner-logo";
+import { AuthArtwork } from "@/components/app/auth-artwork";
 
 type LoginPageProps = {
   searchParams?: Promise<{ error?: string; next?: string }>;
@@ -13,11 +14,11 @@ export default async function LoginPage({ searchParams }: LoginPageProps) {
   const params = await searchParams;
 
   return (
-    <main className="grid min-h-screen place-items-center px-4 py-10 grid-fade">
+    <AuthArtwork>
       <Card className="w-full max-w-md">
         <CardHeader>
           <BrunerLogo className="mb-2" />
-          <CardTitle className="text-3xl">Welcome back</CardTitle>
+          <h1 className="text-3xl font-semibold tracking-tight">Welcome back</h1>
           <CardDescription>Sign in to Digital360 by BrunerDigital.</CardDescription>
         </CardHeader>
         <CardContent>
@@ -28,8 +29,14 @@ export default async function LoginPage({ searchParams }: LoginPageProps) {
               </div>
             ) : null}
             <input type="hidden" name="next" value={params?.next ?? "/dashboard"} />
-            <Input name="email" placeholder="info@brunerdigital.com" type="email" autoComplete="email" required />
-            <Input name="password" placeholder="Password" type="password" autoComplete="current-password" required />
+            <label className="grid gap-1.5 text-sm font-medium">
+              Email
+              <Input name="email" placeholder="you@company.com" type="email" autoComplete="email" required />
+            </label>
+            <label className="grid gap-1.5 text-sm font-medium">
+              Password
+              <Input name="password" type="password" autoComplete="current-password" required />
+            </label>
             <Button type="submit">Sign in</Button>
             <Button asChild variant="outline">
               <Link href="/forgot-password">Forgot password?</Link>
@@ -41,6 +48,6 @@ export default async function LoginPage({ searchParams }: LoginPageProps) {
           </form>
         </CardContent>
       </Card>
-    </main>
+    </AuthArtwork>
   );
 }

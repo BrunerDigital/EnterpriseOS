@@ -9,6 +9,12 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      spacing: {
+        card: "var(--space-card)",
+        inset: "var(--space-inset)",
+        panel: "var(--space-panel)",
+        layout: "var(--space-layout)"
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",

@@ -1,0 +1,377 @@
+:root {
+  --d360-orb-image: url("/brand/artwork/signal-orb.webp");
+  --d360-horizon-image: url("/brand/artwork/wireframe-horizon.webp");
+  --d360-wave-image: url("/brand/artwork/particle-wave.webp");
+  --d360-spectrum: linear-gradient(100deg, #71f4df, #7bc1ff 53%, #b7a4ff);
+  --d360-canvas: #050a14;
+  --d360-banner-background:
+    linear-gradient(105deg, #273645f8 0%, #162330f5 35%, #101b276d 100%),
+    linear-gradient(0deg, #0a111da3, transparent 70%),
+    var(--d360-wave-image) right 58% / min(80%, 56rem) auto no-repeat,
+    #0c1627;
+}
+
+.d360-marketing {
+  position: relative;
+  isolation: isolate;
+  min-height: 100vh;
+  overflow-x: clip;
+  background: var(--d360-canvas);
+}
+
+.d360-marketing-horizon::before,
+.d360-workspace::before {
+  content: "";
+  position: absolute;
+  inset: 7.5rem 0 auto;
+  height: 39rem;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    linear-gradient(0deg, var(--d360-canvas), transparent 53%, #050a1430),
+    linear-gradient(90deg, var(--d360-canvas) 14%, #050a14eb 34%, #050a1438 77%),
+    var(--d360-horizon-image) right 57% / min(78vw, 62rem) auto no-repeat;
+}
+
+.d360-landing-hero {
+  background:
+    radial-gradient(ellipse at 78% 41%, #14152e 0%, #0b1929 27%, transparent 60%),
+    linear-gradient(180deg, #060a14, #080f1b 64%, var(--d360-canvas));
+}
+
+.d360-spectrum-text {
+  color: #9edcf7;
+}
+
+@supports (background-clip: text) {
+  .d360-spectrum-text {
+    background: var(--d360-spectrum);
+    background-clip: text;
+    color: transparent;
+  }
+}
+
+/* Center crops keep the whole signal visible without stretching the portrait source. */
+.d360-signal-art {
+  position: relative;
+  isolation: isolate;
+  width: 100%;
+  aspect-ratio: 1.08;
+  background:
+    radial-gradient(circle, #9aefff26 1px, transparent 1.5px) center / 24px 24px,
+    radial-gradient(ellipse, #274b7742, transparent 70%);
+  mix-blend-mode: screen;
+  mask-image: radial-gradient(ellipse, #000 54%, transparent 84%);
+}
+
+.d360-signal-art::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--d360-orb-image) center / 93% auto no-repeat;
+  mix-blend-mode: screen;
+}
+
+.d360-signal-art::after {
+  content: "";
+  position: absolute;
+  inset: 10%;
+  border: 1px solid #98d8f229;
+  border-radius: 50%;
+  mask-image: conic-gradient(#000, transparent 16%, #000 35%, transparent 52%, #000 73%, transparent 87%, #000);
+}
+
+.d360-landing-art {
+  max-width: 37rem;
+  margin-inline: auto;
+}
+
+.d360-team-rail {
+  border-top: 1px solid #80d4ee2b;
+}
+
+.d360-wave-panel {
+  background:
+    linear-gradient(90deg, #081222 12%, #081222f5 40%, #08122258),
+    linear-gradient(0deg, #050c1a 0%, transparent 57%),
+    var(--d360-wave-image) right 51% / min(77%, 62rem) auto no-repeat,
+    #081222;
+}
+
+.d360-art-footer {
+  background:
+    linear-gradient(0deg, #050a14 4%, #050a14af 65%, #050a14d1),
+    linear-gradient(90deg, #050a14 13%, #050a14ce 57%, #050a1473),
+    var(--d360-wave-image) right 58% / min(72%, 64rem) auto no-repeat,
+    #050a14;
+}
+
+.d360-auth {
+  background:
+    radial-gradient(ellipse at 26% 38%, #15264a, transparent 48%),
+    radial-gradient(ellipse at 79% 72%, #142137, transparent 49%),
+    var(--d360-canvas);
+}
+
+.d360-auth-frame {
+  overflow: hidden;
+  border-radius: 1.25rem;
+  --glass-shadow: 0 28px 75px #0007, inset 0 1px #ecf8ff14;
+}
+
+.d360-auth-art {
+  max-width: 34rem;
+  margin-inline: auto;
+}
+
+.d360-auth-form {
+  min-width: 0;
+  background: var(--glass-inset-fill);
+}
+
+.d360-auth-form > .glass-panel {
+  border: 0;
+  background: none;
+  box-shadow: none;
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+}
+
+.d360-workspace {
+  position: relative;
+  isolation: isolate;
+  background:
+    radial-gradient(circle at 1px 1px, #a2cbef12 1px, transparent 0) 0 0 / 24px 24px,
+    var(--d360-canvas);
+}
+
+.d360-workspace::before {
+  inset-block-start: 0;
+  height: 24rem;
+  opacity: .27;
+}
+
+.d360-workspace-sidebar {
+  background: linear-gradient(158deg, #263341f2, #121b28f2 28%, #0d1421f2 70%, #191b2cf2);
+  box-shadow: inset -1px 0 #ccecff12;
+  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(16px);
+}
+
+.d360-workspace-identity {
+  border-color: #a4e1eb50;
+  background: linear-gradient(110deg, #284355aa, #181f34b8);
+}
+
+.d360-workspace-mark {
+  background: linear-gradient(135deg, #5ac9df29, #8099f523);
+  color: #b5e9f4;
+  box-shadow: inset 0 0 0 1px #a5e5ee32;
+}
+
+.d360-workspace-links {
+  overscroll-behavior-block: contain;
+  scroll-padding-block: 0.5rem;
+  scrollbar-color: #486579 transparent;
+  scrollbar-width: thin;
+}
+
+.d360-workspace-nav {
+  transition: background-color 140ms ease-out, color 140ms ease-out;
+}
+
+.d360-workspace-nav:hover {
+  color: hsl(var(--foreground));
+  background-color: #d4e8ff12;
+}
+
+.d360-workspace-nav:focus-visible {
+  outline: 2px solid #8ae5f2;
+  outline-offset: -2px;
+}
+
+.d360-workspace-nav[aria-current] {
+  color: #d8fbff;
+  background: linear-gradient(106deg, #143749, #19243d);
+  box-shadow: inset 2px 0 #75ecdf;
+}
+
+.d360-drawer-overlay {
+  background: #040912b3;
+}
+
+.d360-workspace-drawer {
+  width: min(22rem, calc(100% - 2rem));
+  height: 100dvh;
+  min-height: 0;
+  padding-block: env(safe-area-inset-top, 0px) env(safe-area-inset-bottom, 0px);
+  background:
+    linear-gradient(160deg, #243644f5, #111b29f5 35%, #0d1522f5 75%, #182036ee);
+  box-shadow: 16px 0 55px #0006, inset -1px 0 #c1eff421;
+}
+
+@media (min-width: 1024px) {
+  .d360-drawer-overlay,
+  .d360-workspace-drawer {
+    display: none;
+  }
+}
+
+@media (max-height: 28rem) {
+  .d360-workspace-drawer .d360-nav-profile {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .d360-workspace-drawer[data-state="open"] {
+    animation: workspace-drawer-in 180ms ease-out;
+  }
+}
+
+@keyframes workspace-drawer-in {
+  from { transform: translateX(-100%); }
+  to { transform: translateX(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .d360-workspace-nav {
+    transition: none;
+  }
+}
+
+.d360-toolbar {
+  background: linear-gradient(108deg, #1c2836ed, #111a28e8 55%, #191d2ee3);
+  border-bottom-color: #a5c4dd3b;
+  box-shadow: inset 0 1px #e4f4ff0a;
+  -webkit-backdrop-filter: blur(18px);
+  backdrop-filter: blur(18px);
+}
+
+.d360-dashboard-content > div {
+  row-gap: var(--space-layout);
+}
+
+/* The dashboard and inbox supply their own header markup. */
+.d360-workspace-banner,
+.d360-workspace-content > header:first-child,
+.d360-dashboard-content > div > :is(header, section):first-child {
+  min-width: 0;
+  padding: var(--space-panel);
+  border: 1px solid var(--glass-border);
+  border-top-color: var(--glass-rim);
+  border-radius: 1rem;
+  box-shadow: var(--glass-shadow);
+  background: var(--d360-banner-background);
+}
+
+@media (min-width: 768px) {
+  .d360-auth-form {
+    border-left: 1px solid #8ccfff24;
+  }
+}
+
+@media (max-width: 767px) {
+  :root {
+    --d360-banner-background:
+      linear-gradient(165deg, #253340 4%, #162330dc 47%, #101b27a9),
+      var(--d360-wave-image) center 62% / cover no-repeat,
+      #0a1323;
+  }
+
+  .d360-marketing-horizon::before {
+    inset-block-start: 8.5rem;
+    height: 33rem;
+    background:
+      linear-gradient(180deg, #050a145e, #050a14bb 66%, var(--d360-canvas)),
+      linear-gradient(90deg, #050a14ca, #050a1461),
+      var(--d360-horizon-image) center 54% / cover no-repeat;
+  }
+
+  .d360-landing-hero {
+    background:
+      radial-gradient(ellipse at 50% 66%, #121d36, transparent 59%),
+      var(--d360-canvas);
+  }
+
+  .d360-landing-art {
+    max-width: 22rem;
+  }
+
+  .d360-auth-art {
+    aspect-ratio: 1.55;
+    max-width: 18rem;
+  }
+
+  .d360-auth-art::before {
+    background-size: 65% auto;
+  }
+
+  .d360-auth-art::after {
+    inset: 8% 25%;
+  }
+
+  .d360-auth-form {
+    border-top: 1px solid #8ccfff24;
+  }
+
+  .d360-wave-panel,
+  .d360-art-footer {
+    background: var(--d360-banner-background);
+  }
+}
+
+@media (prefers-reduced-transparency: reduce) {
+  .d360-toolbar,
+  .d360-workspace-sidebar,
+  .d360-workspace-identity,
+  .d360-workspace-drawer,
+  .d360-auth-form {
+    background: var(--glass-solid);
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+
+  :root {
+    --d360-banner-background: var(--glass-solid);
+  }
+}
+
+@media (forced-colors: active) {
+  :root {
+    --d360-banner-background: Canvas;
+  }
+
+  .d360-signal-art,
+  .d360-marketing-horizon::before,
+  .d360-workspace::before {
+    display: none;
+  }
+
+  .d360-auth-form {
+    grid-column: 1 / -1;
+  }
+
+  .d360-toolbar,
+  .d360-workspace-sidebar,
+  .d360-workspace-identity,
+  .d360-workspace-drawer,
+  .d360-auth-form {
+    background: Canvas;
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+
+  .d360-spectrum-text {
+    color: CanvasText;
+  }
+
+  .d360-wave-panel,
+  .d360-art-footer {
+    background: Canvas;
+  }
+
+  .d360-workspace-nav[aria-current] {
+    outline: 1px solid Highlight;
+  }
+}

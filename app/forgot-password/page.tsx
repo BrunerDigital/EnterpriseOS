@@ -1,8 +1,9 @@
 import Link from "next/link";
 import { sendPasswordReset } from "@/app/forgot-password/actions";
 import { BrunerLogo } from "@/components/app/bruner-logo";
+import { AuthArtwork } from "@/components/app/auth-artwork";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardDescription, CardHeader } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 
 type ForgotPasswordPageProps = {
@@ -13,11 +14,11 @@ export default async function ForgotPasswordPage({ searchParams }: ForgotPasswor
   const params = await searchParams;
 
   return (
-    <main className="grid min-h-screen place-items-center px-4 py-10 grid-fade">
+    <AuthArtwork>
       <Card className="w-full max-w-md">
         <CardHeader>
           <BrunerLogo className="mb-2" />
-          <CardTitle className="text-3xl">Reset password</CardTitle>
+          <h1 className="text-3xl font-semibold tracking-tight">Reset password</h1>
           <CardDescription>Send a secure password reset link to an invited Digital360 user.</CardDescription>
         </CardHeader>
         <CardContent>
@@ -32,7 +33,10 @@ export default async function ForgotPasswordPage({ searchParams }: ForgotPasswor
                 If that email exists, a reset link is on the way.
               </div>
             ) : null}
-            <Input name="email" placeholder="info@brunerdigital.com" type="email" autoComplete="email" required />
+            <label className="grid gap-1.5 text-sm font-medium">
+              Email
+              <Input name="email" placeholder="you@company.com" type="email" autoComplete="email" required />
+            </label>
             <Button type="submit">Send reset link</Button>
             <Button asChild variant="outline">
               <Link href="/login">Back to login</Link>
@@ -40,6 +44,6 @@ export default async function ForgotPasswordPage({ searchParams }: ForgotPasswor
           </form>
         </CardContent>
       </Card>
-    </main>
+    </AuthArtwork>
   );
 }

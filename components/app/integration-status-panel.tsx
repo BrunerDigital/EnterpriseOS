@@ -43,7 +43,7 @@ export function IntegrationStatusPanel({ statuses }: { statuses: IntegrationStat
                   </div>
                 ) : null}
                 {item.missing.length > 0 ? (
-                  <div className="rounded-lg border border-white/10 bg-white/[0.025] p-3">
+                  <div className="glass-inset p-inset">
                     <div className="mb-2 flex items-center gap-2 text-sm font-semibold text-slate-300">
                       <CircleDot className="size-4 text-slate-500" />
                       Required next

@@ -7,7 +7,7 @@ export function ModulePage({ module }: { module: ModuleConfig }) {
   return (
     <div>
       <PageHeader title={module.title} description={module.description} action={module.primaryAction} />
-      <section className="grid gap-4 md:grid-cols-3">
+      <section className="grid gap-layout md:grid-cols-3">
         {module.stats.map((stat) => (
           <Card key={stat}>
             <CardHeader>
@@ -17,7 +17,7 @@ export function ModulePage({ module }: { module: ModuleConfig }) {
           </Card>
         ))}
       </section>
-      <section className="mt-6 grid gap-6 xl:grid-cols-[1fr_0.7fr]">
+      <section className="mt-layout grid gap-layout xl:grid-cols-[minmax(0,1fr)_minmax(0,0.7fr)]">
         <Card>
           <CardHeader>
             <CardTitle>{module.title} workspace</CardTitle>
@@ -25,7 +25,7 @@ export function ModulePage({ module }: { module: ModuleConfig }) {
           </CardHeader>
           <CardContent className="flex flex-col gap-3">
             {module.items.map((item, index) => (
-              <div key={item} className="flex items-center justify-between gap-3 rounded-lg border border-white/10 bg-white/[0.025] p-4">
+              <div key={item} className="glass-inset flex flex-wrap items-center justify-between gap-3 p-inset">
                 <div>
                   <div className="font-medium">{item}</div>
                   <div className="mt-1 text-sm text-muted-foreground">

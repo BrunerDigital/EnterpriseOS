@@ -41,7 +41,7 @@ export default function ContactDetailPage() {
           </CardHeader>
           <CardContent className="flex flex-col gap-4">
             {["AI scored lead at 92 after pricing page visit", "SMS reply suggestion accepted by Ari", "Demo booked for Wednesday at 2:00 PM", "Proposal task assigned to Mira"].map((event) => (
-              <div key={event} className="rounded-lg border border-white/10 bg-white/[0.025] p-4">
+              <div key={event} className="glass-inset p-inset">
                 <div className="font-medium">{event}</div>
                 <div className="mt-1 text-sm text-muted-foreground">Tenant Apex Growth · Workspace Northfield Dental · Audit logged</div>
               </div>

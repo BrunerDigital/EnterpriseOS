@@ -11,6 +11,7 @@ import {
   Globe2,
   Inbox,
   LayoutDashboard,
+  type LucideIcon,
   Megaphone,
   PanelTop,
   Rocket,
@@ -23,32 +24,34 @@ import {
   Workflow
 } from "lucide-react";
 
+export const workspaceNavGroups = ["Workspace", "CRM", "Marketing", "Finance", "Administration"] as const;
+
 export const navItems = [
-  { href: "/dashboard", label: "Dashboard", icon: LayoutDashboard },
-  { href: "/launch", label: "Launch Center", icon: Rocket },
-  { href: "/crm/contacts", label: "Contacts", icon: Users },
-  { href: "/crm/inquiries", label: "Inquiries", icon: Inbox },
-  { href: "/companies", label: "Companies", icon: Building2 },
-  { href: "/deals", label: "Deals", icon: BriefcaseBusiness },
-  { href: "/calendar", label: "Calendar", icon: CalendarDays },
-  { href: "/conversations", label: "Conversations", icon: Inbox },
-  { href: "/campaigns", label: "Campaigns", icon: Megaphone },
-  { href: "/automations", label: "Automations", icon: Workflow },
-  { href: "/funnels", label: "Funnels", icon: PanelTop },
-  { href: "/forms", label: "Forms", icon: FileText },
-  { href: "/reputation", label: "Reviews", icon: Star },
-  { href: "/payments", label: "Payments", icon: CreditCard },
-  { href: "/reporting", label: "Reporting", icon: BarChart3 },
-  { href: "/ai", label: "AI Command", icon: Bot },
-  { href: "/portal", label: "Client Portal", icon: Globe2 },
-  { href: "/agency", label: "Agency Admin", icon: ShieldCheck },
-  { href: "/white-label", label: "White Label", icon: Flag },
-  { href: "/team", label: "Team", icon: Users },
-  { href: "/integrations", label: "Integrations", icon: Activity },
-  { href: "/settings/config", label: "Platform Config", icon: SlidersHorizontal },
-  { href: "/billing", label: "Billing", icon: Settings },
-  { href: "/help", label: "Docs", icon: Sparkles }
-];
+  { href: "/dashboard", label: "Dashboard", icon: LayoutDashboard, group: "Workspace" },
+  { href: "/launch", label: "Launch Center", icon: Rocket, group: "Workspace" },
+  { href: "/calendar", label: "Calendar", icon: CalendarDays, group: "Workspace" },
+  { href: "/reporting", label: "Reporting", icon: BarChart3, group: "Workspace" },
+  { href: "/portal", label: "Client Portal", icon: Globe2, group: "Workspace" },
+  { href: "/crm/contacts", label: "Contacts", icon: Users, group: "CRM" },
+  { href: "/crm/inquiries", label: "Inquiries", icon: Inbox, group: "CRM" },
+  { href: "/companies", label: "Companies", icon: Building2, group: "CRM" },
+  { href: "/deals", label: "Deals", icon: BriefcaseBusiness, group: "CRM" },
+  { href: "/conversations", label: "Conversations", icon: Inbox, group: "CRM" },
+  { href: "/campaigns", label: "Campaigns", icon: Megaphone, group: "Marketing" },
+  { href: "/automations", label: "Automations", icon: Workflow, group: "Marketing" },
+  { href: "/funnels", label: "Funnels", icon: PanelTop, group: "Marketing" },
+  { href: "/forms", label: "Forms", icon: FileText, group: "Marketing" },
+  { href: "/reputation", label: "Reviews", icon: Star, group: "Marketing" },
+  { href: "/ai", label: "AI Command", icon: Bot, group: "Marketing" },
+  { href: "/payments", label: "Payments", icon: CreditCard, group: "Finance" },
+  { href: "/billing", label: "Billing", icon: Settings, group: "Finance" },
+  { href: "/agency", label: "Agency Admin", icon: ShieldCheck, group: "Administration" },
+  { href: "/white-label", label: "White Label", icon: Flag, group: "Administration" },
+  { href: "/team", label: "Team", icon: Users, group: "Administration" },
+  { href: "/integrations", label: "Integrations", icon: Activity, group: "Administration" },
+  { href: "/settings/config", label: "Platform Config", icon: SlidersHorizontal, group: "Administration" },
+  { href: "/help", label: "Docs", icon: Sparkles, group: "Workspace" }
+] satisfies Array<{ href: string; label: string; icon: LucideIcon; group: (typeof workspaceNavGroups)[number] }>;
 
 export const kpis = [
   { label: "Revenue", value: "$284K", change: "+18.4%", tone: "success" },

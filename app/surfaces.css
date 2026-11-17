@@ -1,0 +1,132 @@
+:root {
+  --glass-solid: #161e29;
+  --glass-fill:
+    linear-gradient(138deg, #bbd8f31a, transparent 36%),
+    linear-gradient(160deg, #263240d9 0%, #111923e8 52%, #111724de 100%);
+  --glass-border: #9eb6d044;
+  --glass-rim: #cee7fa5c;
+  --glass-shadow: 0 14px 34px #01040b4f, inset 0 1px #ecf8ff0d;
+  --glass-inset-fill: linear-gradient(158deg, #9db4ce15, #0b142057 48%, #060b155c);
+}
+
+.glass-panel,
+.glass-inset {
+  min-width: 0;
+  border: 1px solid var(--glass-border);
+  overflow-wrap: anywhere;
+}
+
+.glass-panel {
+  border-top-color: var(--glass-rim);
+  border-radius: 1rem;
+  background: var(--glass-solid);
+  box-shadow: var(--glass-shadow);
+}
+
+@supports ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .glass-panel {
+    background: var(--glass-fill);
+    -webkit-backdrop-filter: blur(15px) saturate(115%);
+    backdrop-filter: blur(15px) saturate(115%);
+  }
+}
+
+.glass-panel-featured {
+  --glass-border: #8ae4f364;
+  --glass-rim: #adf7ff8a;
+  --glass-fill:
+    linear-gradient(140deg, #77e7ff2e, transparent 44%),
+    linear-gradient(160deg, #1b2a3af2, #111923e8 62%, #191a2cde);
+}
+
+/* Recessed rows share the finish without introducing another blur layer. */
+.glass-inset {
+  border-color: #98b4cf38;
+  border-radius: 0.7rem;
+  background: var(--glass-inset-fill);
+  box-shadow: inset 0 1px #b4d3ec0b;
+}
+
+a:is(.glass-panel, .glass-inset):hover {
+  border-color: #91e7f496;
+}
+
+.d360-kpi-content {
+  container-type: inline-size;
+}
+
+@media (min-width: 380px) {
+  .d360-kpi-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1280px) {
+  .d360-kpi-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+@container (min-width: 12rem) {
+  .d360-kpi-values {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+  }
+}
+
+.source-mix-card {
+  container-type: inline-size;
+}
+
+@container (min-width: 16rem) {
+  .source-mix-layout {
+    grid-template-columns: auto minmax(0, 1fr);
+    align-items: center;
+  }
+}
+
+.d360-field {
+  min-width: 0;
+  border-color: #9eb6d062;
+  background: #0a111bd9;
+  box-shadow: inset 0 1px 3px #03070c6b;
+}
+
+.d360-field::placeholder {
+  color: #a4b2c6;
+}
+
+@media (prefers-reduced-transparency: reduce) {
+  .glass-panel {
+    background: var(--glass-solid);
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+
+  .glass-inset {
+    background: #19232f;
+  }
+
+  .d360-field {
+    background: #0a111b;
+  }
+}
+
+@media (forced-colors: active) {
+  .glass-panel,
+  .glass-inset,
+  .d360-field {
+    border-color: CanvasText;
+    background: Canvas;
+    box-shadow: none;
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+
+  :where(a, button, input, select, textarea, summary):focus-visible {
+    outline: 2px solid Highlight !important;
+    outline-offset: 3px;
+  }
+}

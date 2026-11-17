@@ -69,19 +69,19 @@ export default async function Page({ searchParams }: TeamPageProps) {
             <CardDescription>Current v1 access rules enforced in the app shell and server actions.</CardDescription>
           </CardHeader>
           <CardContent className="grid gap-3 text-sm text-muted-foreground md:grid-cols-2">
-            <div className="rounded-lg border border-white/10 bg-white/[0.025] p-4">
+            <div className="glass-inset p-inset">
               <div className="font-medium text-foreground">Agency owner/admin</div>
               <p className="mt-1">Full tenant, white-label, integrations, billing, team, and workspace access.</p>
             </div>
-            <div className="rounded-lg border border-white/10 bg-white/[0.025] p-4">
+            <div className="glass-inset p-inset">
               <div className="font-medium text-foreground">Workspace admin</div>
               <p className="mt-1">Operational access with team invite ability, excluding agency-only controls.</p>
             </div>
-            <div className="rounded-lg border border-white/10 bg-white/[0.025] p-4">
+            <div className="glass-inset p-inset">
               <div className="font-medium text-foreground">Sales roles</div>
               <p className="mt-1">CRM, deals, conversations, campaigns, automations, and reporting surfaces.</p>
             </div>
-            <div className="rounded-lg border border-white/10 bg-white/[0.025] p-4">
+            <div className="glass-inset p-inset">
               <div className="font-medium text-foreground">Client roles</div>
               <p className="mt-1">Focused portal, conversations, reports, docs, and dashboard access.</p>
             </div>

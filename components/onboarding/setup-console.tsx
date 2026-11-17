@@ -75,12 +75,11 @@ export function SetupConsole({ activeSlug, mode = "overview" }: SetupConsoleProp
   }
 
   return (
-    <div className="min-h-screen bg-[#020711] text-white">
-      <div className="pointer-events-none fixed inset-0 -z-10 bg-[radial-gradient(circle_at_28%_0%,rgba(37,99,235,.15),transparent_30rem),radial-gradient(circle_at_80%_10%,rgba(16,185,129,.08),transparent_24rem),linear-gradient(180deg,#030713_0%,#050d19_52%,#02050d_100%)]" />
-      <header className="sticky top-0 z-40 border-b border-white/10 bg-[#030814]/92 backdrop-blur-2xl">
-        <div className="flex h-20 items-center justify-between px-4 md:px-6">
+    <div className="d360-workspace min-h-screen text-white">
+      <header className="d360-toolbar sticky top-0 z-40 border-b">
+        <div className="flex min-h-[4.5rem] items-center justify-between gap-3 px-panel md:h-20">
           <BrandLockup />
-          <div className="hidden w-full max-w-md items-center gap-2 rounded-md border border-white/10 bg-white/[0.035] px-3 py-2 text-sm text-slate-500 lg:flex">
+          <div className="glass-inset hidden w-full max-w-md items-center gap-2 px-3 py-2 text-sm text-muted-foreground lg:flex">
             <Search className="size-4" />
             <span className="flex-1">Search contacts, tasks, pages...</span>
             <kbd className="rounded border border-white/10 bg-white/[0.05] px-1.5 py-0.5 text-[10px] text-slate-400">⌘ K</kbd>
@@ -94,16 +93,16 @@ export function SetupConsole({ activeSlug, mode = "overview" }: SetupConsoleProp
               </div>
               <div>
                 <div className="text-sm font-semibold">Brittany Blakely</div>
-                <div className="text-xs text-slate-500">Owner</div>
+                <div className="text-xs text-muted-foreground">Owner</div>
               </div>
-              <ChevronDown className="size-4 text-slate-500" />
+              <ChevronDown className="size-4 text-muted-foreground" />
             </div>
           </div>
         </div>
       </header>
 
       <div className="grid min-h-[calc(100vh-5rem)] grid-cols-1 lg:grid-cols-[4.75rem_1fr]">
-        <aside className="relative hidden border-r border-white/10 bg-[#030814]/86 p-3 lg:block">
+        <aside className="d360-workspace-sidebar relative hidden border-r border-white/10 p-3 lg:block">
           <div className="grid gap-3">
             {iconRail.map((Icon, index) => (
               <Link
@@ -121,14 +120,13 @@ export function SetupConsole({ activeSlug, mode = "overview" }: SetupConsoleProp
           </div>
         </aside>
 
-        <main className="p-4 md:p-6">
-          <div className="mx-auto grid max-w-[92rem] gap-5 xl:grid-cols-[18rem_1fr]">
-            <SetupSidebar progress={progress} />
-            <div className="min-w-0">
-              <section className="mb-5 grid gap-5 rounded-lg border border-white/10 bg-white/[0.025] p-5 md:grid-cols-[1fr_18rem] md:items-start">
+        <main className="min-w-0 px-panel py-layout">
+          <div className="mx-auto grid max-w-[92rem] gap-layout xl:grid-cols-[17rem_minmax(0,1fr)]">
+            <div className="min-w-0 xl:col-start-2 xl:row-start-1">
+              <section className="d360-workspace-banner mb-layout grid gap-layout md:grid-cols-[minmax(0,1fr)_minmax(0,15rem)] md:items-center">
                 <div>
-                  <h1 className="text-2xl font-semibold tracking-normal text-white">Setup & Onboarding</h1>
-                  <p className="mt-2 text-sm leading-6 text-slate-400">Complete your setup to unlock the full power of Digital360.</p>
+                  <h1 className="text-balance text-3xl font-semibold leading-tight tracking-[-0.025em] text-white">Setup & Onboarding</h1>
+                  <p className="mt-2 text-pretty text-sm leading-relaxed text-muted-foreground">Complete your setup to unlock the full power of Digital360.</p>
                 </div>
                 <div>
                   <div className="mb-2 flex items-center justify-between text-sm">
@@ -144,7 +142,7 @@ export function SetupConsole({ activeSlug, mode = "overview" }: SetupConsoleProp
               <SetupChecklist activeSlug={activeStep.slug} completedSteps={completedSteps} mode={mode} />
 
               {mode === "step" ? (
-                <section className="mt-5 grid gap-5 xl:grid-cols-[.9fr_1.1fr]">
+                <section className="mt-layout grid gap-layout 2xl:grid-cols-[minmax(0,.9fr)_minmax(0,1.1fr)]">
                   <StepChecklist slug={activeStep.slug} />
                   <SetupForm slug={activeStep.slug} onCompleteStep={completeStep} />
                 </section>
@@ -152,6 +150,7 @@ export function SetupConsole({ activeSlug, mode = "overview" }: SetupConsoleProp
                 <OverviewNextSteps />
               )}
             </div>
+            <SetupSidebar progress={progress} />
           </div>
         </main>
       </div>
@@ -175,7 +174,7 @@ function BrandLockup() {
 
 function SetupSidebar({ progress }: { progress: number }) {
   return (
-    <aside className="rounded-lg border border-white/10 bg-[#07111f]/82 p-5 shadow-panel xl:sticky xl:top-28 xl:self-start">
+    <aside className="glass-panel p-card xl:sticky xl:top-28 xl:col-start-1 xl:row-start-1 xl:self-start">
       <div>
         <div className="text-base font-medium text-slate-300">Setup Progress</div>
         <div className="mt-2 text-sm text-slate-400">{progress}% Complete</div>
@@ -194,18 +193,18 @@ function SetupSidebar({ progress }: { progress: number }) {
             BB
           </div>
           <div className="mt-3 font-semibold text-white">Brittany Blakely</div>
-          <div className="mt-1 text-sm text-slate-500">info@brunerdigital.com</div>
+          <div className="mt-1 text-sm text-muted-foreground">info@brunerdigital.com</div>
           <Button variant="outline" className="mt-4 w-full border-white/15 bg-white/[0.03]">Manage Profile</Button>
         </div>
       </div>
       <div className="mt-6 border-t border-white/10 pt-5">
         <div className="text-sm text-slate-400">Current Workspace</div>
-        <div className="mt-3 flex items-center justify-between rounded-md border border-white/10 bg-white/[0.035] p-3">
+        <div className="glass-inset mt-3 flex items-center justify-between gap-2 p-inset">
           <div>
             <div className="text-sm font-semibold text-white">BrunerDigital</div>
-            <div className="text-xs text-slate-500">Agency Workspace</div>
+            <div className="text-xs text-muted-foreground">Agency Workspace</div>
           </div>
-          <ChevronRight className="size-4 text-slate-500" />
+          <ChevronRight className="size-4 text-muted-foreground" />
         </div>
         <Button variant="outline" className="mt-3 w-full border-white/15 bg-white/[0.03]">View Workspace</Button>
       </div>
@@ -220,7 +219,7 @@ function SetupSidebar({ progress }: { progress: number }) {
           ))}
         </div>
       </div>
-      <div className="mt-8 rounded-lg border border-white/10 bg-white/[0.035] p-4">
+      <div className="glass-inset mt-6 p-inset">
         <div className="font-semibold text-white">Need Help?</div>
         <p className="mt-2 text-sm leading-5 text-slate-400">Our team is here to help you succeed.</p>
         <Button variant="outline" className="mt-4 w-full border-white/15 bg-white/[0.03]">Contact Success Team</Button>
@@ -231,8 +230,7 @@ function SetupSidebar({ progress }: { progress: number }) {
 
 function SetupChecklist({ activeSlug, completedSteps, mode }: { activeSlug: string; completedSteps: string[]; mode: "overview" | "step" }) {
   return (
-    <section className="relative">
-      <div className="absolute bottom-8 left-[1.35rem] top-8 hidden w-px bg-white/12 md:block" />
+    <section aria-label="Setup steps">
       <div className="grid gap-3">
         {setupSteps.map((step, index) => {
           const Icon = step.icon;
@@ -248,36 +246,39 @@ function SetupChecklist({ activeSlug, completedSteps, mode }: { activeSlug: stri
             <div
               key={step.slug}
               className={cn(
-                "group relative grid gap-4 rounded-lg border border-white/10 bg-[#07111f]/78 p-4 transition hover:border-blue-400/35 hover:bg-[#0a1728] md:grid-cols-[3.25rem_2rem_1fr_10rem_7.5rem] md:items-center",
-                active && "border-blue-400/25 bg-[#0a1728]"
+                "glass-panel grid grid-cols-[auto_minmax(0,1fr)] items-start gap-x-3 gap-y-3 p-card sm:gap-x-4 lg:grid-cols-[auto_minmax(0,1fr)_auto] lg:items-center",
+                active && "glass-panel-featured"
               )}
             >
-              <div className={cn("absolute -left-[.15rem] top-1/2 hidden size-3 -translate-y-1/2 rounded-full border border-[#020711] md:block", completed || active ? "bg-emerald-300" : "bg-slate-600")} />
-              <div className={cn("flex size-12 items-center justify-center rounded-md bg-gradient-to-br text-white shadow-[0_0_28px_rgba(37,99,235,.24)]", rowTone[index])}>
-                <Icon className="size-6" />
+              <div className={cn("row-span-2 flex size-10 items-center justify-center rounded-md bg-gradient-to-br text-white sm:size-12 lg:row-span-1", rowTone[index])}>
+                <Icon className="size-5 sm:size-6" />
               </div>
-              <div className="text-2xl font-semibold text-white">{index + 1}</div>
               <div className="min-w-0">
-                <div className="font-semibold text-white">{step.title}</div>
-                <p className="mt-1 truncate text-sm text-slate-400">{step.description}</p>
+                <div className="flex flex-wrap items-baseline gap-x-2">
+                  <span className="text-xs font-semibold tabular-nums text-muted-foreground">{index + 1}.</span>
+                  <h2 className="text-base font-semibold leading-snug text-white">{step.title}</h2>
+                </div>
+                <p className="mt-1 text-pretty text-sm leading-relaxed text-muted-foreground">{step.description}</p>
                 {active && index === 3 ? (
-                  <div className="mt-4 grid gap-2 md:grid-cols-[7rem_1fr_3rem_11rem] md:items-center">
+                  <div className="mt-3 grid grid-cols-[minmax(0,1fr)_auto] items-center gap-x-3 gap-y-2">
                     <div className="text-xs font-semibold text-slate-300">Import Progress</div>
-                    <div className="h-2 overflow-hidden rounded-full bg-white/10">
+                    <div className="text-xs tabular-nums text-slate-300">62%</div>
+                    <div className="col-span-full h-2 overflow-hidden rounded-full bg-white/10">
                       <div className="h-full w-[62%] rounded-full bg-gradient-to-r from-emerald-300 to-teal-400" />
                     </div>
-                    <div className="text-xs text-slate-300">62%</div>
-                    <div className="text-xs text-slate-400 md:text-right">1,250 of 2,000 records imported</div>
+                    <div className="col-span-full text-xs tabular-nums text-muted-foreground">1,250 of 2,000 records imported</div>
                   </div>
                 ) : null}
               </div>
-              <div className={cn("flex items-center gap-2 text-sm", completed && "text-emerald-300", active && "text-amber-300", pending && "text-slate-400")}>
-                {completed ? <Check className="size-4" /> : <Circle className="size-4" />}
-                {status}
+              <div className="col-start-2 flex flex-wrap items-center justify-between gap-2 lg:col-start-auto lg:w-52 lg:flex-nowrap lg:gap-4">
+                <div className={cn("flex items-center gap-2 text-sm", completed && "text-emerald-300", active && "text-amber-300", pending && "text-muted-foreground")}>
+                  {completed ? <Check className="size-4 shrink-0" /> : <Circle className="size-4 shrink-0" />}
+                  {status}
+                </div>
+                <Button asChild className={cn(active && "bg-blue-600 text-white hover:bg-blue-500")} variant={active ? "default" : "outline"}>
+                  <Link href={step.href}>{action}</Link>
+                </Button>
               </div>
-              <Button asChild className={cn("justify-self-start md:justify-self-end", active ? "bg-blue-600 text-white hover:bg-blue-500" : "border-white/15 bg-white/[0.035] text-white hover:bg-white/[0.08]")} variant={active ? "default" : "outline"}>
-                <Link href={step.href}>{action}</Link>
-              </Button>
             </div>
           );
         })}
@@ -288,7 +289,7 @@ function SetupChecklist({ activeSlug, completedSteps, mode }: { activeSlug: stri
 
 function OverviewNextSteps() {
   return (
-    <section className="mt-5 grid gap-5 rounded-lg border border-white/10 bg-[#07111f]/78 p-5 md:grid-cols-[1fr_18rem]">
+    <section className="glass-panel mt-layout grid gap-layout p-panel md:grid-cols-[minmax(0,1fr)_minmax(0,16rem)]">
       <div>
         <h2 className="font-semibold text-white">Your next steps</h2>
         <div className="mt-4 grid gap-3">
@@ -316,7 +317,7 @@ function StepChecklist({ slug }: { slug: string }) {
   const step = getSetupStep(slug);
 
   return (
-    <section className="rounded-lg border border-white/10 bg-[#07111f]/78 p-5">
+    <section className="glass-panel p-panel">
       <div className="flex items-center gap-3">
         <KeyRound className="size-5 text-blue-300" />
         <div>
@@ -326,7 +327,7 @@ function StepChecklist({ slug }: { slug: string }) {
       </div>
       <div className="mt-5 grid gap-3">
         {step.checklist.map((item, index) => (
-          <div key={item} className="flex items-start gap-3 rounded-md border border-white/10 bg-white/[0.025] p-4">
+          <div key={item} className="glass-inset flex items-start gap-3 p-inset">
             <div className={cn("mt-0.5 flex size-6 shrink-0 items-center justify-center rounded-md text-xs font-semibold", index === 0 ? "bg-emerald-400/15 text-emerald-200" : "bg-blue-400/12 text-blue-200")}>
               {index + 1}
             </div>
@@ -381,7 +382,7 @@ function SetupForm({ slug, onCompleteStep }: { slug: string; onCompleteStep: (sl
   }
 
   return (
-    <section className="rounded-lg border border-white/10 bg-[#07111f]/78 p-5">
+    <section className="glass-panel p-panel">
       <div className="flex items-center gap-3">
         <Sparkles className="size-5 text-emerald-300" />
         <div>
@@ -394,7 +395,7 @@ function SetupForm({ slug, onCompleteStep }: { slug: string; onCompleteStep: (sl
           {fields.map((field) => (
             <label key={field} className="grid gap-2 text-sm font-medium text-slate-300">
               {field}
-              <Input name={field.toLowerCase().replaceAll(" ", "_")} placeholder={field} className="border-white/10 bg-[#050b15] text-white placeholder:text-slate-600" />
+              <Input name={field.toLowerCase().replaceAll(" ", "_")} placeholder={field} />
             </label>
           ))}
         </div>

@@ -20,7 +20,7 @@ export default function DealsPage() {
               </div>
               <div className="flex flex-col gap-3">
                 {stage.deals.map((deal) => (
-                  <div key={deal.name} className="rounded-lg border border-white/10 bg-white/[0.03] p-4">
+                  <div key={deal.name} className="glass-inset p-inset">
                     <div className="font-medium">{deal.name}</div>
                     <div className="mt-2 flex items-center justify-between text-sm text-muted-foreground">
                       <span>{deal.owner}</span>

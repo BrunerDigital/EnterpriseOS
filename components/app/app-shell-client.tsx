@@ -1,16 +1,15 @@
 "use client";
 
-import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Bell, ChevronDown, Command, LogOut, Menu, Search } from "lucide-react";
+import { Bell, Command, LogOut, Search } from "lucide-react";
 import { navItems } from "@/lib/demo-data";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
-import { BrunerLogo } from "@/components/app/bruner-logo";
+import { DesktopWorkspaceSidebar, MobileWorkspaceMenu } from "@/components/app/workspace-navigation";
 import type { AppSession } from "@/lib/auth/session";
-import { canAccessAdmin, canAccessBilling, clientRoles, formatRole } from "@/lib/auth/roles";
+import { canAccessAdmin, canAccessBilling, clientRoles } from "@/lib/auth/roles";
 
 const adminOnlyRoutes = new Set(["/agency", "/white-label", "/launch", "/settings/config"]);
 const billingRoutes = new Set(["/payments", "/billing"]);
@@ -39,66 +38,19 @@ function filterNavItems(role: AppSession["profile"]["role"], tenantSlug: string)
 
 export function AppShellClient({ children, session }: { children: React.ReactNode; session: AppSession }) {
   const pathname = usePathname();
-  const visibleNavItems = filterNavItems(session.profile.role, session.tenant.slug);
+  const navigation = { items: filterNavItems(session.profile.role, session.tenant.slug), pathname, session };
 
   return (
-    <div className="min-h-screen grid-fade">
+    <div className="d360-workspace min-h-screen">
       <div className="flex min-h-screen">
-        <aside className="fixed inset-y-0 left-0 hidden w-72 flex-col border-r border-white/10 bg-slate-950/78 backdrop-blur-xl lg:flex">
-          <div className="flex h-20 items-center gap-3 px-5">
-            <BrunerLogo subtitle="by BrunerDigital" />
-          </div>
-          <div className="mx-4 mb-4 rounded-lg border border-white/10 bg-white/[0.03] p-3">
-            <div className="flex items-center justify-between gap-3">
-              <div>
-                <div className="text-sm font-medium">{session.workspace?.name ?? session.tenant.name}</div>
-                <div className="text-xs text-muted-foreground">
-                  {session.workspace?.type === "client" ? "Client workspace" : "Agency workspace"}
-                </div>
-              </div>
-              <ChevronDown />
-            </div>
-          </div>
-          <nav className="flex-1 overflow-y-auto px-3 pb-5">
-            <div className="flex flex-col gap-1">
-              {visibleNavItems.map((item) => {
-                const active = pathname === item.href || pathname.startsWith(`${item.href}/`);
-                const Icon = item.icon;
-                return (
-                  <Link
-                    key={item.href}
-                    href={item.href}
-                    className={cn(
-                      "flex h-10 items-center gap-3 rounded-md px-3 text-sm text-muted-foreground transition-colors hover:bg-white/[0.06] hover:text-foreground",
-                      active && "bg-primary/12 text-sky-100 ring-1 ring-primary/20"
-                    )}
-                  >
-                    <Icon />
-                    <span className="truncate">{item.label}</span>
-                  </Link>
-                );
-              })}
-            </div>
-          </nav>
-          <div className="border-t border-white/10 p-4">
-            <div className="rounded-lg border border-white/10 bg-white/[0.03] p-3">
-              <div className="truncate text-sm font-medium">{session.profile.fullName}</div>
-              <div className="truncate text-xs text-muted-foreground">{session.user.email}</div>
-              <Badge className="mt-3" variant="secondary">
-                {formatRole(session.profile.role)}
-              </Badge>
-            </div>
-          </div>
-        </aside>
+        <DesktopWorkspaceSidebar {...navigation} />
         <main className="min-w-0 flex-1 lg:pl-72">
-          <header className="sticky top-0 z-10 border-b border-white/10 bg-slate-950/58 backdrop-blur-xl">
-            <div className="flex h-20 items-center gap-3 px-4 md:px-7">
-              <Button variant="ghost" size="icon" className="lg:hidden" aria-label="Open navigation">
-                <Menu />
-              </Button>
+          <header className="d360-toolbar sticky top-0 z-10 border-b">
+            <div className="mx-auto flex min-h-[4.5rem] max-w-[100rem] items-center gap-2 px-panel md:h-20 md:gap-3">
+              <MobileWorkspaceMenu {...navigation} />
               <div className="relative min-w-0 flex-1">
-                <Search className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
-                <Input className="h-11 pl-10" placeholder="Search contacts, workflows, campaigns, invoices..." />
+                <Search className="pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground" />
+                <Input className="pl-9" aria-label="Search workspace" placeholder="Search" />
               </div>
               <Button variant="outline" className="hidden md:inline-flex">
                 <Command data-icon="inline-start" />
@@ -117,7 +69,9 @@ export function AppShellClient({ children, session }: { children: React.ReactNod
               </Badge>
             </div>
           </header>
-          <div className="px-4 py-6 md:px-7">{children}</div>
+          <div className={cn("d360-workspace-content mx-auto max-w-[100rem] px-panel py-layout", pathname === "/dashboard" && "d360-dashboard-content")}>
+            {children}
+          </div>
         </main>
       </div>
     </div>
