@@ -23,8 +23,8 @@ export function Dashboard() {
     <div className="flex flex-col gap-6">
       <section className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
         <div>
-          <h1 className="text-3xl font-semibold tracking-normal text-white">Dashboard</h1>
-          <p className="mt-1 text-sm text-muted-foreground">Welcome back. Here&apos;s what&apos;s happening with your business.</p>
+          <h1 className="text-3xl font-semibold leading-tight tracking-[-0.025em] text-white md:text-4xl">Dashboard</h1>
+          <p className="mt-2 text-pretty text-sm leading-relaxed text-muted-foreground md:text-base">Welcome back. Here&apos;s what&apos;s happening with your business.</p>
         </div>
         <div className="flex flex-wrap gap-3">
           <Button variant="outline">May 8 - May 15, 2026</Button>
@@ -35,18 +35,17 @@ export function Dashboard() {
         </div>
       </section>
 
-      <section className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+      <section className="grid gap-layout sm:grid-cols-2 xl:grid-cols-4">
         {dashboardKpis.map((kpi) => (
           <Card key={kpi.label} className="relative overflow-hidden">
             <div className="absolute inset-x-0 top-0 h-px bg-[image:var(--d360-spectrum)]" />
-            <div className="absolute -right-8 -top-8 size-24 rounded-full bg-sky-400/10 blur-2xl" />
             <CardHeader>
               <CardDescription>{kpi.label}</CardDescription>
-              <div className="flex items-end justify-between gap-3">
-                <CardTitle className="text-3xl">{kpi.value}</CardTitle>
-                <Badge variant={kpi.tone}>{kpi.change}</Badge>
+              <div className="flex flex-wrap items-baseline justify-between gap-x-3 gap-y-2">
+                <CardTitle className="text-[clamp(1.6rem,2.3vw,2rem)] tabular-nums">{kpi.value}</CardTitle>
+                <Badge className="tabular-nums" variant={kpi.tone}>{kpi.change}</Badge>
               </div>
-              <div className="mt-5 h-10 overflow-hidden rounded-md bg-slate-950/70">
+              <div className="mt-3 h-10 overflow-hidden rounded-md bg-slate-950/55">
                 <div className="flex h-full items-end gap-1 px-2 pb-1">
                   {[42, 58, 51, 74, 69, 88, 81, 96].map((height, index) => (
                     <div key={index} className="flex-1 rounded-t-sm bg-gradient-to-t from-sky-500 to-emerald-300" style={{ height: `${height}%` }} />
@@ -60,10 +59,10 @@ export function Dashboard() {
 
       <AnalyticsShowcase />
 
-      <section className="grid gap-6 xl:grid-cols-[1.3fr_0.85fr]">
+      <section className="grid gap-layout xl:grid-cols-[minmax(0,1.3fr)_minmax(0,0.85fr)]">
         <Card>
-          <CardHeader className="flex-row items-center justify-between">
-            <div>
+          <CardHeader className="items-start gap-3 sm:flex-row sm:items-center sm:justify-between">
+            <div className="min-w-0">
               <CardTitle>Pipeline health</CardTitle>
               <CardDescription>Leads, revenue, and appointments by day</CardDescription>
             </div>
@@ -88,7 +87,7 @@ export function Dashboard() {
                   </defs>
                   <CartesianGrid strokeDasharray="3 3" stroke="rgba(148,163,184,.12)" />
                   <XAxis dataKey="name" stroke="#94a3b8" tickLine={false} axisLine={false} />
-                  <Tooltip contentStyle={{ background: "#020617", border: "1px solid rgba(148,163,184,.18)", borderRadius: 8 }} />
+                  <Tooltip contentStyle={{ background: "#161e29", border: "1px solid #9eb6d044", borderRadius: 10 }} />
                   <Area type="monotone" dataKey="leads" stroke="#38bdf8" fillOpacity={1} fill="url(#leads)" />
                   <Area type="monotone" dataKey="revenue" stroke="#34d399" fillOpacity={1} fill="url(#revenue)" />
                 </AreaChart>
@@ -104,7 +103,7 @@ export function Dashboard() {
           </CardHeader>
           <CardContent className="flex flex-col gap-4">
             {contacts.map((contact) => (
-              <div key={contact.email} className="rounded-lg border border-white/10 bg-white/[0.025] p-4">
+              <div key={contact.email} className="glass-inset p-inset">
                 <div className="flex items-start justify-between gap-3">
                   <div>
                     <div className="font-medium">{contact.name}</div>
@@ -119,7 +118,7 @@ export function Dashboard() {
         </Card>
       </section>
 
-      <section className="grid gap-6 xl:grid-cols-[0.78fr_1.22fr]">
+      <section className="grid gap-layout xl:grid-cols-[minmax(0,0.78fr)_minmax(0,1.22fr)]">
         <FunnelVelocity />
         <Card>
           <CardHeader>
@@ -128,8 +127,8 @@ export function Dashboard() {
           </CardHeader>
           <CardContent className="grid gap-3 md:grid-cols-2">
             {pipeline.map((stage) => (
-              <div key={stage.stage} className="rounded-lg border border-white/10 bg-slate-950/48 p-3">
-                <div className="mb-3 flex items-center justify-between">
+              <div key={stage.stage} className="glass-inset p-inset">
+                <div className="mb-3 flex flex-wrap items-center justify-between gap-2">
                   <span className="text-sm font-medium">{stage.stage}</span>
                   <Badge variant="secondary">{stage.deals.length}</Badge>
                 </div>
@@ -137,7 +136,7 @@ export function Dashboard() {
                   {stage.deals.map((deal) => (
                     <div key={deal.name} className="rounded-md bg-white/[0.035] p-3">
                       <div className="text-sm font-medium">{deal.name}</div>
-                      <div className="mt-2 flex items-center justify-between text-xs text-muted-foreground">
+                      <div className="mt-2 flex flex-wrap items-center justify-between gap-x-3 text-xs tabular-nums text-muted-foreground">
                         <span>{deal.owner}</span>
                         <span>{formatCurrency(deal.value)}</span>
                       </div>
@@ -157,7 +156,7 @@ export function Dashboard() {
           </CardHeader>
           <CardContent className="flex flex-col gap-4">
             {conversations.map((conversation, index) => (
-              <div key={conversation.name} className="flex gap-3">
+              <div key={conversation.name} className="glass-inset flex gap-3 p-inset">
                 <div className="flex size-10 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-sky-200">
                   {index === 0 ? <MessageSquareText /> : index === 1 ? <CalendarClock /> : <Lightbulb />}
                 </div>

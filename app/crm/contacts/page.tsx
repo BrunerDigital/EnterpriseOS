@@ -24,13 +24,13 @@ export default function ContactsPage() {
             <Link
               key={contact.email}
               href={index === 0 ? "/crm/contacts/northfield-dental" : "/crm/contacts"}
-              className="grid gap-4 rounded-lg border border-white/10 bg-white/[0.025] p-4 transition-colors hover:bg-white/[0.05] md:grid-cols-[1.1fr_0.8fr_0.6fr_0.5fr]"
+              className="glass-inset grid gap-x-4 gap-y-2 p-inset transition-colors sm:grid-cols-2 sm:items-center xl:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)_minmax(0,0.7fr)_minmax(0,0.55fr)]"
             >
               <div>
                 <div className="font-medium">{contact.name}</div>
                 <div className="mt-1 text-sm text-muted-foreground">{contact.company}</div>
               </div>
-              <div className="text-sm text-muted-foreground">
+              <div className="min-w-0 text-sm leading-relaxed text-muted-foreground">
                 <div>{contact.email}</div>
                 <div>{contact.phone}</div>
               </div>
@@ -42,7 +42,7 @@ export default function ContactsPage() {
                 ))}
               </div>
               <div>
-                <div className="mb-2 flex items-center justify-between text-sm">
+                <div className="mb-2 flex flex-wrap items-center justify-between gap-2 text-sm tabular-nums">
                   <span>{formatCurrency(contact.value)}</span>
                   <Badge variant="success">{contact.score}</Badge>
                 </div>

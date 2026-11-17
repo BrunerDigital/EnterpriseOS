@@ -38,9 +38,9 @@ const insightRows = [
 
 export function AnalyticsShowcase() {
   return (
-    <section className="grid gap-6 xl:grid-cols-[1.25fr_0.85fr]">
+    <section className="grid gap-layout xl:grid-cols-[minmax(0,1.25fr)_minmax(0,0.85fr)]">
       <Card className="overflow-hidden">
-        <CardHeader className="flex-row items-start justify-between gap-4">
+        <CardHeader className="flex-row flex-wrap items-start justify-between gap-3">
           <div>
             <CardTitle>Executive signal map</CardTitle>
             <CardDescription>Lead source, quality, booking, and revenue health</CardDescription>
@@ -48,23 +48,23 @@ export function AnalyticsShowcase() {
           <Badge variant="success">Live model</Badge>
         </CardHeader>
         <CardContent>
-          <div className="grid gap-5 lg:grid-cols-[0.92fr_1.08fr]">
-            <div className="grid gap-4">
-              <div className="grid gap-4 sm:grid-cols-3 lg:grid-cols-1">
+          <div className="grid gap-inset lg:grid-cols-[minmax(0,0.92fr)_minmax(0,1.08fr)]">
+            <div className="grid gap-inset">
+              <div className="grid gap-inset sm:grid-cols-3 lg:grid-cols-1">
                 {gauges.map((item) => (
                   <RadialGauge key={item.label} {...item} />
                 ))}
               </div>
             </div>
-            <div className="grid gap-4">
+            <div className="grid gap-inset">
               <SourceRing />
-              <div className="rounded-lg border border-white/10 bg-slate-950/55 p-4">
-                <div className="mb-4 flex items-center justify-between">
+              <div className="glass-inset p-inset">
+                <div className="mb-4 flex items-start justify-between gap-2">
                   <div>
                     <div className="font-semibold text-white">Conversion heatmap</div>
-                    <div className="mt-1 text-xs text-slate-500">Hourly booked-call probability</div>
+                    <div className="mt-1 text-xs text-muted-foreground">Hourly booked-call probability</div>
                   </div>
-                  <Radar className="size-5 text-sky-300" />
+                  <Radar className="size-5 shrink-0 text-sky-300" />
                 </div>
                 <div className="grid gap-2">
                   {heatmap.map((row, rowIndex) => (
@@ -97,9 +97,9 @@ export function AnalyticsShowcase() {
           {insightRows.map((row) => {
             const Icon = row.icon;
             return (
-              <div key={row.title} className="rounded-lg border border-white/10 bg-white/[0.025] p-4">
+              <div key={row.title} className="glass-inset p-inset">
                 <div className="flex items-center gap-3">
-                  <div className={cn("flex size-10 items-center justify-center rounded-lg bg-white/[0.06]", row.tone)}>
+                  <div className={cn("flex size-10 shrink-0 items-center justify-center rounded-lg bg-white/[0.06]", row.tone)}>
                     <Icon className="size-5" />
                   </div>
                   <div>
@@ -135,14 +135,12 @@ export function FunnelVelocity() {
       <CardContent className="grid gap-4">
         {funnel.map((stage) => (
           <div key={stage.label}>
-            <div className="mb-2 flex items-center justify-between text-sm">
+            <div className="mb-2 flex items-baseline justify-between gap-2 text-sm">
               <span className="font-medium text-white">{stage.label}</span>
-              <span className="text-slate-400">{stage.value.toLocaleString()}</span>
+              <span className="tabular-nums text-muted-foreground">{stage.value.toLocaleString()}</span>
             </div>
-            <div className="h-10 rounded-lg border border-white/10 bg-slate-950/70 p-1">
-              <div className={cn("flex h-full items-center rounded-md bg-gradient-to-r px-3 text-xs font-semibold text-slate-950", stage.gradient)} style={{ width: stage.width }}>
-                {stage.label}
-              </div>
+            <div className="glass-inset h-8 p-1" aria-hidden="true">
+              <div className={cn("h-full rounded-md bg-gradient-to-r", stage.gradient)} style={{ width: stage.width }} />
             </div>
           </div>
         ))}
@@ -153,22 +151,22 @@ export function FunnelVelocity() {
 
 function RadialGauge({ label, value, color, icon: Icon }: { label: string; value: number; color: string; icon: typeof Activity }) {
   return (
-    <div className="rounded-lg border border-white/10 bg-slate-950/55 p-4">
+    <div className="glass-inset p-inset">
       <div className="flex items-center justify-between">
         <div className="text-sm font-medium text-slate-300">{label}</div>
-        <Icon className="size-4 text-slate-500" />
+        <Icon className="size-4 shrink-0 text-muted-foreground" />
       </div>
-      <div className="mt-4 flex items-center gap-4">
+      <div className="mt-4 flex flex-wrap items-center gap-3">
         <div
-          className="relative flex size-20 shrink-0 items-center justify-center rounded-full"
+          className="relative flex size-[4.5rem] shrink-0 items-center justify-center rounded-full"
           style={{ background: `conic-gradient(${color} ${value * 3.6}deg, rgba(255,255,255,.08) 0deg)` }}
         >
           <div className="absolute inset-2 rounded-full bg-slate-950" />
           <div className="relative text-lg font-semibold text-white">{value}</div>
         </div>
-        <div>
+        <div className="min-w-0 flex-1 basis-20">
           <div className="text-2xl font-semibold text-white">{value}%</div>
-          <div className="mt-1 text-xs leading-5 text-slate-500">Healthy range for scale rollout</div>
+          <div className="mt-1 text-xs leading-5 text-muted-foreground">Healthy range for scale rollout</div>
         </div>
       </div>
     </div>
@@ -177,30 +175,30 @@ function RadialGauge({ label, value, color, icon: Icon }: { label: string; value
 
 function SourceRing() {
   return (
-    <div className="rounded-lg border border-white/10 bg-slate-950/55 p-4">
+    <div className="glass-inset source-mix-card p-inset">
       <div className="mb-4 flex items-center justify-between">
         <div>
           <div className="font-semibold text-white">Source mix</div>
-          <div className="mt-1 text-xs text-slate-500">Attributed pipeline</div>
+          <div className="mt-1 text-xs text-muted-foreground">Attributed pipeline</div>
         </div>
         <Activity className="size-5 text-emerald-300" />
       </div>
-      <div className="grid gap-4 sm:grid-cols-[0.7fr_1fr] sm:items-center">
-        <div className="relative mx-auto flex size-32 items-center justify-center rounded-full bg-[conic-gradient(#38bdf8_0_42%,#6ee7b7_42%_68%,#8b5cf6_68%_87%,#fcd34d_87%_100%)]">
-          <div className="absolute size-20 rounded-full bg-slate-950" />
+      <div className="source-mix-layout grid gap-4">
+        <div className="relative mx-auto flex size-28 items-center justify-center rounded-full bg-[conic-gradient(#38bdf8_0_42%,#6ee7b7_42%_68%,#8b5cf6_68%_87%,#fcd34d_87%_100%)]">
+          <div className="absolute size-[4.5rem] rounded-full bg-slate-950" />
           <div className="relative text-center">
-            <div className="text-2xl font-semibold text-white">$1.42M</div>
-            <div className="text-[10px] uppercase tracking-[0.18em] text-slate-500">pipeline</div>
+            <div className="text-xl font-semibold tabular-nums text-white">$1.42M</div>
+            <div className="text-[10px] uppercase tracking-[0.18em] text-muted-foreground">pipeline</div>
           </div>
         </div>
         <div className="grid gap-3">
           {sources.map((source) => (
-            <div key={source.label} className="flex items-center justify-between text-sm">
+            <div key={source.label} className="flex items-center justify-between gap-2 text-sm">
               <span className="flex items-center gap-2 text-slate-300">
-                <span className={cn("size-2.5 rounded-full", source.color)} />
+                <span className={cn("size-2.5 shrink-0 rounded-full", source.color)} />
                 {source.label}
               </span>
-              <span className="font-semibold text-white">{source.value}%</span>
+              <span className="font-semibold tabular-nums text-white">{source.value}%</span>
             </div>
           ))}
         </div>

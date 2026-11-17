@@ -5,8 +5,8 @@
   --d360-spectrum: linear-gradient(100deg, #71f4df, #7bc1ff 53%, #b7a4ff);
   --d360-canvas: #050a14;
   --d360-banner-background:
-    linear-gradient(90deg, #0c1627 10%, #0c1627f5 38%, #0c162774),
-    linear-gradient(0deg, #0a1323b3, transparent 70%),
+    linear-gradient(105deg, #273645f8 0%, #162330f5 35%, #101b276d 100%),
+    linear-gradient(0deg, #0a111da3, transparent 70%),
     var(--d360-wave-image) right 58% / min(80%, 56rem) auto no-repeat,
     #0c1627;
 }
@@ -115,10 +115,8 @@
 
 .d360-auth-frame {
   overflow: hidden;
-  border: 1px solid #8ccfff35;
   border-radius: 1.25rem;
-  background: linear-gradient(140deg, #0e1b2b, #0b1120 53%, #070d18);
-  box-shadow: 0 28px 90px #0007;
+  --glass-shadow: 0 28px 75px #0007, inset 0 1px #ecf8ff14;
 }
 
 .d360-auth-art {
@@ -128,13 +126,14 @@
 
 .d360-auth-form {
   min-width: 0;
-  background: linear-gradient(180deg, #0d1a29, #080f1c 74%);
+  background: var(--glass-inset-fill);
 }
 
 .d360-auth-form > .glass-panel {
   border: 0;
   background: none;
   box-shadow: none;
+  -webkit-backdrop-filter: none;
   backdrop-filter: none;
 }
 
@@ -153,12 +152,15 @@
 }
 
 .d360-workspace-sidebar {
-  background: linear-gradient(164deg, #0e1b2d, #080e1c 25%, #080e1c 73%, #10142a);
+  background: linear-gradient(158deg, #263341f2, #121b28f2 28%, #0d1421f2 70%, #191b2cf2);
+  box-shadow: inset -1px 0 #ccecff12;
+  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(16px);
 }
 
 .d360-workspace-switcher {
-  border-color: #7adceb36;
-  background: linear-gradient(105deg, #0f3043, #171d36);
+  border-color: #a4e1eb50;
+  background: linear-gradient(110deg, #284355aa, #181f34b8);
 }
 
 .d360-workspace-nav[aria-current="page"] {
@@ -168,18 +170,27 @@
 }
 
 .d360-toolbar {
-  background: linear-gradient(105deg, #080f1df5, #101d30f5 69%, #14152cf5);
-  border-bottom-color: #75d8ee31;
+  background: linear-gradient(108deg, #1c2836ed, #111a28e8 55%, #191d2ee3);
+  border-bottom-color: #a5c4dd3b;
+  box-shadow: inset 0 1px #e4f4ff0a;
+  -webkit-backdrop-filter: blur(18px);
+  backdrop-filter: blur(18px);
+}
+
+.d360-dashboard-content > div {
+  row-gap: var(--space-layout);
 }
 
 /* The dashboard and inbox supply their own header markup. */
 .d360-workspace-banner,
 .d360-workspace-content > header:first-child,
 .d360-dashboard-content > div > :is(header, section):first-child {
-  padding: clamp(1rem, 2.6vw, 1.85rem);
-  border: 1px solid #80d4ee38;
-  border-radius: var(--radius);
-  box-shadow: inset 0 1px #a0e8fc24;
+  min-width: 0;
+  padding: var(--space-panel);
+  border: 1px solid var(--glass-border);
+  border-top-color: var(--glass-rim);
+  border-radius: 1rem;
+  box-shadow: var(--glass-shadow);
   background: var(--d360-banner-background);
 }
 
@@ -192,7 +203,7 @@
 @media (max-width: 767px) {
   :root {
     --d360-banner-background:
-      linear-gradient(180deg, #0a1323 10%, #0a1323d8 50%, #0a1323ae),
+      linear-gradient(165deg, #253340 4%, #162330dc 47%, #101b27a9),
       var(--d360-wave-image) center 62% / cover no-repeat,
       #0a1323;
   }
@@ -239,6 +250,21 @@
   }
 }
 
+@media (prefers-reduced-transparency: reduce) {
+  .d360-toolbar,
+  .d360-workspace-sidebar,
+  .d360-workspace-switcher,
+  .d360-auth-form {
+    background: var(--glass-solid);
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+
+  :root {
+    --d360-banner-background: var(--glass-solid);
+  }
+}
+
 @media (forced-colors: active) {
   :root {
     --d360-banner-background: Canvas;
@@ -252,6 +278,15 @@
 
   .d360-auth-form {
     grid-column: 1 / -1;
+  }
+
+  .d360-toolbar,
+  .d360-workspace-sidebar,
+  .d360-workspace-switcher,
+  .d360-auth-form {
+    background: Canvas;
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
   }
 
   .d360-spectrum-text {

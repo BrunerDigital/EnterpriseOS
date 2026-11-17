@@ -67,7 +67,7 @@ export default async function Page({ searchParams }: ConfigPageProps) {
         <MetricCard label="Tracked systems" value={counts.total} icon={PlugZap} tone="text-violet-200" />
       </section>
 
-      <section className="mb-6 rounded-lg border border-white/10 bg-slate-950/50 p-4">
+      <section className="glass-panel mb-layout p-card">
         <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
           <div>
             <div className="flex items-center gap-2 text-sm font-semibold text-foreground">
@@ -142,10 +142,10 @@ function IntegrationConfigCard({
   return (
     <Card className="overflow-hidden">
       <CardHeader className="border-b border-white/10 bg-white/[0.025]">
-        <div className="flex items-start justify-between gap-4">
-          <div>
+        <div className="flex flex-wrap items-start justify-between gap-3">
+          <div className="min-w-0 flex-1 basis-40">
             <CardTitle className="flex items-center gap-2">
-              <SlidersHorizontal className="size-5 text-sky-300" />
+              <SlidersHorizontal className="size-5 shrink-0 text-sky-300" />
               {definition.name}
             </CardTitle>
             <CardDescription className="mt-2 leading-6">{definition.description}</CardDescription>
@@ -180,7 +180,7 @@ function IntegrationConfigCard({
               name="notes"
               defaultValue={config.notes ?? ""}
               rows={3}
-              className="mt-2 w-full rounded-md border border-input bg-background/45 px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+              className="d360-field mt-2 w-full rounded-md border px-3 py-2 text-base text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring sm:text-sm"
               placeholder="Owner, setup status, account URL, domain notes, or implementation detail."
             />
           </div>
@@ -189,13 +189,13 @@ function IntegrationConfigCard({
             <div className="mb-3 text-sm font-medium text-foreground">Enabled datapoints</div>
             <div className="grid gap-2 md:grid-cols-2">
               {definition.dataPoints.map((point) => (
-                <label key={point} className="flex min-h-10 items-center gap-2 rounded-md border border-white/10 bg-white/[0.025] px-3 py-2 text-sm text-muted-foreground">
+                <label key={point} className="glass-inset flex min-h-10 items-center gap-2 px-3 py-2 text-sm text-muted-foreground">
                   <input
                     type="checkbox"
                     name="dataPoint"
                     value={point}
                     defaultChecked={config.enabledDataPoints?.includes(point)}
-                    className="size-4 rounded border-white/20 bg-slate-950 accent-primary"
+                    className="size-4 shrink-0 rounded border-white/20 bg-slate-950 accent-primary"
                   />
                   <span>{point}</span>
                 </label>

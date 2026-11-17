@@ -37,7 +37,7 @@ export default function Page() {
             </div>
             <div className="mt-4 grid gap-3 sm:grid-cols-2">
               {capabilities.map((capability) => (
-                <div key={capability} className="rounded-lg border border-white/10 bg-white/[0.025] p-3 text-sm text-slate-300">
+                <div key={capability} className="glass-inset p-inset text-sm text-slate-300">
                   {capability}
                 </div>
               ))}
@@ -51,7 +51,7 @@ export default function Page() {
           </CardHeader>
           <CardContent className="grid gap-3">
             {modules.ai.items.map((item, index) => (
-              <div key={item} className="flex items-center justify-between rounded-lg border border-white/10 bg-white/[0.025] p-4">
+              <div key={item} className="flex items-center justify-between glass-inset p-inset">
                 <span className="text-sm font-medium text-white">{item}</span>
                 <Badge variant={index < 3 ? "success" : "secondary"}>{index < 3 ? "Ready" : "Queued"}</Badge>
               </div>

@@ -34,7 +34,7 @@ export function MarketingShell({ children, home = false }: { children: React.Rea
 
   return (
     <div className={cn("d360-marketing text-white", !home && "d360-marketing-horizon")}>
-      <header className="d360-toolbar sticky top-0 z-50 border-b backdrop-blur-2xl">
+      <header className="d360-toolbar sticky top-0 z-50 border-b">
         <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
           <BrandMark />
           <nav className="hidden items-center gap-7 lg:flex">
@@ -68,7 +68,7 @@ export function MarketingShell({ children, home = false }: { children: React.Rea
           </div>
           <nav className="mt-10 grid gap-3">
             {[...marketingNav, { label: "Book a demo", href: "/demo" }, { label: "Log in", href: "/login" }].map((item) => (
-              <Link key={item.href} href={item.href} onClick={() => setOpen(false)} className="rounded-lg border border-white/10 bg-white/[0.04] px-4 py-4 text-lg font-semibold">
+              <Link key={item.href} href={item.href} onClick={() => setOpen(false)} className="glass-inset p-card text-lg font-semibold">
                 {item.label}
               </Link>
             ))}
@@ -118,7 +118,7 @@ export function Footer() {
           ))}
         </div>
       </div>
-      <div className="mx-auto flex max-w-7xl flex-col gap-2 border-t border-white/10 px-4 py-6 text-xs text-slate-500 sm:px-6 md:flex-row md:items-center md:justify-between lg:px-8">
+      <div className="mx-auto flex max-w-7xl flex-col gap-2 border-t border-white/10 px-4 py-6 text-xs text-muted-foreground sm:px-6 md:flex-row md:items-center md:justify-between lg:px-8">
         <span>© 2026 Digital360 by BrunerDigital. All rights reserved.</span>
         <Link href="/brunerdigital" className="underline underline-offset-4">Strategy, build, growth, and operations by BrunerDigital.</Link>
       </div>
@@ -129,8 +129,8 @@ export function Footer() {
 export function SectionHeader({ title, body, align = "left" }: { title: string; body?: string; align?: "left" | "center" }) {
   return (
     <div className={cn("max-w-3xl", align === "center" && "mx-auto text-center")}>
-      <h2 className="text-3xl font-semibold tracking-normal text-white md:text-4xl">{title}</h2>
-      {body ? <p className="mt-3 text-sm leading-6 text-slate-400 md:text-base">{body}</p> : null}
+      <h2 className="text-balance text-3xl font-semibold leading-tight tracking-[-0.025em] text-white md:text-4xl">{title}</h2>
+      {body ? <p className="mt-3 text-pretty text-sm leading-relaxed text-muted-foreground md:text-base">{body}</p> : null}
     </div>
   );
 }
@@ -145,17 +145,17 @@ export function ProductMockup({ compact = false }: { compact?: boolean }) {
   const activity = ["Website form submitted", "Appointment booked", "Payment received", "Review received"];
 
   return (
-    <div className={cn("glass-panel relative overflow-hidden rounded-lg p-4 shadow-panel", !compact && "lg:translate-y-3")}>
+    <div className={cn("glass-panel relative overflow-hidden p-inset", !compact && "lg:translate-y-3")}>
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_78%_10%,rgba(37,99,235,.18),transparent_20rem)]" />
       <p className="relative mb-3 text-xs leading-5 text-slate-300">Illustrative product view · Sample data, not customer results.</p>
-      <div className="relative grid min-h-[360px] grid-cols-[2.75rem_minmax(0,1fr)] overflow-hidden rounded-md border border-white/10 bg-[#050b15]/92">
+      <div className="glass-inset relative grid min-h-[360px] grid-cols-[2.75rem_minmax(0,1fr)] overflow-hidden">
         <div className="border-r border-white/10 bg-[#050913] p-2">
           <div className="relative mx-auto mb-4 size-7 overflow-hidden rounded-md bg-white">
             <Image src="/brand/digital-360-logo.jpg" alt="" fill sizes="28px" className="object-cover" />
           </div>
           <div className="grid gap-3">
             {[Building2, BarChart3, CalendarClock, MessageSquare, Zap, Lock].map((Icon, index) => (
-              <div key={index} className={cn("flex size-8 items-center justify-center rounded-md text-slate-500", index === 0 && "bg-blue-600 text-white shadow-[0_0_20px_rgba(37,99,235,.45)]")}>
+              <div key={index} className={cn("flex size-8 items-center justify-center rounded-md text-muted-foreground", index === 0 && "bg-blue-600 text-white shadow-[0_0_20px_rgba(37,99,235,.45)]")}>
                 <Icon className="size-4" />
               </div>
             ))}
@@ -165,27 +165,27 @@ export function ProductMockup({ compact = false }: { compact?: boolean }) {
           <div className="mb-4 flex flex-wrap items-center justify-between gap-2">
             <div className="flex flex-wrap items-center gap-2">
               <div className="text-sm font-semibold text-white">Command Center</div>
-              <div className="rounded-md border border-white/10 px-2 py-1 text-[10px] text-slate-500">Overview</div>
+              <div className="rounded-md border border-white/10 px-2 py-1 text-[10px] text-muted-foreground">Overview</div>
             </div>
-            <div className="hidden w-32 items-center gap-2 rounded-md border border-white/10 bg-white/[0.03] px-3 py-2 text-xs text-slate-500 sm:flex">
+            <div className="hidden w-32 items-center gap-2 glass-inset px-3 py-2 text-xs text-muted-foreground sm:flex">
               <Search className="size-3.5" />
               Search
             </div>
           </div>
-          <div className="grid grid-cols-2 gap-3 2xl:grid-cols-4">
+          <div className="grid grid-cols-2 gap-2 sm:gap-3 2xl:grid-cols-4">
             {metrics.map(([label, value, change]) => (
-              <div key={label} className="rounded-md border border-white/10 bg-white/[0.035] p-3">
-                <div className="text-[10px] text-slate-500">{label}</div>
+              <div key={label} className="glass-inset p-inset">
+                <div className="text-[10px] text-muted-foreground">{label}</div>
                 <div className="mt-2 break-words text-sm font-semibold text-white sm:text-lg">{value}</div>
                 <div className="mt-1 text-[10px] font-medium text-emerald-300">{change}</div>
               </div>
             ))}
           </div>
           <div className="mt-4 grid gap-3 lg:grid-cols-[1.25fr_.75fr]">
-            <div className="rounded-md border border-white/10 bg-white/[0.025] p-4">
+            <div className="glass-inset p-inset">
               <div className="mb-4 flex items-center justify-between">
                 <div className="text-sm font-semibold text-white">Revenue</div>
-                <div className="text-[10px] text-slate-500">The month</div>
+                <div className="text-[10px] text-muted-foreground">The month</div>
               </div>
               <svg viewBox="0 0 360 150" className="h-36 w-full" preserveAspectRatio="none" aria-hidden="true">
                 <defs>
@@ -199,7 +199,7 @@ export function ProductMockup({ compact = false }: { compact?: boolean }) {
                 <path d="M0 126 C44 118 70 122 104 100 C138 82 164 95 198 76 C236 56 276 74 360 44" fill="none" stroke="#4f46e5" strokeWidth="3" opacity=".85" />
               </svg>
             </div>
-            <div className="rounded-md border border-white/10 bg-white/[0.025] p-4">
+            <div className="glass-inset p-inset">
               <div className="text-sm font-semibold text-white">Top Channels</div>
               <div className="mt-5 flex flex-wrap items-center gap-3">
                 <div className="relative size-16 shrink-0 rounded-full bg-[conic-gradient(#2563eb_0_40%,#2dd4bf_40%_65%,#f59e0b_65%_85%,#8b5cf6_85%_100%)]">
@@ -217,16 +217,16 @@ export function ProductMockup({ compact = false }: { compact?: boolean }) {
             </div>
           </div>
           <div className="mt-3 grid gap-3 md:grid-cols-2">
-            <div className="rounded-md border border-white/10 bg-white/[0.025] p-4">
+            <div className="glass-inset p-inset">
               <div className="mb-3 text-sm font-semibold text-white">Recent Activity</div>
               {activity.map((item, index) => (
                 <div key={item} className="flex items-center justify-between border-t border-white/10 py-2 text-xs first:border-t-0">
                   <span className="text-slate-300">{item}</span>
-                  <span className="text-slate-500">{index + 2} min ago</span>
+                  <span className="text-muted-foreground">{index + 2} min ago</span>
                 </div>
               ))}
             </div>
-            <div className="rounded-md border border-white/10 bg-white/[0.025] p-4">
+            <div className="glass-inset p-inset">
               <div className="mb-3 text-sm font-semibold text-white">Tasks</div>
               {["Follow up with John Smith", "Revise proposal", "Check in with new lead"].map((item, index) => (
                 <div key={item} className="flex items-center justify-between border-t border-white/10 py-2 text-xs first:border-t-0">
@@ -245,7 +245,7 @@ export function ProductMockup({ compact = false }: { compact?: boolean }) {
 export function CtaBand() {
   return (
     <section className="px-4 py-16 sm:px-6 lg:px-8">
-      <div className="d360-wave-panel mx-auto max-w-7xl overflow-hidden rounded-lg border border-sky-400/25 p-8 shadow-panel md:p-12">
+      <div className="glass-panel d360-wave-panel mx-auto max-w-7xl overflow-hidden p-panel">
         <div className="grid gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
           <div>
             <h2 className="text-3xl font-semibold tracking-normal text-white md:text-5xl">Build the launch system once. Scale it across every client, team, and location.</h2>

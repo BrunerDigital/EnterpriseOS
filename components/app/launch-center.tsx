@@ -24,9 +24,9 @@ export function LaunchCenter({ data }: { data: LaunchCenterData }) {
 
   return (
     <div className="flex flex-col gap-6">
-      <section className="d360-wave-panel overflow-hidden rounded-lg border border-sky-400/25 shadow-panel">
+      <section className="glass-panel d360-wave-panel overflow-hidden">
         <div className="grid gap-0 xl:grid-cols-[1.25fr_0.75fr]">
-          <div className="p-6 md:p-8">
+          <div className="p-panel">
             <div className="flex flex-wrap items-center gap-2">
               <Badge>Launch Center</Badge>
               <Badge variant={readyCount >= 4 ? "success" : "warning"}>{readyCount}/{data.readiness.length} checks ready</Badge>
@@ -37,17 +37,17 @@ export function LaunchCenter({ data }: { data: LaunchCenterData }) {
             <p className="mt-4 max-w-2xl text-base leading-7 text-slate-300">
               Track setup submissions, lead capture, integration readiness, domain work, and launch blockers from one internal command screen.
             </p>
-            <div className="mt-7 grid gap-4 md:grid-cols-4">
+            <div className="mt-7 grid gap-inset sm:grid-cols-2 2xl:grid-cols-4">
               {data.metrics.map((metric) => (
-                <div key={metric.label} className="rounded-lg border border-white/10 bg-slate-950/58 p-4">
+                <div key={metric.label} className="glass-inset p-inset">
                   <div className="text-sm text-slate-400">{metric.label}</div>
                   <div className="mt-2 text-3xl font-semibold text-white">{metric.value}</div>
-                  <div className="mt-2 text-xs leading-5 text-slate-500">{metric.detail}</div>
+                  <div className="mt-2 text-xs leading-5 text-muted-foreground">{metric.detail}</div>
                 </div>
               ))}
             </div>
           </div>
-          <div className="border-t border-white/10 bg-slate-950/52 p-6 xl:border-l xl:border-t-0">
+          <div className="border-t border-white/10 bg-slate-950/52 p-panel xl:border-l xl:border-t-0">
             <div className="flex items-center gap-3">
               <div className="flex size-12 items-center justify-center rounded-lg bg-blue-500/15 text-blue-200">
                 <Rocket className="size-6" />
@@ -101,7 +101,7 @@ export function LaunchCenter({ data }: { data: LaunchCenterData }) {
                 <div key={step.slug} className={cn("rounded-lg border p-4", step.status === "done" ? "border-emerald-400/20 bg-emerald-400/10" : "border-white/10 bg-white/[0.025]")}>
                   <div className="flex items-center justify-between gap-3">
                     <div className="font-semibold text-white">{step.title}</div>
-                    {step.status === "done" ? <CheckCircle2 className="size-4 text-emerald-300" /> : <Circle className="size-4 text-slate-500" />}
+                    {step.status === "done" ? <CheckCircle2 className="size-4 text-emerald-300" /> : <Circle className="size-4 text-muted-foreground" />}
                   </div>
                   <div className="mt-2 text-xs leading-5 text-slate-400">
                     {step.savedAt ? `Saved ${formatDate(step.savedAt)}` : "Waiting for setup submission"}
@@ -131,9 +131,9 @@ export function LaunchCenter({ data }: { data: LaunchCenterData }) {
                       <div className="font-semibold text-white">{activity.label}</div>
                       <div className="mt-1 text-sm leading-6 text-slate-300">{activity.detail}</div>
                     </div>
-                    <div className="text-xs text-slate-500">{formatDate(activity.createdAt)}</div>
+                    <div className="text-xs text-muted-foreground">{formatDate(activity.createdAt)}</div>
                   </div>
-                  <div className="mt-3 text-xs text-slate-500">{activity.target}</div>
+                  <div className="mt-3 text-xs text-muted-foreground">{activity.target}</div>
                 </div>
               ))
             ) : (
@@ -153,10 +153,10 @@ export function LaunchCenter({ data }: { data: LaunchCenterData }) {
             </CardHeader>
             <CardContent className="grid gap-3">
               {data.integrations.map((integration) => (
-                <div key={integration.label} className="flex items-center justify-between gap-3 rounded-lg border border-white/10 bg-white/[0.025] p-3">
+                <div key={integration.label} className="flex items-center justify-between gap-3 glass-inset p-inset">
                   <div>
                     <div className="font-medium text-white">{integration.label}</div>
-                    <div className="mt-1 text-xs text-slate-500">Updated {formatDate(integration.updatedAt)}</div>
+                    <div className="mt-1 text-xs text-muted-foreground">Updated {formatDate(integration.updatedAt)}</div>
                   </div>
                   <Badge variant={integration.status === "ready" ? "success" : "secondary"}>{integration.status}</Badge>
                 </div>
@@ -185,7 +185,7 @@ function ReadinessRow({ item }: { item: LaunchReadiness }) {
   const Icon = item.status === "ready" ? CheckCircle2 : item.status === "attention" ? AlertTriangle : Circle;
 
   return (
-    <div className="flex items-start justify-between gap-4 rounded-lg border border-white/10 bg-white/[0.025] p-4">
+    <div className="flex items-start justify-between gap-4 glass-inset p-inset">
       <div className="flex gap-3">
         <Icon className={cn("mt-0.5 size-5 shrink-0", item.status === "ready" ? "text-emerald-300" : item.status === "attention" ? "text-rose-300" : "text-amber-300")} />
         <div>
@@ -200,12 +200,12 @@ function ReadinessRow({ item }: { item: LaunchReadiness }) {
 
 function ActionItem({ icon, title, text }: { icon: React.ReactNode; title: string; text: string }) {
   return (
-    <div className="group flex items-start gap-3 rounded-lg border border-white/10 bg-white/[0.025] p-4 transition hover:border-sky-400/35 hover:bg-sky-400/10">
+    <div className="group flex items-start gap-3 glass-inset p-inset transition hover:border-sky-400/35 hover:bg-sky-400/10">
       <div className="flex size-10 shrink-0 items-center justify-center rounded-lg bg-sky-400/12 text-sky-200">{icon}</div>
       <div className="min-w-0 flex-1">
         <div className="flex items-center justify-between gap-3">
           <div className="font-semibold text-white">{title}</div>
-          <ArrowUpRight className="size-4 text-slate-500 transition group-hover:text-sky-200" />
+          <ArrowUpRight className="size-4 text-muted-foreground transition group-hover:text-sky-200" />
         </div>
         <p className="mt-1 text-sm leading-6 text-slate-400">{text}</p>
       </div>

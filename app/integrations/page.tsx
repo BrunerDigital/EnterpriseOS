@@ -17,7 +17,7 @@ export default function Page() {
         description="Production readiness for payments, messaging, email, calendar, ads, AI, analytics, and lead routing."
         action="Review systems"
       />
-      <div className="mb-6 rounded-lg border border-white/10 bg-white/[0.03] p-4">
+      <div className="mb-6 glass-panel p-4">
         <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
           <div>
             <div className="text-sm font-semibold text-foreground">Admin platform configuration</div>

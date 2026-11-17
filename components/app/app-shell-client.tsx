@@ -48,7 +48,7 @@ export function AppShellClient({ children, session }: { children: React.ReactNod
           <div className="flex h-20 items-center gap-3 px-5">
             <BrunerLogo subtitle="by BrunerDigital" />
           </div>
-          <div className="d360-workspace-switcher mx-4 mb-4 rounded-lg border p-3">
+          <div className="glass-inset d360-workspace-switcher mx-4 mb-4 p-inset">
             <div className="flex items-center justify-between gap-3">
               <div>
                 <div className="text-sm font-medium">{session.workspace?.name ?? session.tenant.name}</div>
@@ -56,7 +56,7 @@ export function AppShellClient({ children, session }: { children: React.ReactNod
                   {session.workspace?.type === "client" ? "Client workspace" : "Agency workspace"}
                 </div>
               </div>
-              <ChevronDown />
+              <ChevronDown className="size-4 shrink-0 text-muted-foreground" />
             </div>
           </div>
           <nav aria-label="Workspace" className="flex-1 overflow-y-auto px-3 pb-5">
@@ -71,7 +71,7 @@ export function AppShellClient({ children, session }: { children: React.ReactNod
                     aria-current={active ? "page" : undefined}
                     className="d360-workspace-nav flex h-10 items-center gap-3 rounded-md px-3 text-sm text-muted-foreground transition-colors hover:bg-white/[0.06] hover:text-foreground"
                   >
-                    <Icon />
+                    <Icon className="size-[1.125rem] shrink-0" />
                     <span className="truncate">{item.label}</span>
                   </Link>
                 );
@@ -79,7 +79,7 @@ export function AppShellClient({ children, session }: { children: React.ReactNod
             </div>
           </nav>
           <div className="border-t border-white/10 p-4">
-            <div className="rounded-lg border border-white/10 bg-white/[0.03] p-3">
+            <div className="glass-inset p-inset">
               <div className="truncate text-sm font-medium">{session.profile.fullName}</div>
               <div className="truncate text-xs text-muted-foreground">{session.user.email}</div>
               <Badge className="mt-3" variant="secondary">
@@ -89,14 +89,14 @@ export function AppShellClient({ children, session }: { children: React.ReactNod
           </div>
         </aside>
         <main className="min-w-0 flex-1 lg:pl-72">
-          <header className="d360-toolbar sticky top-0 z-10 border-b backdrop-blur-xl">
-            <div className="flex h-20 items-center gap-3 px-4 md:px-7">
+          <header className="d360-toolbar sticky top-0 z-10 border-b">
+            <div className="mx-auto flex min-h-[4.5rem] max-w-[100rem] items-center gap-2 px-panel md:h-20 md:gap-3">
               <Button variant="ghost" size="icon" className="lg:hidden" aria-label="Open navigation">
                 <Menu />
               </Button>
               <div className="relative min-w-0 flex-1">
-                <Search className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
-                <Input className="h-11 pl-10" placeholder="Search contacts, workflows, campaigns, invoices..." />
+                <Search className="pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground" />
+                <Input className="pl-9" aria-label="Search workspace" placeholder="Search" />
               </div>
               <Button variant="outline" className="hidden md:inline-flex">
                 <Command data-icon="inline-start" />
@@ -115,7 +115,7 @@ export function AppShellClient({ children, session }: { children: React.ReactNod
               </Badge>
             </div>
           </header>
-          <div className={cn("d360-workspace-content px-4 py-6 md:px-7", pathname === "/dashboard" && "d360-dashboard-content")}>
+          <div className={cn("d360-workspace-content mx-auto max-w-[100rem] px-panel py-layout", pathname === "/dashboard" && "d360-dashboard-content")}>
             {children}
           </div>
         </main>

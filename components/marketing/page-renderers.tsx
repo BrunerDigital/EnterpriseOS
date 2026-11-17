@@ -3,6 +3,7 @@ import { articles } from "@/lib/editorial";
 import { ArrowRight, Building2, CalendarClock, Check, FileText, Mail, Megaphone, ShieldCheck, Sparkles, Users, Workflow } from "lucide-react";
 import { adSystem, allPages, contentSystem, copyLibrary, emailSequences, flowSteps, funnelTemplates, launchChecklists, pricingPlans, salesEnablement, visualLibrary, type FlowStep, type FunnelTemplate, type MarketingPage } from "@/lib/marketing";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import { CtaBand, CheckList, LinkArrow, MarketingShell, ProductMockup, SectionHeader } from "@/components/marketing/marketing-shell";
 
 export function MarketingPageView({ page }: { page: MarketingPage }) {
@@ -10,7 +11,7 @@ export function MarketingPageView({ page }: { page: MarketingPage }) {
     <MarketingShell>
       <main>
         <Hero page={page} />
-        {page.slug === "/resources" ? <section className="mx-auto max-w-7xl px-4 pb-12 sm:px-6 lg:px-8"><h2 className="text-3xl font-semibold">Field notes for connected business</h2><div className="mt-7 grid gap-5 md:grid-cols-2 lg:grid-cols-3">{articles.map(article => <article key={article.slug} className="rounded-xl border border-white/15 bg-white/[0.035] p-6"><p className="text-sm text-emerald-300">{article.category}</p><h3 className="mt-3 text-xl font-semibold"><Link href={`/resources/${article.slug}`} className="underline-offset-4 hover:underline">{article.title}</Link></h3><p className="mt-4 text-sm leading-7 text-slate-300">{article.description}</p></article>)}</div></section> : null}
+        {page.slug === "/resources" ? <section className="mx-auto max-w-7xl px-4 pb-12 sm:px-6 lg:px-8"><h2 className="text-3xl font-semibold">Field notes for connected business</h2><div className="mt-7 grid gap-5 md:grid-cols-2 lg:grid-cols-3">{articles.map(article => <article key={article.slug} className="glass-panel p-panel"><p className="text-sm text-emerald-300">{article.category}</p><h3 className="mt-3 text-xl font-semibold"><Link href={`/resources/${article.slug}`} className="underline-offset-4 hover:underline">{article.title}</Link></h3><p className="mt-4 text-sm leading-7 text-slate-300">{article.description}</p></article>)}</div></section> : null}
         {page.slug === "/pricing" ? <PricingSection /> : null}
         {page.slug === "/features" ? <FeatureIndex /> : null}
         {page.slug === "/resources" ? <ResourceLibrary /> : null}
@@ -67,7 +68,7 @@ function ContentSections({ page }: { page: MarketingPage }) {
         <SectionHeader title="Explore the workflow" body="These sections describe the product direction. Review current availability and discuss the first workflow you need." />
         <div className="mt-10 grid gap-5 lg:grid-cols-3">
           {page.sections.map((section) => (
-            <article key={section.title} className="glass-panel rounded-lg p-6">
+            <article key={section.title} className="glass-panel p-panel">
               <h3 className="text-xl font-semibold text-white">{section.title}</h3>
               <p className="mt-3 text-sm leading-6 text-slate-400">{section.body}</p>
               <div className="mt-5">
@@ -88,7 +89,7 @@ function FaqSection({ page }: { page: MarketingPage }) {
         <SectionHeader align="center" title="Questions before a rollout" body="Bring your requirements to a walkthrough so we can confirm fit, availability, and next steps." />
         <div className="mt-10 grid gap-4">
           {(page.faqs ?? []).map((faq) => (
-            <div key={faq.q} className="rounded-lg border border-white/10 bg-slate-950/58 p-5">
+            <div key={faq.q} className="glass-panel p-panel">
               <h3 className="font-semibold text-white">{faq.q}</h3>
               <p className="mt-2 text-sm leading-6 text-slate-400">{faq.a}</p>
             </div>
@@ -108,16 +109,16 @@ function PricingSection() {
         <p className="mb-7 max-w-3xl text-base leading-7 text-slate-300">These are intended workspace options. Pricing, feature availability, implementation, and provider usage are confirmed in a scoped discussion. This page does not start a subscription.</p>
         <div className="grid gap-5 lg:grid-cols-3">
           {pricingPlans.map((plan, index) => (
-            <div key={plan.name} className={`rounded-lg border p-6 ${index === 1 ? "border-sky-400/50 bg-sky-400/10 shadow-glow" : "border-white/10 bg-white/[0.035]"}`}>
+            <div key={plan.name} className={`glass-panel flex min-w-0 flex-col p-panel ${index === 1 ? "glass-panel-featured" : ""}`}>
               <div className="text-sm font-semibold text-sky-300">{plan.bestFor}</div>
               <h2 className="mt-3 text-2xl font-semibold text-white">{plan.name}</h2>
               <div className="mt-4 flex items-end gap-2">
                 <span className="text-3xl font-semibold">Discuss scope</span>
               </div>
-              <div className="mt-6">
+              <div className="my-6">
                 <CheckList items={plan.features} />
               </div>
-              <Button asChild className="mt-8 w-full bg-sky-400 text-slate-950 hover:bg-sky-300">
+              <Button asChild className="mt-auto w-full bg-sky-400 text-slate-950 hover:bg-sky-300">
                 <Link href={demoHref}>Discuss fit and availability</Link>
               </Button>
             </div>
@@ -145,7 +146,7 @@ function FeatureIndex() {
         <SectionHeader title="Feature library" body="Each feature page is written as a conversion-ready sales asset and implementation reference." />
         <div className="mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
           {links.map(([href, title, body]) => (
-            <Link key={href} href={href} className="group rounded-lg border border-white/10 bg-white/[0.035] p-5 transition hover:border-sky-400/40 hover:bg-sky-400/10">
+            <Link key={href} href={href} className="group glass-panel p-panel transition hover:border-sky-400/40 hover:bg-sky-400/10">
               <Sparkles className="size-5 text-sky-300" />
               <h3 className="mt-4 text-xl font-semibold text-white">{title}</h3>
               <p className="mt-2 text-sm leading-6 text-slate-400">{body}</p>
@@ -179,7 +180,7 @@ function ComparisonTable() {
 
   return (
     <section className="px-4 py-16 sm:px-6 lg:px-8">
-      <div className="mx-auto max-w-6xl overflow-hidden rounded-lg border border-white/10">
+      <div className="glass-panel mx-auto max-w-6xl overflow-hidden">
         <div className="grid grid-cols-3 bg-white/[0.06] text-sm font-semibold text-white">
           <div className="p-4">Alternative</div>
           <div className="p-4">Typical role</div>
@@ -199,14 +200,14 @@ function ComparisonTable() {
 
 function AssetPanel({ title, icon, items }: { title: string; icon: React.ReactNode; items: string[] }) {
   return (
-    <div className="glass-panel rounded-lg p-6">
+    <div className="glass-panel p-panel">
       <div className="flex items-center gap-3 text-sky-300">
         {icon}
         <h3 className="text-xl font-semibold text-white">{title}</h3>
       </div>
       <div className="mt-5 grid gap-3">
         {items.slice(0, 8).map((item) => (
-          <p key={item} className="rounded-md border border-white/10 bg-slate-950/50 p-3 text-sm leading-6 text-slate-400">{item}</p>
+          <p key={item} className="glass-inset p-inset text-sm leading-6 text-muted-foreground">{item}</p>
         ))}
       </div>
     </div>
@@ -258,7 +259,7 @@ export function FlowPageView({ flow }: { flow: FlowStep }) {
                   </Link>
                 </Button>
               ) : null}
-              <div className="mt-8 glass-panel rounded-lg p-6">
+              <div className="mt-8 glass-panel p-panel">
                 <h2 className="text-xl font-semibold text-white">Flow checklist</h2>
                 <div className="mt-5">
                   <CheckList items={flow.checklist} />
@@ -277,7 +278,7 @@ function LeadForm({ title, fields, cta, walkthrough = false }: { title: string; 
   return (
     <form data-lead-form={walkthrough ? undefined : true} data-walkthrough-form={walkthrough ? true : undefined}
       action={walkthrough ? "/api/walkthroughs" : "/api/leads"} method={walkthrough ? "post" : undefined}
-      data-source={title} data-thank-you="/demo/thank-you/" className="glass-panel rounded-lg p-6">
+      data-source={title} data-thank-you="/demo/thank-you/" className="glass-panel p-panel">
       <input className="hidden" name="website" tabIndex={-1} autoComplete="off" />
       {walkthrough ? null : <><input type="hidden" name="source" value={title} />
         <input type="hidden" name="thank_you_path" value="/demo/thank-you/" /></>}
@@ -287,15 +288,14 @@ function LeadForm({ title, fields, cta, walkthrough = false }: { title: string; 
         {fields.map((field) => (
           <label key={field} className="grid gap-2 text-sm font-medium text-slate-300">
             {field}
-            <input name={field.toLowerCase().replaceAll(" ", "_")} required={walkthrough && (field === "Name" || field === "Company")}
-              className="h-11 rounded-md border border-white/10 bg-slate-950/70 px-3 text-sm text-white outline-none transition placeholder:text-slate-600 focus:border-sky-400" placeholder={field} />
+            <Input name={field.toLowerCase().replaceAll(" ", "_")} required={walkthrough && (field === "Name" || field === "Company")} placeholder={field} />
           </label>
         ))}
         <label className="grid gap-2 text-sm font-medium text-slate-300">
           Work email
-          <input name="email" type="email" required className="h-11 rounded-md border border-white/10 bg-slate-950/70 px-3 text-sm text-white outline-none transition placeholder:text-slate-600 focus:border-sky-400" placeholder="you@company.com" />
+          <Input name="email" type="email" required placeholder="you@company.com" />
         </label>
-        <label className="flex items-start gap-3 rounded-lg border border-white/10 bg-white/[0.025] p-3 text-xs leading-5 text-slate-400">
+        <label className="flex items-start gap-3 glass-inset p-inset text-xs leading-5 text-slate-400">
           <input name="contact_consent" value="yes" required type="checkbox" className="mt-1 size-4 rounded border-white/20 bg-slate-950" />
           {walkthrough
             ? <span>I agree BrunerDigital may contact me about this walkthrough request. <Link href="/legal/privacy" className="underline">Privacy policy</Link></span>

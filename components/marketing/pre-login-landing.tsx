@@ -26,6 +26,7 @@ import {
   Wrench
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import { MarketingShell, ProductMockup } from "@/components/marketing/marketing-shell";
 import { cn } from "@/lib/utils";
 
@@ -167,7 +168,7 @@ export function PreLoginLanding() {
               </p>
               <div className="mt-6 grid gap-3 sm:grid-cols-3">
                 {launchMetrics.map(([value, label]) => (
-                  <div key={value} className="rounded-lg border border-white/10 bg-[#081222]/85 p-4">
+                  <div key={value} className="glass-inset p-inset">
                     <div className="text-lg font-semibold text-cyan-200">{value}</div>
                     <p className="mt-2 text-xs leading-5 text-slate-300">{label}</p>
                   </div>
@@ -188,7 +189,7 @@ export function PreLoginLanding() {
               {growthCards.map((card) => {
                 const Icon = card.icon;
                 return (
-                  <article key={card.title} className="rounded-lg border border-white/12 bg-white/[0.035] p-5 shadow-panel">
+                  <article key={card.title} className="glass-panel p-panel">
                     <div className={cn("flex size-11 items-center justify-center rounded-md bg-gradient-to-br text-white shadow-[0_0_26px_rgba(37,99,235,.24)]", card.tone)}>
                       <Icon className="size-5" />
                     </div>
@@ -211,7 +212,7 @@ export function PreLoginLanding() {
                 </p>
                 <div className="mt-6 flex flex-wrap gap-3">
                   {["CRM", "Inbox", "Calendar", "Funnels", "Reviews", "Reports", "Billing", "Portals", "AI"].map((item) => (
-                    <span key={item} className="rounded-md border border-white/10 bg-white/[0.035] px-3 py-2 text-sm font-medium text-slate-300">{item}</span>
+                    <span key={item} className="glass-inset px-3 py-2 text-sm font-medium text-slate-300">{item}</span>
                   ))}
                 </div>
               </div>
@@ -219,7 +220,7 @@ export function PreLoginLanding() {
                 {replacementStack.map((item) => {
                   const Icon = item.icon;
                   return (
-                    <article key={item.title} className="rounded-lg border border-white/10 bg-[#07111f]/76 p-5">
+                    <article key={item.title} className="glass-panel p-panel">
                       <div className="flex items-center gap-3">
                         <span className="flex size-10 items-center justify-center rounded-md bg-blue-600/20 text-blue-300">
                           <Icon className="size-5" />
@@ -248,7 +249,7 @@ export function PreLoginLanding() {
                 {aiCards.map((card) => {
                   const Icon = card.icon;
                   return (
-                    <div key={card.title} className="rounded-lg border border-cyan-300/12 bg-cyan-300/[0.045] p-4">
+                    <div key={card.title} className="glass-inset p-inset">
                       <div className="flex items-center gap-2 text-sm font-semibold text-cyan-200">
                         <Icon className="size-4" />
                         {card.title}
@@ -295,7 +296,7 @@ export function PreLoginLanding() {
               </p>
               <div className="mt-6 grid gap-3">
                 {objectionCards.map((card) => (
-                  <div key={card.title} className="rounded-lg border border-white/10 bg-white/[0.03] p-4">
+                  <div key={card.title} className="glass-panel p-4">
                     <h3 className="font-semibold text-white">{card.title}</h3>
                     <p className="mt-2 text-sm leading-6 text-slate-400">{card.body}</p>
                   </div>
@@ -308,28 +309,28 @@ export function PreLoginLanding() {
 
         <section className="px-4 py-10 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-7xl">
-            <div className="grid gap-6 rounded-lg border border-white/10 bg-white/[0.025] p-6 md:grid-cols-[1fr_12rem] md:items-center">
+            <div className="grid gap-6 glass-panel p-panel md:grid-cols-[1fr_12rem] md:items-center">
               <div>
                 <h2 className="text-center text-xl font-semibold text-white md:text-2xl">
                   Ready to run <span className="text-blue-400">your</span> business on one connected platform?
                 </h2>
                 <p className="mt-2 text-center text-sm text-slate-400">From setup to scale, demo Digital360 in the workflows that matter most.</p>
-                <div className="mt-6 grid gap-4 md:grid-cols-5">
+                <div className="mt-6 grid gap-layout sm:grid-cols-2 lg:grid-cols-5">
                   {launchSteps.map(([title, body], index) => (
                     <div key={title} className="relative">
                       <div className="mb-3 flex items-center gap-2">
                         <div className="flex size-8 items-center justify-center rounded-full border border-emerald-400/35 bg-emerald-400/10 text-emerald-300">
                           {index === 3 ? <Rocket className="size-4" /> : <span className="text-xs font-semibold">{index + 1}</span>}
                         </div>
-                        {index < launchSteps.length - 1 ? <div className="h-px flex-1 bg-white/14 max-md:hidden" /> : null}
+                        {index < launchSteps.length - 1 ? <div className="hidden h-px flex-1 bg-white/15 lg:block" /> : null}
                       </div>
                       <div className="text-sm font-semibold text-white">{title}</div>
-                      <p className="mt-1 text-xs leading-5 text-slate-500">{body}</p>
+                      <p className="mt-1 text-xs leading-5 text-muted-foreground">{body}</p>
                     </div>
                   ))}
                 </div>
               </div>
-              <div className="rounded-lg border border-white/10 bg-[#07111f] p-5 text-center">
+              <div className="glass-inset p-card text-center">
                 <p className="text-sm text-slate-300">Start with a scoped conversation</p>
                 <div className="mt-2 text-2xl font-semibold text-emerald-300">Private access</div>
                 <Button asChild className="mt-6 w-full bg-blue-600 text-white hover:bg-blue-500">
@@ -349,7 +350,7 @@ export function PreLoginLanding() {
               </div>
               <div className="grid gap-4 md:grid-cols-2">
                 {faqItems.map(([question, answer]) => (
-                  <article key={question} className="rounded-lg border border-white/10 bg-white/[0.03] p-5">
+                  <article key={question} className="glass-panel p-panel">
                     <h3 className="font-semibold text-white">{question}</h3>
                     <p className="mt-3 text-sm leading-6 text-slate-400">{answer}</p>
                   </article>
@@ -401,20 +402,20 @@ function NeonCube() {
 
 function BrandControlPanel() {
   return (
-    <div className="rounded-lg border border-white/12 bg-white/[0.035] p-4 shadow-panel">
+    <div className="glass-panel p-card">
       <div className="mb-4 flex items-center gap-2 text-sm font-semibold text-white">
         <Palette className="size-4 text-blue-300" />
         Your Brand
       </div>
       <div className="grid gap-4 md:grid-cols-[0.7fr_1fr_1.2fr]">
         <div>
-          <div className="text-xs text-slate-500">Logo</div>
-          <div className="mt-2 flex h-24 items-center justify-center rounded-md border border-white/10 bg-[#050913] text-center text-xl font-semibold text-white">
+          <div className="text-xs text-muted-foreground">Logo</div>
+          <div className="glass-inset mt-2 flex min-h-24 items-center justify-center p-inset text-center text-xl font-semibold text-white">
             YOUR<br />LOGO
           </div>
         </div>
         <div>
-          <div className="text-xs text-slate-500">Primary Color</div>
+          <div className="text-xs text-muted-foreground">Primary Color</div>
           <div className="mt-3 flex flex-wrap gap-2">
             {["#2563eb", "#8b5cf6", "#f472b6", "#f97316", "#facc15", "#22c55e", "#14b8a6"].map((color) => (
               <span key={color} className="size-7 rounded-sm border border-white/10" style={{ backgroundColor: color }} />
@@ -422,8 +423,8 @@ function BrandControlPanel() {
           </div>
         </div>
         <div>
-          <div className="text-xs text-slate-500">Domain</div>
-          <div className="mt-2 rounded-md border border-white/10 bg-[#050913] px-3 py-3 text-sm text-slate-300">app.yourbrand.com</div>
+          <div className="text-xs text-muted-foreground">Domain</div>
+          <div className="mt-2 glass-inset px-3 py-3 text-sm text-slate-300">app.yourbrand.com</div>
           <p className="mt-3 text-xs leading-5 text-slate-300">Illustrative brand controls. Settings are not saved from this preview.</p>
         </div>
       </div>
@@ -446,13 +447,13 @@ function LaunchDemoForm() {
       action="/api/leads"
       data-source="Digital360 public launch demo"
       data-thank-you="/demo/thank-you/"
-      className="rounded-lg border border-blue-400/20 bg-[#07111f]/88 p-5 shadow-panel"
+      className="glass-panel glass-panel-featured p-panel"
     >
       <input className="hidden" name="website" tabIndex={-1} autoComplete="off" />
       <input type="hidden" name="source" value="Digital360 public launch demo" />
       <input type="hidden" name="thank_you_path" value="/demo/thank-you/" />
       <div className="flex items-center gap-3">
-        <span className="flex size-10 items-center justify-center rounded-md bg-blue-600 text-white">
+        <span className="flex size-10 shrink-0 items-center justify-center rounded-md bg-blue-600 text-white">
           <Mail className="size-5" />
         </span>
         <div>
@@ -464,11 +465,10 @@ function LaunchDemoForm() {
         {fields.map(([name, label, type, placeholder]) => (
           <label key={name} className="grid gap-2 text-sm font-medium text-slate-300">
             {label}
-            <input
+            <Input
               name={name}
               type={type}
               required={["name", "email", "company"].includes(name)}
-              className="h-11 rounded-md border border-white/10 bg-[#050b15] px-3 text-sm text-white outline-none transition placeholder:text-slate-600 focus:border-blue-400"
               placeholder={placeholder}
             />
           </label>
@@ -476,7 +476,7 @@ function LaunchDemoForm() {
       </div>
       <label className="mt-4 grid gap-2 text-sm font-medium text-slate-300">
         What do you want to improve first?
-        <select name="launch_goal" className="h-11 rounded-md border border-white/10 bg-[#050b15] px-3 text-sm text-white outline-none transition focus:border-blue-400" defaultValue="">
+        <select name="launch_goal" className="d360-field min-h-11 w-full rounded-md border px-3 py-2 text-base text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring sm:text-sm" defaultValue="">
           <option value="" disabled>Choose one</option>
           <option>Capture more leads</option>
           <option>Respond faster</option>
@@ -487,7 +487,7 @@ function LaunchDemoForm() {
       </label>
       <label className="mt-4 grid gap-2 text-sm font-medium text-slate-300">
         Current tools
-        <input name="current_stack" className="h-11 rounded-md border border-white/10 bg-[#050b15] px-3 text-sm text-white outline-none transition placeholder:text-slate-600 focus:border-blue-400" placeholder="CRM, calendar, email/SMS, reporting tools" />
+        <Input name="current_stack" placeholder="CRM, calendar, email/SMS, reporting tools" />
       </label>
       <div className="mt-5 rounded-lg border border-emerald-400/20 bg-emerald-400/10 p-4 text-sm leading-6 text-emerald-100">
         <div className="flex gap-3">
@@ -495,7 +495,7 @@ function LaunchDemoForm() {
           <span>We will use this to prepare your walkthrough and map the highest-impact rollout path.</span>
         </div>
       </div>
-      <label className="mt-4 flex items-start gap-3 rounded-lg border border-white/10 bg-white/[0.025] p-4 text-xs leading-5 text-slate-400">
+      <label className="mt-4 flex items-start gap-3 glass-inset p-inset text-xs leading-5 text-slate-400">
         <input name="contact_consent" value="yes" required type="checkbox" className="mt-1 size-4 rounded border-white/20 bg-[#050b15]" />
         <span>
           I agree BrunerDigital may contact me about Digital360 using the information I submit. I can opt out of marketing messages at any time.

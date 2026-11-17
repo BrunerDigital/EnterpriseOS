@@ -44,7 +44,7 @@ export default function Page() {
         </p>
         <div className="mt-10 grid gap-5">
           {sections.map((section) => (
-            <section key={section.title} className="rounded-lg border border-white/10 bg-white/[0.035] p-5">
+            <section key={section.title} className="glass-panel p-panel">
               <h2 className="text-xl font-semibold text-white">{section.title}</h2>
               <p className="mt-3 text-sm leading-7 text-slate-400">{section.body}</p>
             </section>

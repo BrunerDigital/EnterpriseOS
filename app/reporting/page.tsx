@@ -13,7 +13,7 @@ export default function Page() {
     <AppShell>
       <PageHeader title={modules.reporting.title} description={modules.reporting.description} action="Export report" />
       <AnalyticsShowcase />
-      <section className="mt-6 grid gap-6 xl:grid-cols-[0.9fr_1.1fr]">
+      <section className="mt-layout grid gap-layout xl:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)]">
         <FunnelVelocity />
         <Card>
           <CardHeader>
@@ -22,7 +22,7 @@ export default function Page() {
           </CardHeader>
           <CardContent className="grid gap-3">
             {["Page view", "demo_requested", "funnel_lead_captured", "Google Ads conversion", "Meta Lead", "LinkedIn conversion"].map((event) => (
-              <div key={event} className="flex items-center justify-between rounded-lg border border-white/10 bg-white/[0.025] p-4 text-sm">
+              <div key={event} className="glass-inset flex flex-wrap items-center justify-between gap-x-4 gap-y-1 p-inset text-sm">
                 <span className="font-medium text-white">{event}</span>
                 <span className="text-slate-400">Ready when tag is configured</span>
               </div>
