@@ -158,15 +158,86 @@
   backdrop-filter: blur(16px);
 }
 
-.d360-workspace-switcher {
+.d360-workspace-identity {
   border-color: #a4e1eb50;
   background: linear-gradient(110deg, #284355aa, #181f34b8);
 }
 
-.d360-workspace-nav[aria-current="page"] {
+.d360-workspace-mark {
+  background: linear-gradient(135deg, #5ac9df29, #8099f523);
+  color: #b5e9f4;
+  box-shadow: inset 0 0 0 1px #a5e5ee32;
+}
+
+.d360-workspace-links {
+  overscroll-behavior-block: contain;
+  scroll-padding-block: 0.5rem;
+  scrollbar-color: #486579 transparent;
+  scrollbar-width: thin;
+}
+
+.d360-workspace-nav {
+  transition: background-color 140ms ease-out, color 140ms ease-out;
+}
+
+.d360-workspace-nav:hover {
+  color: hsl(var(--foreground));
+  background-color: #d4e8ff12;
+}
+
+.d360-workspace-nav:focus-visible {
+  outline: 2px solid #8ae5f2;
+  outline-offset: -2px;
+}
+
+.d360-workspace-nav[aria-current] {
   color: #d8fbff;
   background: linear-gradient(106deg, #143749, #19243d);
   box-shadow: inset 2px 0 #75ecdf;
+}
+
+.d360-drawer-overlay {
+  background: #040912b3;
+}
+
+.d360-workspace-drawer {
+  width: min(22rem, calc(100% - 2rem));
+  height: 100dvh;
+  min-height: 0;
+  padding-block: env(safe-area-inset-top, 0px) env(safe-area-inset-bottom, 0px);
+  background:
+    linear-gradient(160deg, #243644f5, #111b29f5 35%, #0d1522f5 75%, #182036ee);
+  box-shadow: 16px 0 55px #0006, inset -1px 0 #c1eff421;
+}
+
+@media (min-width: 1024px) {
+  .d360-drawer-overlay,
+  .d360-workspace-drawer {
+    display: none;
+  }
+}
+
+@media (max-height: 28rem) {
+  .d360-workspace-drawer .d360-nav-profile {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .d360-workspace-drawer[data-state="open"] {
+    animation: workspace-drawer-in 180ms ease-out;
+  }
+}
+
+@keyframes workspace-drawer-in {
+  from { transform: translateX(-100%); }
+  to { transform: translateX(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .d360-workspace-nav {
+    transition: none;
+  }
 }
 
 .d360-toolbar {
@@ -253,7 +324,8 @@
 @media (prefers-reduced-transparency: reduce) {
   .d360-toolbar,
   .d360-workspace-sidebar,
-  .d360-workspace-switcher,
+  .d360-workspace-identity,
+  .d360-workspace-drawer,
   .d360-auth-form {
     background: var(--glass-solid);
     -webkit-backdrop-filter: none;
@@ -282,7 +354,8 @@
 
   .d360-toolbar,
   .d360-workspace-sidebar,
-  .d360-workspace-switcher,
+  .d360-workspace-identity,
+  .d360-workspace-drawer,
   .d360-auth-form {
     background: Canvas;
     -webkit-backdrop-filter: none;
@@ -298,7 +371,7 @@
     background: Canvas;
   }
 
-  .d360-workspace-nav[aria-current="page"] {
+  .d360-workspace-nav[aria-current] {
     outline: 1px solid Highlight;
   }
 }

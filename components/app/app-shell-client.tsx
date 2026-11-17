@@ -1,16 +1,15 @@
 "use client";
 
-import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Bell, ChevronDown, Command, LogOut, Menu, Search } from "lucide-react";
+import { Bell, Command, LogOut, Search } from "lucide-react";
 import { navItems } from "@/lib/demo-data";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
-import { BrunerLogo } from "@/components/app/bruner-logo";
+import { DesktopWorkspaceSidebar, MobileWorkspaceMenu } from "@/components/app/workspace-navigation";
 import type { AppSession } from "@/lib/auth/session";
-import { canAccessAdmin, canAccessBilling, clientRoles, formatRole } from "@/lib/auth/roles";
+import { canAccessAdmin, canAccessBilling, clientRoles } from "@/lib/auth/roles";
 
 const adminOnlyRoutes = new Set(["/agency", "/white-label", "/launch", "/settings/config"]);
 const billingRoutes = new Set(["/payments", "/billing"]);
@@ -39,61 +38,16 @@ function filterNavItems(role: AppSession["profile"]["role"], tenantSlug: string)
 
 export function AppShellClient({ children, session }: { children: React.ReactNode; session: AppSession }) {
   const pathname = usePathname();
-  const visibleNavItems = filterNavItems(session.profile.role, session.tenant.slug);
+  const navigation = { items: filterNavItems(session.profile.role, session.tenant.slug), pathname, session };
 
   return (
     <div className="d360-workspace min-h-screen">
       <div className="flex min-h-screen">
-        <aside className="d360-workspace-sidebar fixed inset-y-0 left-0 hidden w-72 flex-col border-r border-white/10 lg:flex">
-          <div className="flex h-20 items-center gap-3 px-5">
-            <BrunerLogo subtitle="by BrunerDigital" />
-          </div>
-          <div className="glass-inset d360-workspace-switcher mx-4 mb-4 p-inset">
-            <div className="flex items-center justify-between gap-3">
-              <div>
-                <div className="text-sm font-medium">{session.workspace?.name ?? session.tenant.name}</div>
-                <div className="text-xs text-muted-foreground">
-                  {session.workspace?.type === "client" ? "Client workspace" : "Agency workspace"}
-                </div>
-              </div>
-              <ChevronDown className="size-4 shrink-0 text-muted-foreground" />
-            </div>
-          </div>
-          <nav aria-label="Workspace" className="flex-1 overflow-y-auto px-3 pb-5">
-            <div className="flex flex-col gap-1">
-              {visibleNavItems.map((item) => {
-                const active = pathname === item.href || pathname.startsWith(`${item.href}/`);
-                const Icon = item.icon;
-                return (
-                  <Link
-                    key={item.href}
-                    href={item.href}
-                    aria-current={active ? "page" : undefined}
-                    className="d360-workspace-nav flex h-10 items-center gap-3 rounded-md px-3 text-sm text-muted-foreground transition-colors hover:bg-white/[0.06] hover:text-foreground"
-                  >
-                    <Icon className="size-[1.125rem] shrink-0" />
-                    <span className="truncate">{item.label}</span>
-                  </Link>
-                );
-              })}
-            </div>
-          </nav>
-          <div className="border-t border-white/10 p-4">
-            <div className="glass-inset p-inset">
-              <div className="truncate text-sm font-medium">{session.profile.fullName}</div>
-              <div className="truncate text-xs text-muted-foreground">{session.user.email}</div>
-              <Badge className="mt-3" variant="secondary">
-                {formatRole(session.profile.role)}
-              </Badge>
-            </div>
-          </div>
-        </aside>
+        <DesktopWorkspaceSidebar {...navigation} />
         <main className="min-w-0 flex-1 lg:pl-72">
           <header className="d360-toolbar sticky top-0 z-10 border-b">
             <div className="mx-auto flex min-h-[4.5rem] max-w-[100rem] items-center gap-2 px-panel md:h-20 md:gap-3">
-              <Button variant="ghost" size="icon" className="lg:hidden" aria-label="Open navigation">
-                <Menu />
-              </Button>
+              <MobileWorkspaceMenu {...navigation} />
               <div className="relative min-w-0 flex-1">
                 <Search className="pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground" />
                 <Input className="pl-9" aria-label="Search workspace" placeholder="Search" />

@@ -35,17 +35,17 @@ export function Dashboard() {
         </div>
       </section>
 
-      <section className="grid gap-layout sm:grid-cols-2 xl:grid-cols-4">
+      <section className="d360-kpi-grid grid gap-layout" aria-label="Key metrics">
         {dashboardKpis.map((kpi) => (
           <Card key={kpi.label} className="relative overflow-hidden">
             <div className="absolute inset-x-0 top-0 h-px bg-[image:var(--d360-spectrum)]" />
-            <CardHeader>
+            <CardHeader className="d360-kpi-content">
               <CardDescription>{kpi.label}</CardDescription>
-              <div className="flex flex-wrap items-baseline justify-between gap-x-3 gap-y-2">
+              <div className="d360-kpi-values flex flex-col items-start gap-x-3 gap-y-2">
                 <CardTitle className="text-[clamp(1.6rem,2.3vw,2rem)] tabular-nums">{kpi.value}</CardTitle>
                 <Badge className="tabular-nums" variant={kpi.tone}>{kpi.change}</Badge>
               </div>
-              <div className="mt-3 h-10 overflow-hidden rounded-md bg-slate-950/55">
+              <div className="mt-2 h-8 overflow-hidden rounded-md bg-slate-950/55 sm:mt-3 sm:h-10" aria-hidden="true">
                 <div className="flex h-full items-end gap-1 px-2 pb-1">
                   {[42, 58, 51, 74, 69, 88, 81, 96].map((height, index) => (
                     <div key={index} className="flex-1 rounded-t-sm bg-gradient-to-t from-sky-500 to-emerald-300" style={{ height: `${height}%` }} />

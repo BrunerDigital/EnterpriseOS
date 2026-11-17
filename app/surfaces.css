@@ -51,6 +51,31 @@ a:is(.glass-panel, .glass-inset):hover {
   border-color: #91e7f496;
 }
 
+.d360-kpi-content {
+  container-type: inline-size;
+}
+
+@media (min-width: 380px) {
+  .d360-kpi-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1280px) {
+  .d360-kpi-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+@container (min-width: 12rem) {
+  .d360-kpi-values {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+  }
+}
+
 .source-mix-card {
   container-type: inline-size;
 }
