@@ -75,9 +75,8 @@ export function SetupConsole({ activeSlug, mode = "overview" }: SetupConsoleProp
   }
 
   return (
-    <div className="min-h-screen bg-[#020711] text-white">
-      <div className="pointer-events-none fixed inset-0 -z-10 bg-[radial-gradient(circle_at_28%_0%,rgba(37,99,235,.15),transparent_30rem),radial-gradient(circle_at_80%_10%,rgba(16,185,129,.08),transparent_24rem),linear-gradient(180deg,#030713_0%,#050d19_52%,#02050d_100%)]" />
-      <header className="sticky top-0 z-40 border-b border-white/10 bg-[#030814]/92 backdrop-blur-2xl">
+    <div className="d360-workspace min-h-screen text-white">
+      <header className="d360-toolbar sticky top-0 z-40 border-b backdrop-blur-2xl">
         <div className="flex h-20 items-center justify-between px-4 md:px-6">
           <BrandLockup />
           <div className="hidden w-full max-w-md items-center gap-2 rounded-md border border-white/10 bg-white/[0.035] px-3 py-2 text-sm text-slate-500 lg:flex">
@@ -125,7 +124,7 @@ export function SetupConsole({ activeSlug, mode = "overview" }: SetupConsoleProp
           <div className="mx-auto grid max-w-[92rem] gap-5 xl:grid-cols-[18rem_1fr]">
             <SetupSidebar progress={progress} />
             <div className="min-w-0">
-              <section className="mb-5 grid gap-5 rounded-lg border border-white/10 bg-white/[0.025] p-5 md:grid-cols-[1fr_18rem] md:items-start">
+              <section className="d360-workspace-banner mb-5 grid gap-5 md:grid-cols-[1fr_18rem] md:items-start">
                 <div>
                   <h1 className="text-2xl font-semibold tracking-normal text-white">Setup & Onboarding</h1>
                   <p className="mt-2 text-sm leading-6 text-slate-400">Complete your setup to unlock the full power of Digital360.</p>

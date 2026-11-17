@@ -4,8 +4,9 @@ import { useState, useTransition } from "react";
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/client";
 import { BrunerLogo } from "@/components/app/bruner-logo";
+import { AuthArtwork } from "@/components/app/auth-artwork";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardDescription, CardHeader } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 
 export default function ResetPasswordPage() {
@@ -44,11 +45,11 @@ export default function ResetPasswordPage() {
   }
 
   return (
-    <main className="grid min-h-screen place-items-center px-4 py-10 grid-fade">
+    <AuthArtwork>
       <Card className="w-full max-w-md">
         <CardHeader>
           <BrunerLogo className="mb-2" />
-          <CardTitle className="text-3xl">Choose a new password</CardTitle>
+          <h1 className="text-3xl font-semibold tracking-tight">Choose a new password</h1>
           <CardDescription>Set a fresh password for your Digital360 account.</CardDescription>
         </CardHeader>
         <CardContent>
@@ -63,14 +64,14 @@ export default function ResetPasswordPage() {
                 {message}
               </div>
             ) : null}
-            <Input name="password" placeholder="New password" type="password" autoComplete="new-password" required />
-            <Input
-              name="confirmPassword"
-              placeholder="Confirm password"
-              type="password"
-              autoComplete="new-password"
-              required
-            />
+            <label className="grid gap-1.5 text-sm font-medium">
+              New password
+              <Input name="password" type="password" autoComplete="new-password" required />
+            </label>
+            <label className="grid gap-1.5 text-sm font-medium">
+              Confirm password
+              <Input name="confirmPassword" type="password" autoComplete="new-password" required />
+            </label>
             <Button type="submit" disabled={isPending}>
               {isPending ? "Updating..." : "Update password"}
             </Button>
@@ -80,6 +81,6 @@ export default function ResetPasswordPage() {
           </form>
         </CardContent>
       </Card>
-    </main>
+    </AuthArtwork>
   );
 }

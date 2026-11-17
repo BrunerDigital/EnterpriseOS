@@ -38,7 +38,7 @@ export function Dashboard() {
       <section className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
         {dashboardKpis.map((kpi) => (
           <Card key={kpi.label} className="relative overflow-hidden">
-            <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-sky-400 via-violet-400 to-emerald-300" />
+            <div className="absolute inset-x-0 top-0 h-px bg-[image:var(--d360-spectrum)]" />
             <div className="absolute -right-8 -top-8 size-24 rounded-full bg-sky-400/10 blur-2xl" />
             <CardHeader>
               <CardDescription>{kpi.label}</CardDescription>

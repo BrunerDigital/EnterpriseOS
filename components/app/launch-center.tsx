@@ -24,7 +24,7 @@ export function LaunchCenter({ data }: { data: LaunchCenterData }) {
 
   return (
     <div className="flex flex-col gap-6">
-      <section className="overflow-hidden rounded-lg border border-white/10 bg-[radial-gradient(circle_at_72%_12%,rgba(37,99,235,.24),transparent_24rem),linear-gradient(145deg,rgba(15,23,42,.88),rgba(2,6,23,.74))] shadow-panel">
+      <section className="d360-wave-panel overflow-hidden rounded-lg border border-sky-400/25 shadow-panel">
         <div className="grid gap-0 xl:grid-cols-[1.25fr_0.75fr]">
           <div className="p-6 md:p-8">
             <div className="flex flex-wrap items-center gap-2">

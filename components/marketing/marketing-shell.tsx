@@ -29,16 +29,12 @@ export function BrandMark() {
   );
 }
 
-export function MarketingShell({ children }: { children: React.ReactNode }) {
+export function MarketingShell({ children, home = false }: { children: React.ReactNode; home?: boolean }) {
   const [open, setOpen] = useState(false);
 
   return (
-    <div className="min-h-screen overflow-hidden bg-[#020817] text-white">
-      <div className="pointer-events-none fixed inset-0 -z-10">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_24%_0%,rgba(29,78,216,0.18),transparent_30rem),radial-gradient(circle_at_88%_8%,rgba(45,212,191,0.09),transparent_26rem),linear-gradient(180deg,#030714_0%,#06111f_42%,#02050d_100%)]" />
-        <div className="absolute inset-0 grid-fade opacity-60" />
-      </div>
-      <header className="sticky top-0 z-50 border-b border-white/10 bg-[#030814]/84 backdrop-blur-2xl">
+    <div className={cn("d360-marketing text-white", !home && "d360-marketing-horizon")}>
+      <header className="d360-toolbar sticky top-0 z-50 border-b backdrop-blur-2xl">
         <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
           <BrandMark />
           <nav className="hidden items-center gap-7 lg:flex">
@@ -98,7 +94,7 @@ export function Footer() {
   ];
 
   return (
-    <footer className="border-t border-white/10 bg-[#020711]/86">
+    <footer className="d360-art-footer border-t border-white/10">
       <div className="mx-auto grid max-w-7xl gap-10 px-4 py-12 sm:px-6 lg:grid-cols-[1.2fr_2fr] lg:px-8">
         <div>
           <BrandMark />
@@ -152,7 +148,7 @@ export function ProductMockup({ compact = false }: { compact?: boolean }) {
     <div className={cn("glass-panel relative overflow-hidden rounded-lg p-4 shadow-panel", !compact && "lg:translate-y-3")}>
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_78%_10%,rgba(37,99,235,.18),transparent_20rem)]" />
       <p className="relative mb-3 text-xs leading-5 text-slate-300">Illustrative product view · Sample data, not customer results.</p>
-      <div className="relative grid min-h-[360px] grid-cols-[2.75rem_1fr] overflow-hidden rounded-md border border-white/10 bg-[#050b15]/92">
+      <div className="relative grid min-h-[360px] grid-cols-[2.75rem_minmax(0,1fr)] overflow-hidden rounded-md border border-white/10 bg-[#050b15]/92">
         <div className="border-r border-white/10 bg-[#050913] p-2">
           <div className="relative mx-auto mb-4 size-7 overflow-hidden rounded-md bg-white">
             <Image src="/brand/digital-360-logo.jpg" alt="" fill sizes="28px" className="object-cover" />
@@ -165,22 +161,22 @@ export function ProductMockup({ compact = false }: { compact?: boolean }) {
             ))}
           </div>
         </div>
-        <div className="p-4">
-          <div className="mb-4 flex items-center justify-between">
-            <div className="flex items-center gap-2">
+        <div className="p-3 sm:p-4">
+          <div className="mb-4 flex flex-wrap items-center justify-between gap-2">
+            <div className="flex flex-wrap items-center gap-2">
               <div className="text-sm font-semibold text-white">Command Center</div>
               <div className="rounded-md border border-white/10 px-2 py-1 text-[10px] text-slate-500">Overview</div>
             </div>
-            <div className="flex w-48 items-center gap-2 rounded-md border border-white/10 bg-white/[0.03] px-3 py-2 text-xs text-slate-500">
+            <div className="hidden w-32 items-center gap-2 rounded-md border border-white/10 bg-white/[0.03] px-3 py-2 text-xs text-slate-500 sm:flex">
               <Search className="size-3.5" />
               Search
             </div>
           </div>
-          <div className="grid gap-3 md:grid-cols-4">
+          <div className="grid grid-cols-2 gap-3 2xl:grid-cols-4">
             {metrics.map(([label, value, change]) => (
               <div key={label} className="rounded-md border border-white/10 bg-white/[0.035] p-3">
                 <div className="text-[10px] text-slate-500">{label}</div>
-                <div className="mt-2 text-lg font-semibold text-white">{value}</div>
+                <div className="mt-2 break-words text-sm font-semibold text-white sm:text-lg">{value}</div>
                 <div className="mt-1 text-[10px] font-medium text-emerald-300">{change}</div>
               </div>
             ))}
@@ -205,11 +201,11 @@ export function ProductMockup({ compact = false }: { compact?: boolean }) {
             </div>
             <div className="rounded-md border border-white/10 bg-white/[0.025] p-4">
               <div className="text-sm font-semibold text-white">Top Channels</div>
-              <div className="mt-5 flex items-center gap-4">
-                <div className="relative size-24 rounded-full bg-[conic-gradient(#2563eb_0_40%,#2dd4bf_40%_65%,#f59e0b_65%_85%,#8b5cf6_85%_100%)]">
-                  <div className="absolute inset-5 rounded-full bg-[#050b15]" />
+              <div className="mt-5 flex flex-wrap items-center gap-3">
+                <div className="relative size-16 shrink-0 rounded-full bg-[conic-gradient(#2563eb_0_40%,#2dd4bf_40%_65%,#f59e0b_65%_85%,#8b5cf6_85%_100%)]">
+                  <div className="absolute inset-3 rounded-full bg-[#050b15]" />
                 </div>
-                <div className="grid flex-1 gap-2 text-[10px] text-slate-400">
+                <div className="grid min-w-[5.8rem] flex-1 gap-2 text-[10px] text-slate-400">
                   {["Paid Search", "Direct", "Organic", "Social"].map((item, index) => (
                     <div key={item} className="flex items-center justify-between">
                       <span>{item}</span>
@@ -249,7 +245,7 @@ export function ProductMockup({ compact = false }: { compact?: boolean }) {
 export function CtaBand() {
   return (
     <section className="px-4 py-16 sm:px-6 lg:px-8">
-      <div className="mx-auto max-w-7xl overflow-hidden rounded-lg border border-sky-400/20 bg-gradient-to-br from-sky-400/16 via-slate-900 to-emerald-400/10 p-8 shadow-panel md:p-12">
+      <div className="d360-wave-panel mx-auto max-w-7xl overflow-hidden rounded-lg border border-sky-400/25 p-8 shadow-panel md:p-12">
         <div className="grid gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
           <div>
             <h2 className="text-3xl font-semibold tracking-normal text-white md:text-5xl">Build the launch system once. Scale it across every client, team, and location.</h2>

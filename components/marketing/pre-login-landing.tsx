@@ -99,14 +99,14 @@ export function PreLoginLanding() {
   const demoHref = process.env.NEXT_PUBLIC_DEMO_BOOKING_URL || "/demo";
 
   return (
-    <MarketingShell>
+    <MarketingShell home>
       <main>
-        <section className="relative px-4 pb-12 pt-10 sm:px-6 md:pt-14 lg:px-8">
-          <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[0.78fr_1fr] lg:items-center">
+        <section className="d360-landing-hero px-4 pb-9 pt-12 sm:px-6 lg:px-8 lg:pt-10">
+          <div className="mx-auto grid max-w-7xl items-center gap-3 md:grid-cols-[1.05fr_minmax(0,1fr)] lg:gap-8">
             <div>
-              <h1 className="max-w-3xl text-5xl font-semibold leading-[0.98] tracking-normal text-white sm:text-6xl md:text-7xl">
+              <h1 className="max-w-3xl text-[clamp(2.65rem,5vw,4.75rem)] font-semibold leading-[1.03] tracking-[-.045em] text-white">
                 Your growth operating system,
-                <span className="block bg-gradient-to-r from-emerald-300 via-sky-400 to-violet-500 bg-clip-text text-transparent">
+                <span className="d360-spectrum-text block w-fit">
                   fully connected.
                 </span>
               </h1>
@@ -138,17 +138,17 @@ export function PreLoginLanding() {
                 ))}
               </div>
             </div>
-            <ProductMockup />
+            <div className="d360-signal-art d360-landing-art" aria-hidden="true" />
           </div>
 
-          <div className="mx-auto mt-10 max-w-7xl">
+          <div className="d360-team-rail mx-auto max-w-7xl pt-6">
             <p className="text-center text-sm text-slate-400">Designed with these teams in mind.</p>
-            <div className="mt-6 grid gap-3 text-slate-500 sm:grid-cols-2 lg:grid-cols-6">
+            <div className="mt-5 grid gap-x-3 gap-y-4 text-slate-300 sm:grid-cols-3 lg:grid-cols-6">
               {trustSegments.map((segment) => {
                 const Icon = segment.icon;
                 return (
                   <div key={segment.label} className="flex items-center justify-center gap-3 border-r border-white/10 px-3 text-sm last:border-r-0 max-lg:border-r-0">
-                    <Icon className="size-5 text-slate-600" />
+                    <Icon className="size-5 shrink-0 text-sky-300/75" />
                     <span>{segment.label}</span>
                   </div>
                 );
@@ -157,23 +157,24 @@ export function PreLoginLanding() {
           </div>
         </section>
 
-        <section className="border-y border-white/10 bg-gradient-to-r from-blue-600/12 via-[#061426]/70 to-emerald-400/10 px-4 py-8 sm:px-6 lg:px-8">
-          <div className="mx-auto grid max-w-7xl gap-6 lg:grid-cols-[1fr_0.95fr] lg:items-center">
+        <section className="d360-wave-panel border-y border-white/10 px-4 py-12 sm:px-6 lg:px-8 lg:py-16">
+          <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[.92fr_minmax(0,1.08fr)] lg:items-center">
             <div>
               <div className="text-sm font-semibold uppercase tracking-[0.18em] text-emerald-300">Plan your first workflow</div>
               <h2 className="mt-3 text-3xl font-semibold tracking-normal text-white md:text-4xl">See where your growth stack is leaking before another lead goes cold.</h2>
               <p className="mt-4 max-w-3xl text-sm leading-6 text-slate-300 md:text-base">
                 Book a Digital360 rollout walkthrough and we will map your current lead capture, follow-up, calendar, reviews, reporting, and client portal gaps into a launch plan.
               </p>
+              <div className="mt-6 grid gap-3 sm:grid-cols-3">
+                {launchMetrics.map(([value, label]) => (
+                  <div key={value} className="rounded-lg border border-white/10 bg-[#081222]/85 p-4">
+                    <div className="text-lg font-semibold text-cyan-200">{value}</div>
+                    <p className="mt-2 text-xs leading-5 text-slate-300">{label}</p>
+                  </div>
+                ))}
+              </div>
             </div>
-            <div className="grid gap-3 sm:grid-cols-3">
-              {launchMetrics.map(([value, label]) => (
-                <div key={value} className="rounded-lg border border-white/10 bg-white/[0.035] p-4">
-                  <div className="bg-gradient-to-r from-emerald-300 to-blue-400 bg-clip-text text-2xl font-semibold text-transparent">{value}</div>
-                  <p className="mt-2 text-xs leading-5 text-slate-400">{label}</p>
-                </div>
-              ))}
-            </div>
+            <ProductMockup compact />
           </div>
         </section>
 

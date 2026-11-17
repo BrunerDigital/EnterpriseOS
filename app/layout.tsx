@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Script from "next/script";
 import { TrackingScripts } from "@/components/app/tracking-scripts";
 import "./globals.css";
+import "./artwork.css";
 
 const siteUrl = process.env.NEXT_PUBLIC_APP_URL ?? "https://digital360.brunerdigital.com";
 

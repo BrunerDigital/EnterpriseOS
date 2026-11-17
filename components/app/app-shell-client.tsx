@@ -42,13 +42,13 @@ export function AppShellClient({ children, session }: { children: React.ReactNod
   const visibleNavItems = filterNavItems(session.profile.role, session.tenant.slug);
 
   return (
-    <div className="min-h-screen grid-fade">
+    <div className="d360-workspace min-h-screen">
       <div className="flex min-h-screen">
-        <aside className="fixed inset-y-0 left-0 hidden w-72 flex-col border-r border-white/10 bg-slate-950/78 backdrop-blur-xl lg:flex">
+        <aside className="d360-workspace-sidebar fixed inset-y-0 left-0 hidden w-72 flex-col border-r border-white/10 lg:flex">
           <div className="flex h-20 items-center gap-3 px-5">
             <BrunerLogo subtitle="by BrunerDigital" />
           </div>
-          <div className="mx-4 mb-4 rounded-lg border border-white/10 bg-white/[0.03] p-3">
+          <div className="d360-workspace-switcher mx-4 mb-4 rounded-lg border p-3">
             <div className="flex items-center justify-between gap-3">
               <div>
                 <div className="text-sm font-medium">{session.workspace?.name ?? session.tenant.name}</div>
@@ -59,7 +59,7 @@ export function AppShellClient({ children, session }: { children: React.ReactNod
               <ChevronDown />
             </div>
           </div>
-          <nav className="flex-1 overflow-y-auto px-3 pb-5">
+          <nav aria-label="Workspace" className="flex-1 overflow-y-auto px-3 pb-5">
             <div className="flex flex-col gap-1">
               {visibleNavItems.map((item) => {
                 const active = pathname === item.href || pathname.startsWith(`${item.href}/`);
@@ -68,10 +68,8 @@ export function AppShellClient({ children, session }: { children: React.ReactNod
                   <Link
                     key={item.href}
                     href={item.href}
-                    className={cn(
-                      "flex h-10 items-center gap-3 rounded-md px-3 text-sm text-muted-foreground transition-colors hover:bg-white/[0.06] hover:text-foreground",
-                      active && "bg-primary/12 text-sky-100 ring-1 ring-primary/20"
-                    )}
+                    aria-current={active ? "page" : undefined}
+                    className="d360-workspace-nav flex h-10 items-center gap-3 rounded-md px-3 text-sm text-muted-foreground transition-colors hover:bg-white/[0.06] hover:text-foreground"
                   >
                     <Icon />
                     <span className="truncate">{item.label}</span>
@@ -91,7 +89,7 @@ export function AppShellClient({ children, session }: { children: React.ReactNod
           </div>
         </aside>
         <main className="min-w-0 flex-1 lg:pl-72">
-          <header className="sticky top-0 z-10 border-b border-white/10 bg-slate-950/58 backdrop-blur-xl">
+          <header className="d360-toolbar sticky top-0 z-10 border-b backdrop-blur-xl">
             <div className="flex h-20 items-center gap-3 px-4 md:px-7">
               <Button variant="ghost" size="icon" className="lg:hidden" aria-label="Open navigation">
                 <Menu />
@@ -117,7 +115,9 @@ export function AppShellClient({ children, session }: { children: React.ReactNod
               </Badge>
             </div>
           </header>
-          <div className="px-4 py-6 md:px-7">{children}</div>
+          <div className={cn("d360-workspace-content px-4 py-6 md:px-7", pathname === "/dashboard" && "d360-dashboard-content")}>
+            {children}
+          </div>
         </main>
       </div>
     </div>
