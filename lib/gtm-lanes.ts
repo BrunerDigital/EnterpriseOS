@@ -106,7 +106,7 @@ export const gtmLanes: GTMLane[] = [
       sections: ["Lead leak calculator", "Missed revenue proof", "Workflow preview", "Audit form", "Calendar CTA", "Review growth proof"],
       fields: ["Business type", "Monthly leads", "Average sale", "Current response time", "Biggest lead source", "Phone"],
       qualification: ["Local service or appointment business", "Receives inbound leads", "Has response or review growth gap"],
-      thankYouPath: "/signup/thank-you"
+      thankYouPath: "/demo/thank-you"
     },
     nurture: [
       { day: "Day 0", subject: "Your lead leak audit is queued", body: "Confirm submission and ask for current lead source details." },

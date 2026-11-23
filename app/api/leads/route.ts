@@ -4,27 +4,23 @@ import { createAdminClient } from "@/lib/supabase/admin";
 import { inquiryWorkspaceId, inquiryWorkspaceType } from "@/lib/server/project-inquiries";
 import { notifyLead } from "@/lib/server/lead-notifications";
 import type { Json } from "@/lib/supabase/database.types";
-
-type LeadPayload = Record<string, unknown> & {
-  email?: string;
-  source?: string;
-  company?: string;
-  name?: string;
-  phone?: string;
-  page_url?: string;
-};
+import { isRetiredTrialSource, selectPublicLeadPayload, type PublicLeadPayload } from "@/lib/server/public-lead-payload";
 
 export async function POST(request: Request) {
-  let payload: LeadPayload;
-
+  let raw: unknown;
   try {
-    payload = (await request.json()) as LeadPayload;
+    raw = await request.json();
   } catch {
     return NextResponse.json({ success: false, message: "Invalid lead payload." }, { status: 400 });
   }
 
-  if (!payload || typeof payload !== "object" || Array.isArray(payload)) {
+  const selected = selectPublicLeadPayload(raw);
+  if (!selected) {
     return NextResponse.json({ success: false, message: "Invalid lead payload." }, { status: 400 });
+  }
+  const { website, ...payload } = selected;
+  if (isRetiredTrialSource(payload.source)) {
+    return NextResponse.json({ success: false, message: "Digital360 is invite-only. Request a walkthrough from the demo page." }, { status: 410 });
   }
   if (payload.source === walkthroughFormSource) {
     return NextResponse.json({ success: false, message: "Reload the Digital360 walkthrough form and try again." }, { status: 409 });
@@ -38,7 +34,7 @@ export async function POST(request: Request) {
     return NextResponse.json({ success: false, message: "A valid work email is required." }, { status: 400 });
   }
 
-  if (typeof payload.website === "string" && payload.website.trim().length > 0) {
+  if (website?.trim()) {
     return NextResponse.json({ success: true, message: "Thanks. Your Digital360 setup request was received." });
   }
 
@@ -155,8 +151,8 @@ export async function POST(request: Request) {
         metadata
       });
     }
-  } catch (error) {
-    console.error("Digital360 lead audit write failed", error);
+  } catch {
+    console.error("Digital360 lead audit write failed");
   }
 
   notificationResults = await notifyLead(payload, tenantId);
@@ -166,7 +162,7 @@ export async function POST(request: Request) {
     message: "Thanks. Your Digital360 setup request was received.",
     source: payload.source ?? "Digital360 public site",
     notifications: notificationResults.map((result) => ({ provider: result.provider, status: result.status })),
-    redirect: typeof payload.thank_you_path === "string" && payload.thank_you_path.startsWith("/") ? payload.thank_you_path : "/demo/thank-you/"
+    redirect: "/demo/thank-you/"
   });
 }
 
@@ -182,7 +178,7 @@ function splitName(name: string) {
   return { first, last };
 }
 
-function calculateLaunchLeadScore(payload: LeadPayload) {
+function calculateLaunchLeadScore(payload: PublicLeadPayload) {
   let score = 62;
 
   if (cleanString(payload.company)) score += 8;
@@ -194,7 +190,7 @@ function calculateLaunchLeadScore(payload: LeadPayload) {
   return Math.min(score, 100);
 }
 
-function buildLeadSummary(payload: LeadPayload) {
+function buildLeadSummary(payload: PublicLeadPayload) {
   const parts = [
     `${cleanString(payload.name) || payload.email} requested a Digital360 launch walkthrough.`,
     cleanString(payload.company) ? `Company: ${cleanString(payload.company)}.` : null,
